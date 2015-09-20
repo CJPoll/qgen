@@ -1,0 +1,11 @@
+window.AuthenticityToken = require('./components/authenticityToken');
+window.CreateCharacterButton = require('./components/createCharacter');
+window.Dashboard = require('./components/dashboard');
+window.Login = require('./components/login');
+window.LoginButton = require('./components/sign_in');
+window.LoginForm = require('./components/login_form');
+window.LogoutButton = require('./components/logout');
+window.Navbar = require('./components/navbar');
+window.Panel = require('./components/panel');
+window.PanelBody = require('./components/panelBody');
+window.PanelTitle = require('./components/panelTitle');
