@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root controller: :static, action: :landing
 
   # The priority is based upon order of creation: first created -> highest priority.

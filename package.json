@@ -3,7 +3,7 @@
   "description": "My toy LMS",
   "version": "0.0.1",
   "devDependencies": {
-    "eslint-plugin-react": "^3.3.2"
+    "eslint-plugin-react": "^3.4.2"
   },
   "dependencies": {
     "webpack": "~1.4.13",
