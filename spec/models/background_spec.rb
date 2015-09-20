@@ -22,4 +22,8 @@ RSpec.describe Background, type: :model do
     second = FactoryGirl.build :background, name: subject.name
     expect(second).to_not be_valid
   end
+
+  it 'is associated with characters' do
+    expect(subject).to respond_to :characters
+  end
 end
