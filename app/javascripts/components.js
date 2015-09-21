@@ -1,5 +1,5 @@
 import AuthenticityToken from './components/authenticityToken';
-import CharacterCreator from './components/character_creator';
+import BackgroundSelector from './components/background_selector';
 import CreateCharacterButton from './components/createCharacter';
 import Dashboard from './components/dashboard';
 import Login from './components/login';
@@ -10,12 +10,10 @@ import Navbar from './components/navbar';
 import Panel from './components/panel';
 import PanelBody from './components/panelBody';
 import PanelTitle from './components/panelTitle';
-
-import AppRouter from './components/router';
-window.AppRouter = AppRouter;
+import SelectBackground from './components/select_background';
 
 window.AuthenticityToken = AuthenticityToken;
-window.CharacterCreator = CharacterCreator;
+window.BackgroundSelector = BackgroundSelector;
 window.CreateCharacterButton = CreateCharacterButton;
 window.Dashboard = Dashboard;
 window.Login = Login;
@@ -26,3 +24,4 @@ window.Navbar = Navbar;
 window.Panel = Panel;
 window.PanelBody = PanelBody;
 window.PanelTitle = PanelTitle;
+window.SelectBackground = SelectBackground;

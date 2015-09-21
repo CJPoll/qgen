@@ -5,5 +5,4 @@
 //= require react
 //= require react_ujs
 //= require components
-//= require ./bundle.entry.js
 //= require ./create_character.entry.js

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'backgrounds', controller: :backgrounds, action: :index
+
   get 'characters/new'
   get 'characters/new/*anything', controller: :characters, action: :new
 

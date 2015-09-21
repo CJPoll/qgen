@@ -1,14 +1,13 @@
 import { Router, Route } from 'react-router';
-import CharacterCreator from './character_creator';
-import Thing from './thing';
+import SelectBackground from './select_background';
+
+import BackgroundsStore from '../stores/backgroundsStore';
 
 var routes;
 
 routes = (
 	<Router>
-		<Route path='/' component={CharacterCreator} >
-		</Route>
-		<Route path='thing' component={Thing} />
+		<Route path='/' component={SelectBackground} />
 	</Router>
 );
 
