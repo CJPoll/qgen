@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'characters/new'
+  get 'characters/new/*anything', controller: :characters, action: :new
+
   devise_for :users
   root controller: :static, action: :landing
 

@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 define(function() {
   var React, LogoutButton;
 
