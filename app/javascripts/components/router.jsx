@@ -1,15 +1,13 @@
 import { Router, Route } from 'react-router';
 import SelectBackground from './select_background';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
+import history from '../history';
 
 import BackgroundsStore from '../stores/backgroundsStore';
 
 import CharacterCreatorApp from './character_creator_app.jsx';
 import TestRoute from './test_route';
 
-var routes, history;
-
-history = createBrowserHistory();
+var routes;
 
 routes = (
 	<Router history={history} component={CharacterCreatorApp}>

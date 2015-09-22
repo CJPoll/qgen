@@ -8,14 +8,6 @@ var TestRoute;
 TestRoute = React.createClass({
 	mixins: [ Reflux.connect(BackgroundsStore, 'backgrounds') ],
 
-	componentWillMount() {
-		var selectedBackground = BackgroundsStore.selected();
-
-		if (!selectedBackground || selectedBackground.name === undefined || selectedBackground === null) {
-			this.props.history.replaceState(null, '/characters/new');
-		}
-	},
-
 	render() {
 		return (
 			<div onBackButtonEvent={this.onBackButtonEvent}>
