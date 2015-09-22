@@ -1,14 +1,18 @@
 define(function() {
-	'use strict';
-
 	var React, Panel;
 
 	React = require('react');
 
 	Panel = React.createClass({
 		render: function() {
+			var classes = 'panel';
+
+			if (this.props.type) {
+				classes += ' panel-' + this.props.type;
+			}
+
 			return (
-				<div className='panel panel-primary' onClick={this.props.onClick}>
+				<div className={classes} onClick={this.props.onClick}>
 					{this.props.children}
 				</div>
 			);

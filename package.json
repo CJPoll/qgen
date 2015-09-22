@@ -11,6 +11,7 @@
     "bootstrap-sass": "~3.3.5",
     "exports-loader": "~0.6.2",
     "expose-loader": "~0.6.0",
+    "history": "^1.9.1",
     "imports-loader": "~0.6.3",
     "jsx-loader": "0.13.2",
     "lodash": "^3.10.1",

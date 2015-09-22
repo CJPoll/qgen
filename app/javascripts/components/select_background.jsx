@@ -1,14 +1,27 @@
 import React from 'react';
 import BackgroundSelector from './background_selector';
+import Navbar from './navbar';
+import { Link } from 'react-router';
 
 var SelectBackground;
 
 SelectBackground = React.createClass({
+	onBackButtonEvent(e) {
+		e.preventDefault();
+		this.goBack();
+	},
+
 	render() {
 		return (
-			<div className='container-fluid'>
-				<h1> SelectBackground </h1>
-				<BackgroundSelector />
+			<div onBackButtonEvent={this.onBackButton}>
+				<Navbar userData={'notnull'} />
+				<div className='container-fluid'>
+					<h1> SelectBackground </h1>
+				<Link to='/characters/new/step2'>
+					Link
+				</Link>
+					<BackgroundSelector />
+				</div>
 			</div>
 		);
 	}

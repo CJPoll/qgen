@@ -1,26 +1,26 @@
-define(function() {
-  var React, LoginButton;
+import React from 'react';
+import LogoutButton from './logout';
 
-  React = require('react');
-  LoginButton = React.createClass({
-    propTypes: {
-      userData: React.PropTypes.object
-    },
+var LoginButton;
 
-    render: function() {
-      var user = this.props.userData;
+LoginButton = React.createClass({
+	propTypes: {
+		userData: React.PropTypes.object
+	},
 
-      if (user !== null && user !== undefined) {
-        return (
-          <LogoutButton />
-        );
-      }
+	render: function() {
+		var user = this.props.userData;
 
-      return (
-        <a href="/users/sign_in"> Sign In </a>
-      );
-    }
-  });
+		if (user !== null && user !== undefined) {
+			return (
+				<LogoutButton />
+			);
+		}
 
-  return LoginButton;
+		return (
+			<a href="/users/sign_in"> Sign In </a>
+		);
+	}
 });
+
+export default LoginButton;

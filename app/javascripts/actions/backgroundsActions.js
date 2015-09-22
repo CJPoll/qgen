@@ -3,7 +3,8 @@ import Reflux from 'reflux';
 var BackgroundsActions;
 
 BackgroundsActions = Reflux.createActions({
-	'load': {asyncResult: true}
+	load: {asyncResult: true},
+	selectBackground: {asyncResult: false}
 });
 
 BackgroundsActions.load.listen(function() {

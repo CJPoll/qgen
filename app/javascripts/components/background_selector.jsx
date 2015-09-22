@@ -16,7 +16,7 @@ BackgroundSelector = React.createClass({
 			<div className='tiled' key={key}>
 				<Background background={background}/>
 			</div>
-		)
+		);
 	},
 
 	render() {
