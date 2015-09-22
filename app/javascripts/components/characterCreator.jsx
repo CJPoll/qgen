@@ -1,8 +1,9 @@
 import React from 'react';
+import Navbar from './navbar';
 
-var CharacterCreatorApp;
+var CharacterCreator;
 
-CharacterCreatorApp = React.createClass({
+CharacterCreator = React.createClass({
 	render() {
 		return (
 			<div>
@@ -13,4 +14,4 @@ CharacterCreatorApp = React.createClass({
 	}
 });
 
-export default CharacterCreatorApp;
+export default CharacterCreator;

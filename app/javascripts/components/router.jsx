@@ -4,15 +4,17 @@ import history from '../history';
 
 import BackgroundsStore from '../stores/backgroundsStore';
 
-import CharacterCreatorApp from './character_creator_app.jsx';
+import CharacterCreator from './characterCreator';
 import TestRoute from './test_route';
 
 var routes;
 
 routes = (
-	<Router history={history} component={CharacterCreatorApp}>
-		<Route path='/characters/new' component={SelectBackground}/>
-		<Route path='/characters/new/step2' component={TestRoute} />
+	<Router history={history}>
+		<Route path='/characters' component={CharacterCreator}>
+			<Route path='new' component={SelectBackground}/>
+			<Route path='new/step2' component={TestRoute} />
+		</Route>
 	</Router>
 );
 
