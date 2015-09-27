@@ -22,11 +22,14 @@ Lastly, you'll need to install the PostgreSQL database. On Mac, install
 can download the installer binary from
 [Postgres' site](http://www.postgresql.org/download/).
 
-## Installation
+## Setup
 
 Once you have all dependencies, you should run `bundle install && npm install`
 from your shell. That will install all the required ruby gems and node packages
 required for the app.
+
+After that's all said and done, rune `rake db:setup` to get your database all
+ready to go.
 
 ## Local Testing
 
