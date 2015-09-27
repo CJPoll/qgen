@@ -19,7 +19,7 @@ Background = React.createClass({
 
 	handleClick() {
 		BackgroundsActions.selectBackground(this.props.background);
-		this.history.pushState(null, '/characters/new/step2');
+		this.history.pushState(null, '/characters/new/powers');
 	},
 
 	render() {

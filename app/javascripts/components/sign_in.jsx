@@ -8,7 +8,7 @@ LoginButton = React.createClass({
 		userData: React.PropTypes.object
 	},
 
-	render: function() {
+	render() {
 		var user = this.props.userData;
 
 		if (user !== null && user !== undefined) {

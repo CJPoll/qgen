@@ -18,7 +18,7 @@ define(function() {
 							Log In
 						</PanelTitle>
 						<PanelBody>
-              <LoginForm csrf_param={this.props.csrf_param} csrf_token={this.props.csrf_token} />
+							<LoginForm csrf_param={this.props.csrf_param} csrf_token={this.props.csrf_token} />
 						</PanelBody>
 					</Panel>
 				</div>

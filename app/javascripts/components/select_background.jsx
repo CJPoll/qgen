@@ -13,13 +13,11 @@ SelectBackground = React.createClass({
 	render() {
 		return (
 			<div onBackButtonEvent={this.onBackButton}>
-				<div className='container-fluid'>
-					<h1> SelectBackground </h1>
-				<Link to='/characters/new/step2'>
+				<h1> SelectBackground </h1>
+				<Link to='/characters/new/powers'>
 					Link
 				</Link>
-					<BackgroundSelector />
-				</div>
+				<BackgroundSelector />
 			</div>
 		);
 	}

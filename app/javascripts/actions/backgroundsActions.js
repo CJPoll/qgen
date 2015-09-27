@@ -11,7 +11,7 @@ BackgroundsActions.load.listen(function() {
 	var url, self;
 
 	url = '/backgrounds.json';
-	self = this
+	self = this;
 
 	$.getJSON(url)
 		.then((data) => self.completed(data));

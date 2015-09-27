@@ -8,7 +8,9 @@ CharacterCreator = React.createClass({
 		return (
 			<div>
 				<Navbar userData={{userData: 'notNull'}} />
-				{this.props.children}
+				<div className='container-fluid'>
+					{this.props.children}
+				</div>
 			</div>
 		);
 	}

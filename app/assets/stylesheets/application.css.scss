@@ -33,6 +33,13 @@
 	@extend .btn-primary;
 }
 
+.disabled-submit
+{
+	@extend .btn;
+	@extend .btn-primary;
+	@extend .disabled;
+}
+
 .tiled
 {
 	@extend .col-xs-12;
