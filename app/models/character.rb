@@ -6,9 +6,10 @@
 #   backstory: text       (optional)
 #   background: Bacground (required)
 class Character < ActiveRecord::Base
-  validates :first_name, presence: true
-
   belongs_to :background
+  has_and_belongs_to_many :powers
 
+  validates :first_name, presence: true
   validates_presence_of :background
+  validates_presence_of :powers
 end

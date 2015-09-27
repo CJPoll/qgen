@@ -30,4 +30,9 @@ RSpec.describe Character, type: :model do
     subject.background = nil
     expect(subject).to_not be_valid
   end
+
+  it 'requires at least one power' do
+    subject.powers = []
+    expect(subject).to_not be_valid
+  end
 end

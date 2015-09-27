@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe BackgroundsController, type: :controller do
+RSpec.describe PowersController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
-      get :index, {format: :json}
+      get :index
       expect(response).to have_http_status(:success)
     end
   end

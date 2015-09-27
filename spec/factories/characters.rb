@@ -4,5 +4,6 @@ FactoryGirl.define do
     last_name 'MyString'
     backstory 'MyText'
     background
+    powers {[FactoryGirl.create(:power)]}
   end
 end
