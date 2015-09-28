@@ -1,0 +1,40 @@
+@keyframes slidein
+{
+	from {
+		transform: translateX(-25%);
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	to {
+		transform: translateX(0%);
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+@keyframes panel-selected
+{
+	from {
+		border-color: $brand-primary;
+		background-color: $brand-primary;
+	}
+
+	to {
+		border-color: $brand-success;
+		background-color: $brand-success;
+	}
+}
+
+@keyframes panel-unselected
+{
+	from {
+		border-color: $brand-success;
+		background-color: $brand-success;
+	}
+
+	to {
+		border-color: $brand-primary;
+		background-color: $brand-primary;
+	}
+}

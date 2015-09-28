@@ -1,23 +1,22 @@
-define(function() {
-	var React, Panel;
+import React from 'react';
+var Panel;
 
-	React = require('react');
+Panel = React.createClass({
+	render: function() {
+		var className;
 
-	Panel = React.createClass({
-		render: function() {
-			var classes = 'panel';
-
-			if (this.props.type) {
-				classes += ' panel-' + this.props.type;
-			}
-
-			return (
-				<div className={classes} onClick={this.props.onClick}>
-					{this.props.children}
-				</div>
-			);
+		if (this.props.active) {
+			className = 'panel selected-panel';
+		} else {
+			className = 'panel selectable-panel';
 		}
-	});
 
-	return Panel;
+		return (
+			<div className={className} onClick={this.props.onClick}>
+				{this.props.children}
+			</div>
+		);
+	}
 });
+
+export default Panel;

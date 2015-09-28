@@ -23,15 +23,10 @@ Background = React.createClass({
 	},
 
 	render() {
-		var type;
+		var active = this.props.background === BackgroundsStore.selected();
 
-		if (this.props.background === BackgroundsStore.selected()) {
-			type = 'success';
-		} else {
-			type = 'primary';
-		}
 		return (
-			<Panel onClick={this.handleClick} type={type}>
+			<Panel onClick={this.handleClick} active={active}>
 				<PanelTitle>
 					{this.props.background.name}
 				</PanelTitle>

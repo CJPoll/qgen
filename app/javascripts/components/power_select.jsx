@@ -30,7 +30,7 @@ var powerSelect = React.createClass({
 				</Link>
 				</div>
 				{powerComponents}
-				<Link to='/characters/new/step3' className={submitClass}> Move On </Link>
+				<Link to='/characters/new/backstory' className={submitClass}> Move On </Link>
 			</div>
 		);
 	}

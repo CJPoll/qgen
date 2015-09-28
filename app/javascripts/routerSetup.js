@@ -7,6 +7,7 @@ import BackgroundsActions from './actions/backgroundsActions';
 import PowersActions from './actions/powersActions';
 
 import PowersStore from './stores/powersStore';
+import BackstoryStore from './stores/backstoryStore';
 
 $(document).ready(function() {
 	React.render(routes, document.body);

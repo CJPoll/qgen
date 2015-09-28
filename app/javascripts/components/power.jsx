@@ -16,13 +16,11 @@ Power = React.createClass({
 	},
 
 	render() {
-		var type = 'primary';
-		if (PowersStore.selected(this.props.power)) {
-			type = 'success';
-		}
+		var active = PowersStore.selected(this.props.power);
+
 		return (
 			<div className='tiled'>
-				<Panel type={type} onClick={this.handleClick}>
+				<Panel active={active} onClick={this.handleClick}>
 					<PanelTitle>
 						{this.props.power.name}
 					</PanelTitle>
