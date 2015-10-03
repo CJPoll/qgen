@@ -20,5 +20,8 @@
     "react-router": "^1.0.0-rc1",
     "reflux": "~0.2.12",
     "webpack": "~1.4.13"
+  },
+  "scripts": {
+    "postinstall": "./run-webpack"
   }
 }
