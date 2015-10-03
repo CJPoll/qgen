@@ -17,9 +17,9 @@ var powerSelect = React.createClass({
 			return <Power power={power}/>;
 		});
 
-		submitClass = 'disabled-submit';
+		submitClass = 'disabled-submit clearfix';
 		if (PowersStore.maxSelected()) {
-			submitClass = 'submit';
+			submitClass = 'submit clearfix';
 		}
 
 		return (
