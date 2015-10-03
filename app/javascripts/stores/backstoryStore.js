@@ -8,7 +8,7 @@ var BackstoryStore = Reflux.createStore({
 		this.listenToMany(BackstoryActions);
 		this.state = {
 			backstory: ''
-		}
+		};
 	},
 
 	getInitialState() {

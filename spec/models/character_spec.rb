@@ -35,4 +35,8 @@ RSpec.describe Character, type: :model do
     subject.powers = []
     expect(subject).to_not be_valid
   end
+
+  it 'belongs to a user' do
+    expect(subject).to respond_to :user
+  end
 end

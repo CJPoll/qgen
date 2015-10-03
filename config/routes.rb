@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   get 'backgrounds', controller: :backgrounds, action: :index
   get 'powers', controller: :powers, action: :index
 
+  post 'characters', controller: :characters, action: :create
+  get 'characters', controller: :characters, action: :index
   get 'characters/new'
   get 'characters/new/*anything', controller: :characters, action: :new
+  get 'characters/:id', controller: :characters, action: :show, as: :character
 
   devise_for :users
   root controller: :static, action: :landing

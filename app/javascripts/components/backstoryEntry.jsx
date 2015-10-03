@@ -19,12 +19,13 @@ BackstoryEntry = React.createClass({
 				<h1> Backstory </h1>
 				<p> Enter whatever backstory you would like for your character to have </p>
 				<div>
-					<textarea onChange={this.handleKeyUp} onKeyUp={this.handleKeyUp}
-					 value={this.state.backstory.backstory} className='textarea'/>
-			 </div>
-				<Link to='/characters/new/step4' className='submit'> Move On </Link>
+					<textarea onChange={this.handleKeyUp} onKeyUp={this.handleKeyUp} value={this.state.backstory.backstory} className='textarea'/>
+				</div>
+				<div>
+					<Link to='/characters/new/confirm' className='submit'> Move On </Link>
+				</div>
 			</div>
-		)
+		);
 	}
 });
 

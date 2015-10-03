@@ -8,6 +8,7 @@ import PowersActions from './actions/powersActions';
 
 import PowersStore from './stores/powersStore';
 import BackstoryStore from './stores/backstoryStore';
+import NewCharacterStore from './stores/newCharacterStore';
 
 $(document).ready(function() {
 	React.render(routes, document.body);

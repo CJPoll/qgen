@@ -11,6 +11,7 @@ import Panel from './components/panel';
 import PanelBody from './components/panelBody';
 import PanelTitle from './components/panelTitle';
 import SelectBackground from './components/select_background';
+import ShowCharacter from './components/showCharacter';
 
 window.AuthenticityToken = AuthenticityToken;
 window.BackgroundSelector = BackgroundSelector;
@@ -25,3 +26,4 @@ window.Panel = Panel;
 window.PanelBody = PanelBody;
 window.PanelTitle = PanelTitle;
 window.SelectBackground = SelectBackground;
+window.ShowCharacter = ShowCharacter;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
+import _ from 'lodash';
 import { Link } from 'react-router';
 
 import PowersStore from '../stores/powersStore';
@@ -10,7 +11,7 @@ var powerSelect = React.createClass({
 
 	render() {
 		var powers, powerComponents, submitClass;
-		
+
 		powers = this.state.powers.powers;
 		powerComponents = _.map(powers, function(power) {
 			return <Power power={power}/>;
@@ -25,8 +26,8 @@ var powerSelect = React.createClass({
 			<div>
 				<h1> Select Powers </h1>
 				<div>
-				<Link to='/characters/new'>
-					Link
+				<Link to='/characters/new/backgrounds'>
+					Back
 				</Link>
 				</div>
 				{powerComponents}

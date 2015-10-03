@@ -1,4 +1,5 @@
 import Reflux from 'reflux';
+import _ from 'lodash';
 import PowersActions from '../actions/powersActions';
 
 var PowersStore;
@@ -10,7 +11,7 @@ PowersStore = Reflux.createStore({
 			powers: [],
 			selected: [],
 			maxSelected: 3
-		}
+		};
 	},
 
 	getInitialState() {

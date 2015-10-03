@@ -7,6 +7,7 @@
 #   background: Bacground (required)
 class Character < ActiveRecord::Base
   belongs_to :background
+  belongs_to :user
   has_and_belongs_to_many :powers
 
   validates :first_name, presence: true

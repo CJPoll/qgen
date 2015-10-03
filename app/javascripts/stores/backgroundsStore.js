@@ -8,7 +8,7 @@ BackgroundsStore = Reflux.createStore({
 		this.listenToMany(BackgroundsActions);
 		this.state = {
 			backgrounds: [],
-			newCharacter: {}
+			selected: null
 		};
 	},
 
@@ -26,12 +26,12 @@ BackgroundsStore = Reflux.createStore({
 	},
 
 	onSelectBackground(background) {
-		this.state.newCharacter.background = background;
+		this.state.selected = background;
 		this.trigger(this.state);
 	},
 
 	selected() {
-		return this.state.newCharacter.background;
+		return this.state.selected;
 	}
 });
 
