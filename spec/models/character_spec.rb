@@ -39,4 +39,13 @@ RSpec.describe Character, type: :model do
   it 'belongs to a user' do
     expect(subject).to respond_to :user
   end
+
+  it 'belongs to a campaign' do
+    expect(subject).to respond_to :campaign
+  end
+
+  it 'allows a null campaign' do
+    subject.campaign = nil
+    expect(subject).to be_valid
+  end
 end

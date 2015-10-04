@@ -5,4 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :characters
+  has_many :own_campaigns, class_name: 'Campaign'
+  has_and_belongs_to_many :campaigns, unique: true
+
+  def join_campaign campaign
+    self.campaigns << campaign
+  end
 end
