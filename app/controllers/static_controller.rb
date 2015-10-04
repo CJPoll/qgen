@@ -3,5 +3,6 @@ class StaticController < ApplicationController
 
   def landing
     @campaigns = current_user.all_campaigns
+    @characters = current_user.characters
   end
 end
