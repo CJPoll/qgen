@@ -13,16 +13,20 @@ QgenNavbar = React.createClass({
 						My Characters
 					</NavbarItem>
 
+					<NavbarItem path='/campaigns'>
+						My Campaigns
+					</NavbarItem>
+
 					<NavbarItem path='/characters/new'>
-						New Character
+						<span className="glyphicon glyphicon-plus"></span>
+						&nbsp;
+						Character
 					</NavbarItem>
 
 					<NavbarItem path='/campaigns/new'>
-						Create Campaign
-					</NavbarItem>
-
-					<NavbarItem path='/campaigns'>
-						My Campaigns
+						<span className="glyphicon glyphicon-plus"></span>
+						&nbsp;
+						Campaign
 					</NavbarItem>
 				</LeftNav>
 
