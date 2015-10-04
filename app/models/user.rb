@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   def join_campaign campaign
     self.campaigns << campaign
   end
+
+  def make_campaign campaign
+    self.own_campaigns << campaign
+  end
 end

@@ -1,14 +1,17 @@
 import React from 'react';
+import $ from 'jquery';
+
 var Token;
 
 Token = React.createClass({
-	propTypes: {
-		csrf_param: React.PropTypes.string.isRequired,
-		csrf_token: React.PropTypes.string.isRequired
-	},
 	render: function() {
+		var csrf_param, csrf_token;
+
+		csrf_param = $('meta[name=csrf-param]').attr('content');
+		csrf_token = $('meta[name=csrf-token]').attr('content');
+
 		return (
-			<input type='hidden' value={this.props.csrf_token} name={this.props.csrf_param}/>
+			<input type='hidden' value={csrf_token} name={csrf_param} />
 		);
 	}
 });

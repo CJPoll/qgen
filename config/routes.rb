@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'campaigns', controller: :campaigns, action: :index
+  post 'campaigns', controller: :campaigns, action: :create
+  get 'campaigns/:id', controller: :campaigns, action: :show, as: :campaign
+  get 'campaigns/new', controller: :campaigns, actions: :new
+
   get 'powers/index'
 
   get 'backgrounds', controller: :backgrounds, action: :index
