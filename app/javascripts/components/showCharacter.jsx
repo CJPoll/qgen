@@ -13,11 +13,14 @@ ShowCharacter = React.createClass({
 	renderPowers() {
 		var powers = this.props.powers;
 
-		return _.map(powers, power => (
-			<li>
-				{power.name}
-			</li>
-		));
+		return _.map(powers, power => {
+			var key = 'power_' + power.id;
+			return (
+				<li key={key}>
+					{power.name}
+				</li>
+			);
+		});
 	},
 
 	render() {
