@@ -12,6 +12,7 @@ import Panel from './components/panel';
 import PanelBody from './components/panelBody';
 import PanelTitle from './components/panelTitle';
 import SelectBackground from './components/select_background';
+import ShowCampaign from './components/showCampaign';
 import ShowCharacter from './components/showCharacter';
 
 window.AuthenticityToken = AuthenticityToken;
@@ -28,4 +29,5 @@ window.Panel = Panel;
 window.PanelBody = PanelBody;
 window.PanelTitle = PanelTitle;
 window.SelectBackground = SelectBackground;
+window.ShowCampaign = ShowCampaign;
 window.ShowCharacter = ShowCharacter;

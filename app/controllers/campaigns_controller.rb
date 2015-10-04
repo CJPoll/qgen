@@ -40,6 +40,6 @@ class CampaignsController < ApplicationController
   end
 
   def get_user
-    Campaign.find(params[:id])
+    @campaign = Campaign.find(params[:id])
   end
 end
