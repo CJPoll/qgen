@@ -13,7 +13,7 @@ LoginButton = React.createClass({
 
 		if (user !== null && user !== undefined) {
 			return (
-				<LogoutButton />
+				<LogoutButton userData={this.props.userData}/>
 			);
 		}
 

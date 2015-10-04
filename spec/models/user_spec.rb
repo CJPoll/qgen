@@ -7,6 +7,16 @@ RSpec.describe User, type: :model do
     expect(subject).to respond_to :characters
   end
 
+  it 'requires a first name' do
+    subject.first_name = nil
+    expect(subject).to_not be_valid
+  end
+
+  it 'requires a last name' do
+    subject.last_name = nil
+    expect(subject).to_not be_valid
+  end
+
   it 'can own a campaign' do
     expect(subject).to respond_to :own_campaigns
   end
