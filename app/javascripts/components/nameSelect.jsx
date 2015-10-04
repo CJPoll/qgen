@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Panel, PanelTitle, PanelBody } from './panel';
 import CharacterActions from '../actions/characterActions';
+import FormGroup from './formGroup';
 
 var NameSelector;
 
@@ -15,26 +17,28 @@ NameSelector = React.createClass({
 
 	render() {
 		return (
-			<div>
-				<h1> Name </h1>
-				<div className='form-group'>
-					<label htmlFor='first-name'>
-						Character's First name
-					</label>
-					<input type='text' className='text-input' name='first-name' onChange={this.handleFirstNameChange}/>
-				</div>
-				<div>
-					<label htmlFor='last-name'>
-						Character's Last Name
-					</label>
-					<input type='text' className='text-input' name='last-name' onChange={this.handleLastNameChange}/>
-				</div>
-				<div className='form-group'>
-					<Link to='/characters/new/backgrounds' className='submit'>
-						Move On
-					</Link>
-				</div>
-			</div>
+			<Panel>
+				<PanelTitle> Name </PanelTitle>
+				<PanelBody>
+					<FormGroup>
+						<label htmlFor='first-name'>
+							Character's First name
+						</label>
+						<input type='text' className='text-input' name='first-name' onChange={this.handleFirstNameChange}/>
+					</FormGroup>
+					<FormGroup>
+						<label htmlFor='last-name'>
+							Character's Last Name
+						</label>
+						<input type='text' className='text-input' name='last-name' onChange={this.handleLastNameChange}/>
+					</FormGroup>
+					<FormGroup>
+						<Link to='/characters/new/backgrounds' className='submit'>
+							Move On
+						</Link>
+					</FormGroup>
+				</PanelBody>
+			</Panel>
 		);
 	}
 });
