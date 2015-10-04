@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/search', defaults: {format: :json}
+
   get 'campaigns', controller: :campaigns, action: :index
   post 'campaigns', controller: :campaigns, action: :create
   get 'campaigns/new', controller: :campaigns, actions: :new

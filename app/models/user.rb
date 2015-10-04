@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
   def all_campaigns
     self.own_campaigns + self.campaigns
   end
+
+  def self.search_for query
+    self.where(['lower(first_name) LIKE :query', {query: "%#{query.downcase}%"}])
+  end
 end

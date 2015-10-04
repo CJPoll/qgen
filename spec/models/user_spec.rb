@@ -42,4 +42,27 @@ RSpec.describe User, type: :model do
       expect(subject.campaigns.count).to eq 1
     end
   end
+
+  describe 'search' do
+    let!(:first_user) { FactoryGirl.create :user, first_name: 'Cody', last_name: 'Poll' }
+    let!(:second_user) { FactoryGirl.create :user, first_name: 'Andrew', last_name: 'Ferguson' }
+    let!(:third_user) { FactoryGirl.create :user, first_name: 'Nathan', last_name: 'Waters' }
+
+    describe 'first name' do
+      it 'returns only relevant results' do
+        results = User.search_for 'ody'
+        expect(results.length).to eq 1
+        expect(results).to eq([first_user])
+      end
+
+      it 'searches without regard to case' do
+        results = User.search_for 'cody'
+        expect(results.length).to eq 1
+        expect(results).to eq([first_user])
+      end
+    end
+
+    it 'can find a user by last name'
+    it 'can find a user by a mixture of names'
+  end
 end
