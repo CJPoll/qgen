@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './navbar';
+import QgenNavbar from './qgenNavbar';
 
 var CharacterCreator;
 
@@ -7,7 +7,7 @@ CharacterCreator = React.createClass({
 	render() {
 		return (
 			<div>
-				<Navbar userData={{userData: 'notNull'}} />
+				<QgenNavbar userData={{userData: 'notNull'}} />
 				<div className='container-fluid'>
 					{this.props.children}
 				</div>

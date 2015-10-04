@@ -10,9 +10,9 @@
 	<body>
 
 		<% if current_user %>
-			<%= react_component 'Navbar', {userData: current_user.attributes} %>
+			<%= react_component 'QgenNavbar', {userData: current_user.attributes} %>
 		<% else %>
-			<%= react_component 'Navbar', {} %>
+			<%= react_component 'QgenNavbar', {} %>
 		<% end %>
 
 		<div class='container-fluid'>

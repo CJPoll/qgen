@@ -1,13 +1,68 @@
 import React from 'react';
-import LoginButton from './sign_in';
 
-var Navbar;
+export var Navbar, NavbarItem, LeftNav, RightNav, NavDropdown;
 
-Navbar = React.createClass({
+NavbarItem = React.createClass({
 	propTypes: {
-		userData: React.PropTypes.object
+		path: React.PropTypes.string.isRequired
 	},
 
+	render() {
+		var path, className;
+
+		className = '';
+		path = window.location.pathname;
+
+		if (path === this.props.path) {
+			className = 'active';
+		}
+
+		return (
+			<li className={className}>
+				<a href={this.props.path}> {this.props.children} </a>
+			</li>
+		);
+	}
+});
+
+LeftNav = React.createClass({
+	render() {
+		return (
+			<ul className='nav navbar-nav'>
+				{this.props.children}
+			</ul>
+		);
+	}
+});
+
+RightNav = React.createClass({
+	render() {
+		return (
+			<ul className='nav navbar-nav navbar-right'>
+				{this.props.children}
+			</ul>
+		);
+	}
+});
+
+NavDropdown = React.createClass({
+	propTypes: {
+		path: React.PropTypes.string.isRequired
+	},
+
+	render() {
+		return (
+			<li className='dropdown'>
+				<a href={this.props.path} className='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span className='caret'></span></a>
+				<ul className='dropdown-menu'>
+					{this.props.children}
+				</ul>
+			</li>
+		);
+	}
+});
+
+Navbar = React.createClass({
 	render: function() {
 		return (
 			<nav className='navbar navbar-default'>
@@ -20,47 +75,10 @@ Navbar = React.createClass({
 							<span className='icon-bar'></span>
 							<span className='icon-bar'></span>
 						</button>
-						<a className='navbar-brand' href='/'>Brand</a>
+						<a className='navbar-brand' href='/'>QGen</a>
 					</div>
 					<div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
-						<ul className='nav navbar-nav'>
-							<li className='active'>
-								<a href='/characters'> My Characters </a>
-							</li>
-							<li>
-								<a href='/characters/new'> New Character </a>
-							</li>
-							<li>
-								<a href='/campaigns/new'> Create Campaign </a>
-							</li>
-							<li>
-								<a href='/campaigns'> My Campaigns </a>
-							</li>
-						</ul>
-
-						<ul className='nav navbar-nav navbar-right'>
-							<li>
-								<LoginButton userData={this.props.userData}/>
-							</li>
-							<li className='dropdown'>
-								<a href='#' className='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span className='caret'></span></a>
-								<ul className='dropdown-menu'>
-									<li>
-										<a href='#'>Action</a>
-									</li>
-									<li>
-										<a href='#'>Another action</a>
-									</li>
-									<li>
-										<a href='#'>Something else here</a>
-									</li>
-									<li role='separator' className='divider'></li>
-									<li>
-										<a href='#'>Separated link</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
+						{this.props.children}
 					</div>
 				</div>
 			</nav>
