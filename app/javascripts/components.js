@@ -1,6 +1,7 @@
 import AuthenticityToken from './components/authenticityToken';
 import BackgroundSelector from './components/background_selector';
 import CampaignForm from './components/NewCampaignForm';
+import CampaignsIndex from './components/campaignsIndex';
 import CreateCharacterButton from './components/createCharacter';
 import Dashboard from './components/dashboard';
 import Login from './components/login';
@@ -18,6 +19,7 @@ import ShowCharacter from './components/showCharacter';
 window.AuthenticityToken = AuthenticityToken;
 window.BackgroundSelector = BackgroundSelector;
 window.CampaignForm = CampaignForm;
+window.CampaignsIndex = CampaignsIndex;
 window.CreateCharacterButton = CreateCharacterButton;
 window.Dashboard = Dashboard;
 window.Login = Login;

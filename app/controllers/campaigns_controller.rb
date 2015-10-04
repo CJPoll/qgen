@@ -9,7 +9,7 @@ class CampaignsController < ApplicationController
   end
 
   def index
-    @campaigns = current_user.own_campaigns + current_user.campaigns 
+    @campaigns = current_user.own_campaigns + current_user.campaigns
   end
 
   def create
