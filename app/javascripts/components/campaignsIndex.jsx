@@ -1,35 +1,13 @@
 import React from 'react';
-import _ from 'lodash';
 
-import Panel from './panel';
-import PanelBody from './panelBody';
-import PanelTitle from './panelTitle';
+import { Panel, PanelTitle, PanelBody } from './panel';
+import CampaignsList from './campaignsList';
 
 var CampaignsIndex;
 
 CampaignsIndex = React.createClass({
 	propTypes: {
 		campaigns: React.PropTypes.array.isRequired
-	},
-
-	renderCampaigns() {
-		var campaigns;
-
-		campaigns = this.props.campaigns;
-		return _.map(campaigns, campaign => {
-			var url, name;
-
-			url = '/campaigns/' + campaign.id;
-			name = campaign.name;
-
-			return (
-				<li>
-					<a href={url}>
-						{ name }
-					</a>
-				</li>
-			);
-		});
 	},
 
 	render() {
@@ -42,9 +20,8 @@ CampaignsIndex = React.createClass({
 				<PanelBody>
 					<h2> My Campaigns </h2>
 
-					<ul>
-						{this.renderCampaigns()}
-					</ul>
+					<CampaignsList campaigns={this.props.campaigns} />
+
 				</PanelBody>
 			</Panel>
 		);

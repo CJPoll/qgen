@@ -1,8 +1,6 @@
 import React from 'react';
 
-import Panel from './panel';
-import PanelTitle from './panelTitle';
-import PanelBody from './panelBody';
+import { Panel, PanelTitle, PanelBody } from './panel';
 
 import PowersActions from '../actions/powersActions';
 import PowersStore from '../stores/powersStore';

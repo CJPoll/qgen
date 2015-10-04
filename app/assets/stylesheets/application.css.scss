@@ -36,6 +36,12 @@
 	}
 }
 
+.create-campaign
+{
+	@extend .btn;
+	@extend .btn-primary;
+}
+
 .create-character
 {
 	@extend .btn;

@@ -1,16 +1,40 @@
-define(function() {
-	'use strict';
+import React from 'react';
+import CreateCharacterButton from './createCharacter';
+import { Panel, PanelTitle, PanelBody } from './panel';
+import ButtonGroup from './buttonGroup';
+import ButtonToolbar from './buttonToolbar';
+import CreateCampaignButton from './createCampaignButton';
+import CampaignsList from './campaignsList';
 
-	var React, Dashboard, CreateCharacterButton;
+var Dashboard;
 
-	React = require('react');
-	CreateCharacterButton = require('./createCharacter');
+Dashboard = React.createClass({
+	propTypes: {
+		campaigns: React.PropTypes.array.isRequired
+	},
 
-	Dashboard = React.createClass({
-		render() {
-			return <CreateCharacterButton />;
-		}
-	});
+	render() {
+		return (
+			<Panel>
+				<PanelTitle>
+					Dashboard
+				</PanelTitle>
+				<PanelBody>
+					<ButtonToolbar>
+						<ButtonGroup>
+							<CreateCharacterButton />
+						</ButtonGroup>
+						<ButtonGroup>
+							<CreateCampaignButton />
+						</ButtonGroup>
+					</ButtonToolbar>
 
-	return Dashboard;
+					<h2> My Campaigns </h2>
+					<CampaignsList campaigns={this.props.campaigns}/>
+				</PanelBody>
+			</Panel>
+		);
+	}
 });
+
+export default Dashboard;

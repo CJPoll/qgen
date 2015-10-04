@@ -4,9 +4,7 @@ import { History } from 'react-router';
 import BackgroundsActions from '../actions/backgroundsActions';
 import BackgroundsStore from '../stores/backgroundsStore';
 
-import Panel from './panel';
-import PanelBody from './panelBody';
-import PanelTitle from './panelTitle';
+import { Panel, PanelTitle, PanelBody } from './panel';
 
 var Background;
 

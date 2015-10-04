@@ -1,8 +1,8 @@
 import React from 'react';
 import FormGroup from './formGroup';
-import Panel from './panel';
-import PanelBody from './panelBody';
-import PanelTitle from './panelTitle';
+
+import { Panel, PanelTitle, PanelBody } from './panel';
+
 import SubmitButton from './submit';
 import AuthenticityToken from './authenticityToken';
 
