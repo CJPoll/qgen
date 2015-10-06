@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_character, only: [:show]
+  before_filter :get_character, only: [:show, :destroy]
 
   def index
     @characters = current_user.characters
@@ -33,6 +33,16 @@ class CharactersController < ApplicationController
   end
 
   def show
+    @deleteable = @character.user == current_user
+  end
+
+  def destroy
+    @character.destroy if @character.user == current_user
+
+    respond_to do |format|
+      format.html { redirect_to characters_path }
+      format.json { render json: { status: 'ok' } }
+    end
   end
 
   private
@@ -41,6 +51,6 @@ class CharactersController < ApplicationController
   end
 
   def get_character
-    @character = Character.find params[:id]
+    @character = Character.find(params[:id])
   end
 end

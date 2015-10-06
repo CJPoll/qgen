@@ -1,13 +1,19 @@
 import React from 'react';
 import _ from 'lodash';
 
+import { Panel, PanelTitle, PanelBody } from './panel';
+import ButtonGroup from './buttonGroup';
+import ButtonToolbar from './buttonToolbar';
+import DeleteCharacterButton from './deleteCharacterButton';
+
 var ShowCharacter;
 
 ShowCharacter = React.createClass({
 	propTypes: {
 		character: React.PropTypes.object.isRequired,
 		background: React.PropTypes.object.isRequired,
-		powers: React.PropTypes.array.isRequired
+		powers: React.PropTypes.array.isRequired,
+		deleteable: React.PropTypes.bool.isRequired
 	},
 
 	renderPowers() {
@@ -24,28 +30,44 @@ ShowCharacter = React.createClass({
 	},
 
 	render() {
-		var character, fullName;
+		var character, fullName, deleteButton;
 
 		character = this.props.character;
 		fullName = character.first_name + ' ' + character.last_name;
 
+		if (this.props.deleteable) {
+			deleteButton = (
+				<ButtonToolbar>
+					<ButtonGroup>
+						<DeleteCharacterButton character={character} />
+					</ButtonGroup>
+				</ButtonToolbar>
+			);
+		} else {
+			deleteButton = <div></div>;
+		}
+
 		return (
-			<div>
-				<h1>
+			<Panel>
+				<PanelTitle>
 					{fullName}
-				</h1>
+				</PanelTitle>
 
-				<h2> Background </h2>
-				<p> {this.props.background.name} </p>
+				<PanelBody>
+					{deleteButton}
 
-				<h2> Powers </h2>
-				<ul>
-					{this.renderPowers()}
-				</ul>
+					<h2> Background </h2>
+					<p> {this.props.background.name} </p>
 
-				<h2> Backstory </h2>
-				<p> {character.backstory} </p>
-			</div>
+					<h2> Powers </h2>
+					<ul>
+						{this.renderPowers()}
+					</ul>
+
+					<h2> Backstory </h2>
+					<p> {character.backstory} </p>
+				</PanelBody>
+			</Panel>
 		);
 	}
 });

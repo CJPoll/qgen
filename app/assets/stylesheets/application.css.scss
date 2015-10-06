@@ -77,6 +77,12 @@
 	@extend .btn-primary;
 }
 
+.delete-character
+{
+	@extend .btn;
+	@extend .btn-danger;
+}
+
 .disabled-submit
 {
 	@extend .btn;
