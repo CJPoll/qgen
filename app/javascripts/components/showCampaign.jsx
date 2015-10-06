@@ -43,7 +43,7 @@ ShowCampaign = React.createClass({
 
 		players = _.map(this.props.players, player => (
 			<li>
-				{player.email}
+				{player.first_name + ' ' + player.last_name}
 			</li>
 		));
 
