@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'users/search', defaults: {format: :json}
   get 'users/:user_id/characters', controller: :characters, action: :index
+  get 'users/:user_id/campaigns', controller: :campaigns, action: :index
 
   get 'campaigns', controller: :campaigns, action: :index
   post 'campaigns', controller: :campaigns, action: :create

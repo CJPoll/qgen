@@ -10,7 +10,9 @@ class CampaignsController < ApplicationController
   end
 
   def index
-    @campaigns = current_user.own_campaigns + current_user.campaigns
+    user = current_user
+    user = User.find(params[:user_id]) if params[:user_id]
+    @campaigns = user.own_campaigns + user.campaigns
 
     respond_to do |format|
       format.html
