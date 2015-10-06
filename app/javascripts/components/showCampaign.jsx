@@ -5,13 +5,37 @@ import ButtonToolbar from './buttonToolbar';
 import ButtonGroup from './buttonGroup';
 import EditCampaignButton from './editCampaignButton';
 
-var ShowCampaign;
+var ShowCampaign, EditCampaign;
+
+EditCampaign = React.createClass({
+	propTypes: {
+		editable: React.PropTypes.bool,
+		campaign: React.PropTypes.object.isRequired
+	},
+
+	render() {
+		var campaign = this.props.campaign;
+
+		return (
+			<ButtonToolbar>
+				<ButtonGroup>
+					<EditCampaignButton campaign={campaign}>
+						<span className="glyphicon glyphicon-edit"></span>
+						&nbsp;
+						Edit
+					</EditCampaignButton>
+				</ButtonGroup>
+			</ButtonToolbar>
+		);
+	}
+});
 
 ShowCampaign = React.createClass({
 	propTypes: {
 		campaign: React.PropTypes.object.isRequired,
 		owner: React.PropTypes.object.isRequired,
-		players: React.PropTypes.array
+		players: React.PropTypes.array,
+		editable: React.PropTypes.bool
 	},
 
 	renderPlayers() {
@@ -31,10 +55,15 @@ ShowCampaign = React.createClass({
 	},
 
 	render() {
-		var campaign, owner;
+		var campaign, owner, editButton;
 
 		campaign = this.props.campaign;
 		owner = this.props.owner;
+		editButton = <div></div>;
+
+		if (this.props.editable) {
+			editButton = <EditCampaign campaign={campaign} />;
+		}
 
 		return (
 			<Panel>
@@ -42,15 +71,7 @@ ShowCampaign = React.createClass({
 					{campaign.name}
 				</PanelTitle>
 				<PanelBody>
-					<ButtonToolbar>
-						<ButtonGroup>
-							<EditCampaignButton campaign={campaign}>
-								<span className="glyphicon glyphicon-edit"></span>
-								&nbsp;
-								Edit
-							</EditCampaignButton>
-						</ButtonGroup>
-					</ButtonToolbar>
+					{editButton}
 					<h2> Owner </h2>
 					<ul>
 						<li>

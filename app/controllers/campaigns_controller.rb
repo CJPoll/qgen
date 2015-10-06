@@ -6,6 +6,7 @@ class CampaignsController < ApplicationController
   end
 
   def show
+    @editable = @campaign.owner == current_user
   end
 
   def index
@@ -33,6 +34,8 @@ class CampaignsController < ApplicationController
 
   def edit
     @players = @campaign.players
+
+    redirect_to @campaign unless @campaign.owner == current_user
   end
 
   def destroy
