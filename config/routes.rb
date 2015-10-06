@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'campaigns/new', controller: :campaigns, actions: :new
   get 'campaigns/:id', controller: :campaigns, action: :show, as: :campaign
   get 'campaigns/:id/edit', controller: :campaigns, action: :edit
+  delete 'campaigns/:id', controller: :campaigns, action: :destroy
 
   get 'powers/index'
 

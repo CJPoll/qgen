@@ -4,6 +4,7 @@ import _ from 'lodash';
 import ButtonToolbar from './buttonToolbar';
 import ButtonGroup from './buttonGroup';
 import EditCampaignButton from './editCampaignButton';
+import DeleteCampaignButton from './deleteCampaignButton';
 
 var ShowCampaign, EditCampaign;
 
@@ -18,6 +19,11 @@ EditCampaign = React.createClass({
 
 		return (
 			<ButtonToolbar>
+				<ButtonGroup>
+					<DeleteCampaignButton campaign={campaign}>
+						<span className="glyphicon glyphicon-trash"></span> Delete
+					</DeleteCampaignButton>
+				</ButtonGroup>
 				<ButtonGroup>
 					<EditCampaignButton campaign={campaign}>
 						<span className="glyphicon glyphicon-edit"></span>

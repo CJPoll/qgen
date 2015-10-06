@@ -36,6 +36,12 @@
 	}
 }
 
+.delete-button
+{
+	@extend .btn;
+	@extend .btn-danger;
+}
+
 .create-campaign
 {
 	@extend .btn;

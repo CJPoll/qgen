@@ -46,6 +46,12 @@ class CampaignsController < ApplicationController
   end
 
   def destroy
+    @campaign.destroy if @campaign.owner == current_user
+
+    respond_to do |format|
+      format.html { redirect_to :campaigns }
+      format.json { render json: {status: 'ok'} }
+    end
   end
 
   private
