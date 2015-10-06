@@ -13,13 +13,10 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    byebug
     @campaign = Campaign.new(campaign_params)
 
     players = params[:players]
-    players.each do |player_id|
-      @campaign.players << User.find(player_id)
-    end
+    players.each { |player_id| @campaign.players << User.find(player_id) } if players
 
     current_user.make_campaign(@campaign)
 
@@ -35,6 +32,7 @@ class CampaignsController < ApplicationController
   end
 
   def edit
+    @players = @campaign.players
   end
 
   def destroy
