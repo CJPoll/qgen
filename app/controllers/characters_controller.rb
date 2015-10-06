@@ -3,7 +3,14 @@ class CharactersController < ApplicationController
   before_filter :get_character, only: [:show, :destroy]
 
   def index
-    @characters = current_user.characters
+    user = current_user
+    user = User.find(params[:user_id]) if params[:user_id]
+    @characters = user.characters
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @characters }
+    end
   end
 
   def create
