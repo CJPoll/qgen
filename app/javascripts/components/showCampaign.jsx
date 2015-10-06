@@ -1,6 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 
+import ButtonToolbar from './buttonToolbar';
+import ButtonGroup from './buttonGroup';
+import EditCampaignButton from './editCampaignButton';
+
 var ShowCampaign;
 
 ShowCampaign = React.createClass({
@@ -38,6 +42,15 @@ ShowCampaign = React.createClass({
 					{campaign.name}
 				</PanelTitle>
 				<PanelBody>
+					<ButtonToolbar>
+						<ButtonGroup>
+							<EditCampaignButton campaign={campaign}>
+								<span className="glyphicon glyphicon-edit"></span>
+								&nbsp;
+								Edit
+							</EditCampaignButton>
+						</ButtonGroup>
+					</ButtonToolbar>
 					<h2> Owner </h2>
 					<ul>
 						<li>

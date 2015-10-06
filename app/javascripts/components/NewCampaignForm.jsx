@@ -15,20 +15,26 @@ CampaignForm = React.createClass({
 	},
 
 	getInitialState() {
-		return {players: []};
+		var players = this.props.players || [];
+
+		return {players: players};
 	},
 
 	handleSelectUser(selectedUser) {
 		var players = this.state.players;
 
+		if (selectedUser === null || selectedUser === undefined) {
+			return;
+		}
+
 		players.push(selectedUser);
-		players = _.uniq(players);
+		players = _.uniq(players, false, 'id');
 
 		this.setState({players: players});
 	},
 
 	render() {
-		var heading, players;
+		var campaignName, heading, players;
 
 		if (this.props.campaign) {
 			heading = 'Edit ' + this.props.campaign.name;
@@ -47,6 +53,12 @@ CampaignForm = React.createClass({
 			players = <p>No players added yet!</p>;
 		}
 
+		campaignName = '';
+
+		if (this.props.campaign && this.props.campaign.name) {
+			campaignName = this.props.campaign.name || '';
+		}
+
 		return (
 			<Panel>
 				<PanelTitle>
@@ -59,7 +71,7 @@ CampaignForm = React.createClass({
 							<label htmlFor='campaign[name]'>
 								Campaign Name
 							</label>
-							<input name='campaign[name]' type='text' className='text-input'/>
+							<input name='campaign[name]' type='text' className='text-input' defaultValue={campaignName}/>
 						</FormGroup>
 						<FormGroup>
 							<label>

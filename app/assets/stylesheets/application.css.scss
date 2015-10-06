@@ -71,6 +71,12 @@
 	@extend .btn-primary;
 }
 
+.edit-campaign
+{
+	@extend .btn;
+	@extend .btn-primary;
+}
+
 .disabled-submit
 {
 	@extend .btn;

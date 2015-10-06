@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'campaigns', controller: :campaigns, action: :create
   get 'campaigns/new', controller: :campaigns, actions: :new
   get 'campaigns/:id', controller: :campaigns, action: :show, as: :campaign
+  get 'campaigns/:id/edit', controller: :campaigns, action: :edit
 
   get 'powers/index'
 
