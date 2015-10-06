@@ -94,6 +94,11 @@
 	@include slideable()
 }
 
+.clickable
+{
+	cursor: pointer;
+}
+
 .textarea
 {
 	@extend .form-control;
@@ -105,8 +110,6 @@
 	@extend .col-sm-6;
 	@extend .col-md-4;
 	@extend .col-lg-3;
-
-	@include slideable();
 }
 
 .select-box

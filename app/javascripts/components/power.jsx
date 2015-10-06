@@ -17,7 +17,7 @@ Power = React.createClass({
 		var active = PowersStore.selected(this.props.power);
 
 		return (
-			<div className='tiled'>
+			<div className='tiled clickable'>
 				<Panel active={active} onClick={this.handleClick}>
 					<PanelTitle>
 						{this.props.power.name}

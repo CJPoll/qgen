@@ -1,9 +1,3 @@
-<h1> My Characters </h1>
-
-<ul>
-  <% @characters.each do |character| %>
-    <li>
-      <%= link_to "#{character.first_name} #{character.last_name}", character %>
-    </li>
-  <% end %>
-</ul>
+<%= react_component('CharactersIndex', {
+	characters: @characters
+}) %>

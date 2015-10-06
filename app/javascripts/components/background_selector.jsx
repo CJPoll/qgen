@@ -13,7 +13,7 @@ BackgroundSelector = React.createClass({
 		var key = 'background_' + background.id;
 
 		return (
-			<div className='tiled' key={key}>
+			<div className='tiled clickable' key={key}>
 				<Background background={background}/>
 			</div>
 		);
