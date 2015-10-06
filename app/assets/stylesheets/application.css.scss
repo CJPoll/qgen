@@ -109,6 +109,11 @@
 	@include slideable();
 }
 
+.select-box
+{
+	@extend .form-control;
+}
+
 .no-dot
 {
 	list-style-type: none;

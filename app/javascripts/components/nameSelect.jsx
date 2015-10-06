@@ -1,12 +1,17 @@
 import React from 'react';
+import Reflux from 'reflux';
 import { Link } from 'react-router';
 import { Panel, PanelTitle, PanelBody } from './panel';
 import CharacterActions from '../actions/characterActions';
 import FormGroup from './formGroup';
+import CampaignsStore from '../stores/campaignsStore';
+import SelectCampaign from './selectCampaign';
 
 var NameSelector;
 
 NameSelector = React.createClass({
+	mixins: [Reflux.connect(CampaignsStore, 'campaigns')],
+
 	handleFirstNameChange(e) {
 		CharacterActions.changeFirstName(e.target.value);
 	},
@@ -20,6 +25,12 @@ NameSelector = React.createClass({
 			<Panel>
 				<PanelTitle> Name </PanelTitle>
 				<PanelBody>
+					<FormGroup>
+						<label>
+							Campaign
+						</label>
+						<SelectCampaign campaigns={this.state.campaigns.campaigns}/>
+					</FormGroup>
 					<FormGroup>
 						<label htmlFor='first-name'>
 							Character's First name

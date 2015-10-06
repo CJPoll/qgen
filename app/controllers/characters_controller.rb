@@ -13,6 +13,9 @@ class CharactersController < ApplicationController
       character.powers << Power.find(p[:id])
     end
 
+    campaign_id = params[:character][:campaignId] if params[:character] && params[:character][:campaignId]
+    character.campaign = Campaign.find(campaign_id) if campaign_id && campaign_id != 0
+
     character.background = Background.find(params[:character][:background][:id])
 
     current_user.characters << character

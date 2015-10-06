@@ -5,7 +5,8 @@ var CharacterActions;
 CharacterActions = Reflux.createActions([
 	'confirmCharacter',
 	'changeFirstName',
-	'changeLastName'
+	'changeLastName',
+	'selectCampaign'
 ]);
 
 export default CharacterActions;

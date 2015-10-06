@@ -54,6 +54,22 @@ ShowCampaign = React.createClass({
 		return players;
 	},
 
+	renderCharacters() {
+		var characters;
+
+		characters = _.map(this.props.characters, character => (
+			<li>
+				{character.first_name + ' ' + character.last_name}
+			</li>
+		));
+
+		if (characters.length === 0) {
+			characters = <li> Nobody has made characters for this campaign yet! </li>;
+		}
+
+		return characters;
+	},
+
 	render() {
 		var campaign, owner, editButton;
 
@@ -72,7 +88,9 @@ ShowCampaign = React.createClass({
 				</PanelTitle>
 				<PanelBody>
 					{editButton}
+
 					<h2> Owner </h2>
+
 					<ul>
 						<li>
 							{owner.email}
@@ -80,9 +98,17 @@ ShowCampaign = React.createClass({
 					</ul>
 
 					<h2> Players </h2>
+
 					<ul>
 						{this.renderPlayers()}
 					</ul>
+
+					<h2> Characters </h2>
+
+					<ul>
+						{this.renderCharacters()}
+					</ul>
+
 				</PanelBody>
 			</Panel>
 		)

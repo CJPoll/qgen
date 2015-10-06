@@ -7,6 +7,7 @@ import CharacterActions from '../actions/characterActions';
 import BackgroundsStore from './backgroundsStore';
 import PowersStore from './powersStore';
 import BackstoryStore from './backstoryStore';
+import CampaignsStore from './campaignsStore';
 
 var NewCharacterStore = Reflux.createStore({
 
@@ -23,9 +24,15 @@ var NewCharacterStore = Reflux.createStore({
 				powers: [],
 				backstory: '',
 				firstName: '',
-				lastName: ''
+				lastName: '',
+				campaignId: 0
 			}
 		};
+	},
+
+	onSelectCampaign(campaignId) {
+		this.state.character.campaignId = campaignId;
+		this.trigger(this.state);
 	},
 
 	onBackgroundChanged(backgroundsState) {

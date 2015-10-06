@@ -11,6 +11,11 @@ class CampaignsController < ApplicationController
 
   def index
     @campaigns = current_user.own_campaigns + current_user.campaigns
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @campaigns}
+    end
   end
 
   def create
