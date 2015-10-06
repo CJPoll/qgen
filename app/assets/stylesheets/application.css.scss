@@ -42,6 +42,12 @@
 	@extend .btn-primary;
 }
 
+.add-person
+{
+	@extend .btn;
+	@extend .btn-primary;
+}
+
 .create-character
 {
 	@extend .btn;
@@ -95,4 +101,9 @@
 	@extend .col-lg-3;
 
 	@include slideable();
+}
+
+.no-dot
+{
+	list-style-type: none;
 }

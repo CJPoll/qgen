@@ -13,7 +13,13 @@ class CampaignsController < ApplicationController
   end
 
   def create
+    byebug
     @campaign = Campaign.new(campaign_params)
+
+    players = params[:players]
+    players.each do |player_id|
+      @campaign.players << User.find(player_id)
+    end
 
     current_user.make_campaign(@campaign)
 
