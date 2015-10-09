@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get 'characters', controller: :characters, action: :index
   post 'characters', controller: :characters, action: :create
+  put 'characters/:id', controller: :characters, action: :update
   get 'characters/new'
   get 'characters/new/*anything', controller: :characters, action: :new
   get 'characters/:id', controller: :characters, action: :show, as: :character

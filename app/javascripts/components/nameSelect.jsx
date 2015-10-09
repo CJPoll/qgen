@@ -20,6 +20,11 @@ NameSelector = React.createClass({
 		CharacterActions.changeLastName(e.target.value);
 	},
 
+	selectCampaign(e) {
+		var campaignId = e.target.value;
+		CharacterActions.selectCampaign(campaignId);
+	},
+
 	render() {
 		return (
 			<Panel>
@@ -29,7 +34,7 @@ NameSelector = React.createClass({
 						<label>
 							Campaign
 						</label>
-						<SelectCampaign campaigns={this.state.campaigns.campaigns}/>
+						<SelectCampaign campaigns={this.state.campaigns.campaigns} onChange={this.selectCampaign}/>
 					</FormGroup>
 					<FormGroup>
 						<label htmlFor='first-name'>

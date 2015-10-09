@@ -41,6 +41,7 @@ class CharactersController < ApplicationController
 
   def show
     @deleteable = @character.user == current_user
+    @campaigns = current_user.campaigns
   end
 
   def destroy
@@ -49,6 +50,19 @@ class CharactersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to characters_path }
       format.json { render json: { status: 'ok' } }
+    end
+  end
+
+  def update
+    campaign_id = params[:character][:campaign_id]
+    campaign = current_user.campaigns.where(id: campaign_id).first
+    character = current_user.characters.where(id: params[:id]).first
+
+    character.campaign = campaign
+    character.save!
+
+    respond_to do |format|
+      format.json { render json: {status: 'ok', currentCampaign: campaign} }
     end
   end
 

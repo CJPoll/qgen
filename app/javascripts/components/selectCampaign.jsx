@@ -5,22 +5,28 @@ import CharacterActions from '../actions/characterActions';
 var SelectCampaign;
 
 SelectCampaign = React.createClass({
-	renderCampaigns() {
-		return _.map(this.props.campaigns, campaign => (
-			<option value={campaign.id} key={'campaign_' + campaign.id}>
-				{ campaign.name }
-			</option>
-		));
+	propTypes: {
+		campaigns: React.PropTypes.array.isRequired,
+		initialSelected: React.PropTypes.object,
+		onChange: React.PropTypes.func
 	},
 
-	handleChange(e) {
-		var campaignId = e.target.value;
-		CharacterActions.selectCampaign(campaignId);
+	renderCampaigns() {
+		return _.map(this.props.campaigns, campaign => {
+			var selected;
+
+			selected = this.props.initialSelected && campaign.id === this.props.initialSelected.id
+			return (
+				<option value={campaign.id} key={'campaign_' + campaign.id} selected={selected}>
+					{ campaign.name }
+				</option>
+			);
+		});
 	},
 
 	render() {
 		return (
-			<select className='select-box' onChange={this.handleChange}>
+			<select className='select-box' onChange={this.props.onChange}>
 				{this.renderCampaigns()}
 			</select>
 		);

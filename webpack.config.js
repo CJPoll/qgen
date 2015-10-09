@@ -2,7 +2,6 @@ var path, webpack, config;
 
 path = require('path');
 webpack = require('webpack');
-router = require('react-router');
 
 config = module.exports = {
 	// the base path which will be used to resolve entry points
