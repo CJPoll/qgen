@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from 'app/stylesheets/navbar.scss';
 
 export var Navbar, NavbarItem, LeftNav, RightNav, NavDropdown;
 
@@ -28,7 +29,7 @@ NavbarItem = React.createClass({
 LeftNav = React.createClass({
 	render() {
 		return (
-			<ul className='nav navbar-nav'>
+			<ul className={styles.leftNavbarList}>
 				{this.props.children}
 			</ul>
 		);
@@ -38,7 +39,7 @@ LeftNav = React.createClass({
 RightNav = React.createClass({
 	render() {
 		return (
-			<ul className='nav navbar-nav navbar-right'>
+			<ul className={styles.rightNavbarList}>
 				{this.props.children}
 			</ul>
 		);

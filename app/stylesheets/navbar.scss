@@ -1,0 +1,15 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+:local(.leftNavbarList)
+{
+	@extend .nav;
+	@extend .navbar-nav;
+}
+
+:local(.rightNavbarList)
+{
+	@extend .nav;
+	@extend .navbar-nav;
+	@extend .navbar-right;
+}
