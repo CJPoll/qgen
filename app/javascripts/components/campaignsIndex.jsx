@@ -1,4 +1,7 @@
 import React from 'react';
+import Reflux from 'reflux';
+
+import CampaignsStore from 'app/javascripts/stores/campaignsStore';
 
 import { Panel, PanelTitle, PanelBody } from './panel';
 import CampaignsList from './campaignsList';
@@ -6,9 +9,7 @@ import CampaignsList from './campaignsList';
 var CampaignsIndex;
 
 CampaignsIndex = React.createClass({
-	propTypes: {
-		campaigns: React.PropTypes.array.isRequired
-	},
+	mixins: [Reflux.connect(CampaignsStore, 'campaigns')],
 
 	render() {
 		return (
@@ -20,7 +21,7 @@ CampaignsIndex = React.createClass({
 				<PanelBody>
 					<h2> My Campaigns </h2>
 
-					<CampaignsList campaigns={this.props.campaigns} />
+					<CampaignsList campaigns={this.state.campaigns} />
 
 				</PanelBody>
 			</Panel>

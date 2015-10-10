@@ -14,6 +14,7 @@ import BackgroundsStore from '../stores/backgroundsStore';
 import Dashboard from 'app/javascripts/components/dashboard';
 import CharactersIndex from 'app/javascripts/components/charactersIndex';
 import ShowCharacter from 'app/javascripts/components/showCharacter';
+import CampaignsIndex from 'app/javascripts/components/campaignsIndex';
 
 var routes;
 
@@ -22,6 +23,7 @@ routes = (
 		<Route path='/' component={Dashboard} />
 		<Route path='/characters' component={CharactersIndex} />
 		<Route path='/characters/:characterId' component={ShowCharacter} />
+		<Route path='/campaigns' component={CampaignsIndex} />
 	</Router>
 );
 
