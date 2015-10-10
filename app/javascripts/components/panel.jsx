@@ -1,5 +1,7 @@
 import React from 'react';
 
+import panelStyles from 'app/stylesheets/panel.scss';
+
 export var Panel, PanelTitle, PanelBody;
 
 Panel = React.createClass({
@@ -7,9 +9,9 @@ Panel = React.createClass({
 		var className;
 
 		if (this.props.active) {
-			className = 'panel selected-panel';
+			className = panelStyles.selectedPanel;
 		} else {
-			className = 'panel selectable-panel';
+			className = panelStyles.selectablePanel;
 		}
 
 		return (
@@ -23,7 +25,7 @@ Panel = React.createClass({
 PanelTitle = React.createClass({
 	render() {
 		return (
-			<div className='panel-heading'>
+			<div className={panelStyles.panelTitle}>
 				{this.props.children}
 			</div>
 		);

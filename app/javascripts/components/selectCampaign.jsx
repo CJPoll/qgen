@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-import CharacterActions from '../actions/characterActions';
 
 var SelectCampaign;
 

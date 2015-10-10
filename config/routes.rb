@@ -4,27 +4,28 @@ Rails.application.routes.draw do
     get 'users/:user_id/characters', controller: :characters, action: :index, constraints: {format: :json}
     get 'users/:user_id/campaigns', controller: :campaigns, action: :index, constraints: {format: :json}
 
-    get 'campaigns', controller: :campaigns, action: :index
-    post 'campaigns', controller: :campaigns, action: :create
-    get 'campaigns/:id', controller: :campaigns, action: :show, as: :campaign
-    delete 'campaigns/:id', controller: :campaigns, action: :destroy
+    get 'campaigns', controller: :campaigns, action: :index, constraints: {format: :json}
+    post 'campaigns', controller: :campaigns, action: :create, constraints: {format: :json}
+    get 'campaigns/:id', controller: :campaigns, action: :show, as: :campaign, constraints: {format: :json}
+    delete 'campaigns/:id', controller: :campaigns, action: :destroy, constraints: {format: :json}
 
-    get 'powers', controller: :powers, action: :index
+    get 'powers', controller: :powers, action: :index, constraints: {format: :json}
 
-    get 'backgrounds', controller: :backgrounds, action: :index
-    get 'powers', controller: :powers, action: :index
+    get 'backgrounds', controller: :backgrounds, action: :index, constraints: {format: :json}
+    get 'powers', controller: :powers, action: :index, constraints: {format: :json}
 
-    get 'characters', controller: :characters, action: :index
-    post 'characters', controller: :characters, action: :create
-    put 'characters/:id', controller: :characters, action: :update
-    get 'characters/new'
-    get 'characters/new/*anything', controller: :characters, action: :new
-    get 'characters/:id', controller: :characters, action: :show, as: :character
-    delete 'characters/:id', controller: :characters, action: :destroy
+    get 'characters', controller: :characters, action: :index, constraints: {format: :json}
+    post 'characters', controller: :characters, action: :create, constraints: {format: :json}
+    put 'characters/:id', controller: :characters, action: :update, constraints: {format: :json}
+    get 'characters/new', constraints: {format: :json}
+    get 'characters/new/*anything', controller: :characters, action: :new, constraints: {format: :json}
+    get 'characters/:id', controller: :characters, action: :show, as: :character, constraints: {format: :json}
+    delete 'characters/:id', controller: :characters, action: :destroy, constraints: {format: :json}
   end
 
   devise_for :users
   root controller: :static, action: :landing
+  get '/*any', controller: :static, action: :landing
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

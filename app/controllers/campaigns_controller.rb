@@ -15,7 +15,6 @@ class CampaignsController < ApplicationController
     @campaigns = user.own_campaigns + user.campaigns
 
     respond_to do |format|
-      format.html
       format.json {render json: @campaigns}
     end
   end

@@ -1,43 +1,32 @@
 import React from 'react';
-import CreateCharacterButton from './createCharacter';
-import { Panel, PanelTitle, PanelBody } from './panel';
-import ButtonGroup from './buttonGroup';
-import ButtonToolbar from './buttonToolbar';
-import CreateCampaignButton from './createCampaignButton';
+import Reflux from 'reflux';
+
+import CampaignsStore from 'app/javascripts/stores/campaignsStore';
+import CharactersStore from 'app/javascripts/stores/charactersStore';
+
 import CampaignsList from './campaignsList';
 import CharactersList from './charactersList';
 
 var Dashboard;
 
 Dashboard = React.createClass({
+	mixins: [
+		Reflux.connect(CampaignsStore, 'campaigns'),
+		Reflux.connect(CharactersStore, 'characters')
+	],
+
 	propTypes: {
-		campaigns: React.PropTypes.array.isRequired,
-		characters: React.PropTypes.array.isRequired
 	},
 
 	render() {
 		return (
-			<Panel>
-				<PanelTitle>
-					Dashboard
-				</PanelTitle>
-				<PanelBody>
-					<ButtonToolbar>
-						<ButtonGroup>
-							<CreateCharacterButton />
-						</ButtonGroup>
-						<ButtonGroup>
-							<CreateCampaignButton />
-						</ButtonGroup>
-					</ButtonToolbar>
+			<div>
+				<h2> My Campaigns </h2>
+				<CampaignsList campaigns={this.state.campaigns} />
 
-					<h2> My Campaigns </h2>
-					<CampaignsList campaigns={this.props.campaigns} />
-
-					<h2> My Characters </h2>
-					<CharactersList characters={this.props.characters} />
-				</PanelBody>
-			</Panel>
+				<h2> My Characters </h2>
+				<CharactersList characters={this.state.characters} />
+			</div>
 		);
 	}
 });

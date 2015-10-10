@@ -8,7 +8,6 @@ class CharactersController < ApplicationController
     @characters = user.characters
 
     respond_to do |format|
-      format.html
       format.json { render json: @characters }
     end
   end
@@ -42,6 +41,10 @@ class CharactersController < ApplicationController
   def show
     @deleteable = @character.user == current_user
     @campaigns = current_user.campaigns
+
+    respond_to do |format|
+      format.json { render json: @character, include: [:background, :campaign, :powers, :user] }
+    end
   end
 
   def destroy

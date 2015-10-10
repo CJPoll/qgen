@@ -8,29 +8,27 @@ import ButtonToolbar from './buttonToolbar';
 import DeleteCharacterButton from './deleteCharacterButton';
 import SelectCampaign from './selectCampaign';
 
-import CharacterActions from '../actions/characterActions';
+import CharacterStore from 'app/javascripts/stores/characterStore';
+import CampaignsStore from 'app/javascripts/stores/campaignsStore';
+import CharacterActions from 'app/javascripts/actions/characterActions';
 
 var ShowCharacter;
 
 ShowCharacter = React.createClass({
-	propTypes: {
-		campaigns: React.PropTypes.array.isRequired,
-		currentCampaign: React.PropTypes.object.isRequired,
-		character: React.PropTypes.object.isRequired,
-		background: React.PropTypes.object.isRequired,
-		powers: React.PropTypes.array.isRequired,
-		deleteable: React.PropTypes.bool.isRequired
-	},
+	mixins: [
+		Reflux.connect(CharacterStore, 'character'),
+		Reflux.connect(CampaignsStore, 'campaigns')
+	],
 
-	campaignSelected() {
-	},
-
-	componentDidMount() {
-		CharacterActions.selectCampaign.listen(this.campaignSelected);
+	componentWillMount() {
+		CharacterActions.load(this.props.params.characterId);
 	},
 
 	changeCampaign(e) {
-		var data, url;
+		var data, url, csrf_param, csrf_token;
+
+		csrf_param = $('meta[name=csrf-param]').attr('content');
+		csrf_token = $('meta[name=csrf-token]').attr('content');
 
 		data = {
 			character: {
@@ -39,16 +37,19 @@ ShowCharacter = React.createClass({
 			_method: 'PUT'
 		};
 
-		url = '/characters/' + this.props.character.id;
+		data[csrf_param] = csrf_token
+
+		url = '/api/characters/' + this.state.character.id;
 		$.ajax({
 			type: 'POST',
 			url: url,
-			data: data
+			data: data,
+			dataType: 'json'
 		});
 	},
 
 	renderPowers() {
-		var powers = this.props.powers;
+		var powers = this.state.character.powers;
 
 		return _.map(powers, power => {
 			var key = 'power_' + power.id;
@@ -61,12 +62,12 @@ ShowCharacter = React.createClass({
 	},
 
 	render() {
-		var character, fullName, deleteButton;
+		var backgroundName, character, fullName, deleteButton;
 
-		character = this.props.character;
+		character = this.state.character;
 		fullName = character.first_name + ' ' + character.last_name;
 
-		if (this.props.deleteable) {
+		if (this.state.character.deleteable) {
 			deleteButton = (
 				<ButtonToolbar>
 					<ButtonGroup>
@@ -78,6 +79,8 @@ ShowCharacter = React.createClass({
 			deleteButton = <div></div>;
 		}
 
+		backgroundName = this.state.character.background.name || '';
+
 		return (
 			<Panel>
 				<PanelTitle>
@@ -88,10 +91,10 @@ ShowCharacter = React.createClass({
 					{deleteButton}
 
 					<h2> Campaign </h2>
-					<SelectCampaign campaigns={this.props.campaigns} initialSelected={this.props.currentCampaign} onChange={this.changeCampaign} />
+					<SelectCampaign campaigns={this.state.campaigns} initialSelected={this.state.character.campaign} onChange={this.changeCampaign} />
 
 					<h2> Background </h2>
-					<p> {this.props.background.name} </p>
+					<p> {backgroundName} </p>
 
 					<h2> Powers </h2>
 					<ul>

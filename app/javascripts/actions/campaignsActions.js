@@ -10,7 +10,7 @@ CampaignsActions = Reflux.createActions({
 CampaignsActions.load.listen(function() {
 	var url;
 
-	url = '/campaigns.json';
+	url = '/api/campaigns';
 
 	$.get(url)
 		.then(this.completed)

@@ -1,11 +1,18 @@
 import React from 'react';
 import styles from 'app/stylesheets/navbar.scss';
 
+import history from 'app/javascripts/history';
+
 export var Navbar, NavbarItem, LeftNav, RightNav, NavDropdown;
 
 NavbarItem = React.createClass({
 	propTypes: {
 		path: React.PropTypes.string.isRequired
+	},
+
+	handleClick(e) {
+		e.preventDefault();
+		history.pushState(null, this.props.path);
 	},
 
 	render() {
@@ -20,7 +27,7 @@ NavbarItem = React.createClass({
 
 		return (
 			<li className={className}>
-				<a href={this.props.path}> {this.props.children} </a>
+				<a to={this.props.path} onClick={this.handleClick}> {this.props.children} </a>
 			</li>
 		);
 	}
@@ -64,6 +71,11 @@ NavDropdown = React.createClass({
 });
 
 Navbar = React.createClass({
+	handleClick(e) {
+		e.preventDefault();
+		history.pushState(null, this.props.path);
+	},
+
 	render: function() {
 		return (
 			<nav className='navbar navbar-default'>
@@ -76,7 +88,7 @@ Navbar = React.createClass({
 							<span className='icon-bar'></span>
 							<span className='icon-bar'></span>
 						</button>
-						<a className='navbar-brand' href='/'>QGen</a>
+						<a className='navbar-brand' href='/' onClick={this.handleClick}>QGen</a>
 					</div>
 					<div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
 						{this.props.children}

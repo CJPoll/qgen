@@ -1,0 +1,14 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+:local(.primaryButton)
+{
+	@extend .btn;
+	@extend .btn-primary;
+}
+
+:local(.danger-button)
+{
+	@extend .btn;
+	@extend .btn-danger;
+}

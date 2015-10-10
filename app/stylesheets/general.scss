@@ -1,0 +1,21 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+:local(.tiled)
+{
+  @extend .col-xs-12;
+  @extend .col-sm-6;
+  @extend .col-md-4;
+  @extend .col-lg-3;
+}
+
+:local(.clickable)
+{
+	cursor: pointer;
+}
+
+:local(.clickableTile)
+{
+  composes: tiled;
+  composes: clickable;
+}

@@ -1,0 +1,29 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+@mixin panel-color($color)
+{
+	@include panel-variant($color, white, $color, $color);
+}
+
+:local(.selectablePanel)
+{
+	@extend .panel;
+	@include panel-color($brand-primary);
+}
+
+:local(.selectedPanel)
+{
+	@extend .panel;
+	@include panel-color($brand-success);
+
+	:local(.panel-heading)
+	{
+		animation: panel-selected 0.2s ease;
+	}
+}
+
+:local(.panelTitle)
+{
+	@extend .panel-heading;
+}

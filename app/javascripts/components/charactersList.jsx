@@ -1,5 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
+import generalStyles from 'app/stylesheets/general.scss';
+
+import history from 'app/javascripts/history';
 
 import { Panel, PanelTitle, PanelBody } from './panel';
 
@@ -14,7 +17,7 @@ CharactersList = React.createClass({
 		var url;
 
 		url = '/characters/' + character.id;
-		window.location = url;
+		history.pushState(null, url);
 	},
 
 	renderCharacters() {
@@ -24,7 +27,7 @@ CharactersList = React.createClass({
 
 		if (characters.length > 0) {
 			return _.map(characters, character => (
-				<div className='tiled clickable' key={'character_' + character.id} onClick={this.handleClick.bind(this, character)}>
+				<div className={generalStyles.clickableTile} key={'character_' + character.id} onClick={this.handleClick.bind(this, character)}>
 					<Panel>
 						<PanelTitle>
 							{character.first_name} {character.last_name}

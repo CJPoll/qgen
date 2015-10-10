@@ -7,10 +7,7 @@ CampaignsStore = Reflux.createStore({
 	init() {
 		this.listenToMany(CampaignsActions);
 		this.state = {
-			campaigns: [{
-				id: '',
-				name: 'No Campaign'
-			}]
+			campaigns: []
 		};
 	},
 
@@ -19,12 +16,12 @@ CampaignsStore = Reflux.createStore({
 			this.init();
 		}
 
-		return this.state;
+		return this.state.campaigns;
 	},
 
 	onLoadCompleted(data) {
 		this.state.campaigns = this.state.campaigns.concat(data);
-		this.trigger(this.state);
+		this.trigger(this.state.campaigns);
 	},
 
 	onLoadFailed(e) {
