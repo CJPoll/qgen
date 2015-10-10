@@ -15,6 +15,7 @@ import Dashboard from 'app/javascripts/components/dashboard';
 import CharactersIndex from 'app/javascripts/components/charactersIndex';
 import ShowCharacter from 'app/javascripts/components/showCharacter';
 import CampaignsIndex from 'app/javascripts/components/campaignsIndex';
+import ShowCampaign from 'app/javascripts/components/showCampaign';
 
 var routes;
 
@@ -24,6 +25,7 @@ routes = (
 		<Route path='/characters' component={CharactersIndex} />
 		<Route path='/characters/:characterId' component={ShowCharacter} />
 		<Route path='/campaigns' component={CampaignsIndex} />
+		<Route path='/campaigns/:campaignId' component={ShowCampaign} />
 	</Router>
 );
 

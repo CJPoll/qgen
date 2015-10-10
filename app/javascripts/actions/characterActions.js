@@ -13,7 +13,6 @@ CharacterActions.load.listen(function(characterId) {
 	url = '/api/characters/' + characterId;
 
 	data = {
-		url: url,
 		dataType: 'json'
 	}
 

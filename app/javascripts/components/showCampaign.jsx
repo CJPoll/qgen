@@ -1,10 +1,16 @@
 import React from 'react';
+import Reflux from 'reflux';
 import _ from 'lodash';
+
+import CampaignStore from 'app/javascripts/stores/campaignStore';
+import CampaignActions from 'app/javascripts/actions/campaignActions';
 
 import ButtonToolbar from './buttonToolbar';
 import ButtonGroup from './buttonGroup';
 import EditCampaignButton from './editCampaignButton';
 import DeleteCampaignButton from './deleteCampaignButton';
+
+import { Panel, PanelTitle, PanelBody } from 'app/javascripts/components/panel';
 
 var ShowCampaign, EditCampaign;
 
@@ -37,17 +43,16 @@ EditCampaign = React.createClass({
 });
 
 ShowCampaign = React.createClass({
-	propTypes: {
-		campaign: React.PropTypes.object.isRequired,
-		owner: React.PropTypes.object.isRequired,
-		players: React.PropTypes.array,
-		editable: React.PropTypes.bool
+	mixins: [Reflux.connect(CampaignStore, 'campaign')],
+
+	componentWillMount() {
+		CampaignActions.load(this.props.params.campaignId);
 	},
 
-	renderPlayers() {
+	renderPlayers(campaign) {
 		var players;
 
-		players = _.map(this.props.players, player => (
+		players = _.map(campaign.players, player => (
 			<li>
 				{player.first_name + ' ' + player.last_name}
 			</li>
@@ -60,10 +65,10 @@ ShowCampaign = React.createClass({
 		return players;
 	},
 
-	renderCharacters() {
+	renderCharacters(campaign) {
 		var characters;
 
-		characters = _.map(this.props.characters, character => (
+		characters = _.map(campaign.characters, character => (
 			<li>
 				{character.first_name + ' ' + character.last_name}
 			</li>
@@ -79,12 +84,14 @@ ShowCampaign = React.createClass({
 	render() {
 		var campaign, owner, editButton;
 
-		campaign = this.props.campaign;
-		owner = this.props.owner;
+		campaign = this.state.campaign;
+		owner = campaign.user;
 		editButton = <div></div>;
 
 		if (this.props.editable) {
 			editButton = <EditCampaign campaign={campaign} />;
+		}
+		if (campaign.players.length > 0) {
 		}
 
 		return (
@@ -106,13 +113,13 @@ ShowCampaign = React.createClass({
 					<h2> Players </h2>
 
 					<ul>
-						{this.renderPlayers()}
+						{this.renderPlayers(campaign)}
 					</ul>
 
 					<h2> Characters </h2>
 
 					<ul>
-						{this.renderCharacters()}
+						{this.renderCharacters(campaign)}
 					</ul>
 
 				</PanelBody>

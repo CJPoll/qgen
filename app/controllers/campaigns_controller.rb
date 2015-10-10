@@ -7,6 +7,10 @@ class CampaignsController < ApplicationController
 
   def show
     @editable = @campaign.owner == current_user
+
+    respond_to do |format|
+      format.json { render json: @campaign, include: [:user, :players, :characters] }
+    end
   end
 
   def index
