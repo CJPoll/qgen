@@ -18,11 +18,11 @@ NavbarItem = React.createClass({
 	render() {
 		var path, className;
 
-		className = '';
+		className = styles.navItem;
 		path = window.location.pathname;
 
 		if (path === this.props.path) {
-			className = 'active';
+			className = styles.activeNavItem;
 		}
 
 		return (

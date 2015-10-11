@@ -1,6 +1,8 @@
 import React from 'react';
 import Reflux from 'reflux';
 import _ from 'lodash';
+import generalStyles from 'app/stylesheets/general.scss';
+
 import FormGroup from './formGroup';
 import UserSearchStore from '../stores/userSearch';
 import UserSearchActions from '../actions/userSearchActions';
@@ -14,13 +16,8 @@ UserSearchResults = React.createClass({
 		onSelectUser: React.PropTypes.func.isRequired
 	},
 
-	handleClick(e) {
-		var resultId, result;
-
-		resultId = e.target.getAttribute('data-result');
-		result = _.find(this.state.searchResults.results, searchResult => searchResult.id === parseInt(resultId));
-
-		this.props.onSelectUser(result);
+	handleClick(user) {
+		this.props.onSelectUser(user);
 	},
 
 	render() {
@@ -30,8 +27,8 @@ UserSearchResults = React.createClass({
 			var key = 'search_result_' + result.id;
 
 			return (
-				<li key={key} className='no-dot'>
-					<span className="glyphicon glyphicon-plus add-person" onClick={this.handleClick.bind(this, result)} data-result={result.id} ></span>
+				<li key={key} className='no-dot' onClick={this.handleClick.bind(this, result)}>
+					<span className="glyphicon glyphicon-plus add-person" ></span>
 					&nbsp;
 					{result.first_name + ' ' + result.last_name}
 				</li>
@@ -39,7 +36,7 @@ UserSearchResults = React.createClass({
 		}.bind(this));
 
 		return (
-			<div onClick={this.handleClick}>
+			<div>
 				<div>
 					&nbsp;
 				</div>
@@ -67,7 +64,7 @@ UserSearch = React.createClass({
 				<label htmlFor='user_search'>
 					Add Player
 				</label>
-				<input type='search' className='text-input' onChange={this.onSearch} />
+				<input type='search' className={generalStyles.textInput} onChange={this.onSearch} />
 				<UserSearchResults onSelectUser={this.props.onSelectUser}/>
 			</FormGroup>
 		);

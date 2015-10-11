@@ -1,6 +1,6 @@
+import React from 'react';
 import $ from 'jquery';
 
-import React from 'react';
 import QGenNavbar from 'app/javascripts/components/qgenNavbar';
 import Router from 'app/javascripts/components/router';
 

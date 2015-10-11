@@ -10,7 +10,7 @@ UserSearchActions = Reflux.createActions({
 UserSearchActions.search.listen(function(searchTerm) {
 	var url, data;
 
-	url = '/users/search';
+	url = '/api/users/search';
 	data = {
 		query: searchTerm
 	};

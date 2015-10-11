@@ -7,7 +7,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 	@extend .btn-primary;
 }
 
-:local(.danger-button)
+:local(.dangerButton)
 {
 	@extend .btn;
 	@extend .btn-danger;

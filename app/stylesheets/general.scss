@@ -19,3 +19,9 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
   composes: tiled;
   composes: clickable;
 }
+
+:local(.textInput)
+{
+	@extend .form-control;
+}
+

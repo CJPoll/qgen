@@ -13,3 +13,19 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 	@extend .navbar-nav;
 	@extend .navbar-right;
 }
+
+:local(.clickable)
+{
+	cursor: pointer;
+}
+
+:local(.activeNavItem)
+{
+	composes: clickable;
+	@extend .active;
+}
+
+:local(.navItem)
+{
+	composes: clickable;
+}

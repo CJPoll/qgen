@@ -8,7 +8,8 @@ config = module.exports = {
 	context: __dirname + '/app',
 	// the main entry point for our application's frontend JS
 	entry: {
-		application: './javascripts/appSetup.js'
+		application: './javascripts/appSetup.js',
+		devise: './javascripts/loginSetup.js'
 	}
 };
 

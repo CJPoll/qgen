@@ -1,6 +1,9 @@
 import React from 'react';
-import FormGroup from './formGroup';
+import _ from 'lodash';
+import generalStyles from 'app/stylesheets/general.scss';
+import addAuthentictyToken from 'app/javascripts/helpers/addAuthenticityToken';
 
+import FormGroup from './formGroup';
 import { Panel, PanelTitle, PanelBody } from './panel';
 
 import SubmitButton from './submit';
@@ -15,9 +18,35 @@ CampaignForm = React.createClass({
 	},
 
 	getInitialState() {
-		var players = this.props.players || [];
+		var players, name;
 
-		return {players: players};
+		players = this.props.players || [];
+		name = this.props.name || '';
+
+		return {
+			players: players,
+			name: name
+		};
+	},
+
+	submit() {
+		var data, url;
+
+		url = '/api/campaigns';
+		data = {
+			campaign: {
+				name: this.state.name
+			},
+			players: _.map(this.state.players, player => player.id)
+		};
+
+		data = addAuthentictyToken(data);
+
+		$.post(url, data)
+	},
+
+	nameChanged(e) {
+		this.state.name = e.target.value;
 	},
 
 	handleSelectUser(selectedUser) {
@@ -65,23 +94,20 @@ CampaignForm = React.createClass({
 					{heading}
 				</PanelTitle>
 				<PanelBody>
-					<form action='/campaigns' method='POST'>
-						<AuthenticityToken />
-						<FormGroup>
-							<label htmlFor='campaign[name]'>
-								Campaign Name
-							</label>
-							<input name='campaign[name]' type='text' className='text-input' defaultValue={campaignName}/>
-						</FormGroup>
-						<FormGroup>
-							<label>
-								Players
-							</label>
-							{players}
-						</FormGroup>
-						<UserSearch onSelectUser={this.handleSelectUser}/>
-						<SubmitButton />
-					</form>
+					<FormGroup>
+						<label htmlFor='campaign[name]'>
+							Campaign Name
+						</label>
+						<input name='campaign[name]' type='text' className={generalStyles.textInput} defaultValue={campaignName} onChange={this.nameChanged} />
+					</FormGroup>
+					<FormGroup>
+						<label>
+							Players
+						</label>
+						{players}
+					</FormGroup>
+					<UserSearch onSelectUser={this.handleSelectUser}/>
+					<SubmitButton onClick={this.submit}/>
 				</PanelBody>
 			</Panel>
 		);

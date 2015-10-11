@@ -1,30 +1,30 @@
-define(function() {
-	var React, Login;
+import React from 'react';
+import { Panel, PanelTitle, PanelBody } from 'app/javascripts/components/panel';
 
-	React = require('react');
+import LoginForm from 'app/javascripts/components/loginForm';
 
-	Login = React.createClass({
-		propTypes: {
-			csrf_param: React.PropTypes.string.isRequired,
-			csrf_token: React.PropTypes.string.isRequired
-		},
+var Login;
 
-		render: function() {
-			var title = 'Log In';
-			return (
-				<div className='login'>
-					<Panel>
-						<PanelTitle>
-							Log In
-						</PanelTitle>
-						<PanelBody>
-							<LoginForm csrf_param={this.props.csrf_param} csrf_token={this.props.csrf_token} />
-						</PanelBody>
-					</Panel>
-				</div>
-			);
-		}
-	})
+Login = React.createClass({
+	propTypes: {
+		csrf_param: React.PropTypes.string.isRequired,
+		csrf_token: React.PropTypes.string.isRequired
+	},
 
-	return Login;
-});
+	render: function() {
+		return (
+			<div className='login'>
+				<Panel>
+					<PanelTitle>
+						Log In
+					</PanelTitle>
+					<PanelBody>
+						<LoginForm />
+					</PanelBody>
+				</Panel>
+			</div>
+		);
+	}
+})
+
+export default Login;

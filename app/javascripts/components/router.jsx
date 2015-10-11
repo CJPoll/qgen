@@ -1,9 +1,9 @@
 import { Router, Route } from 'react-router';
 import React from 'react';
-import SelectBackground from './select_background';
-import history from 'app/javascripts/history';
 
 import BackgroundsStore from '../stores/backgroundsStore';
+
+import history from 'app/javascripts/history';
 
 //import CharacterCreator from './characterCreator';
 //import NameSelector from './nameSelect';
@@ -16,6 +16,9 @@ import CharactersIndex from 'app/javascripts/components/charactersIndex';
 import ShowCharacter from 'app/javascripts/components/showCharacter';
 import CampaignsIndex from 'app/javascripts/components/campaignsIndex';
 import ShowCampaign from 'app/javascripts/components/showCampaign';
+import NewCampaignForm from 'app/javascripts/components/newCampaignForm';
+
+import Login from 'app/javascripts/components/login';
 
 var routes;
 
@@ -25,6 +28,7 @@ routes = (
 		<Route path='/characters' component={CharactersIndex} />
 		<Route path='/characters/:characterId' component={ShowCharacter} />
 		<Route path='/campaigns' component={CampaignsIndex} />
+		<Route path='/campaigns/new' component={NewCampaignForm} />
 		<Route path='/campaigns/:campaignId' component={ShowCampaign} />
 	</Router>
 );

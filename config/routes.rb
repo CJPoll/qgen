@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   scope :api do
-    get 'users/search', constratins: {format: :json}
+    get 'users/search', constraints: {format: :json}
     get 'users/:user_id/characters', controller: :characters, action: :index, constraints: {format: :json}
     get 'users/:user_id/campaigns', controller: :campaigns, action: :index, constraints: {format: :json}
 
