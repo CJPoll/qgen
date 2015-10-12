@@ -1,9 +1,13 @@
 import React from 'react';
+import generalStyles from 'app/stylesheets/general.scss';
+import buttonStyles from 'app/stylesheets/buttons.scss';
+
 import { Link } from 'react-router';
-import BackstoryActions from '../actions/backstoryActions';
-import BackstoryStore from '../stores/backstoryStore';
 import { Panel, PanelTitle, PanelBody } from './panel';
 import FormGroup from './formGroup';
+
+import BackstoryStore from '../stores/backstoryStore';
+import BackstoryActions from '../actions/backstoryActions';
 
 var BackstoryEntry;
 
@@ -28,10 +32,10 @@ BackstoryEntry = React.createClass({
 				<PanelBody>
 					<p> Enter whatever backstory you would like for your character to have </p>
 					<FormGroup>
-						<textarea onChange={this.handleKeyUp} value={this.state.backstory} className='textarea'/>
+						<textarea onChange={this.handleKeyUp} value={this.state.backstory} className={generalStyles.textInput}/>
 					</FormGroup>
 					<FormGroup>
-						<Link to='/characters/new/confirm' className='submit'> Move On </Link>
+						<Link to='/characters/new/confirm' className={buttonStyles.primaryButton}> Move On </Link>
 					</FormGroup>
 				</PanelBody>
 			</Panel>

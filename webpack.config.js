@@ -36,7 +36,7 @@ config.module = {
 			loader: 'babel-loader'
 		},
 		{
-			test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?/,
+			test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
 			loader: 'url?limit=10000&mimetype=application/font-woff'
 		},
 		{

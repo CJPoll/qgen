@@ -2,7 +2,7 @@ import Reflux from 'reflux';
 import _ from 'lodash';
 import $ from 'jquery';
 
-import CharacterActions from '../actions/characterActions';
+import NewCharacterActions from '../actions/newCharacterActions';
 
 import BackgroundsStore from './backgroundsStore';
 import PowersStore from './powersStore';
@@ -12,7 +12,7 @@ import CampaignsStore from './campaignsStore';
 var NewCharacterStore = Reflux.createStore({
 
 	init() {
-		this.listenToMany(CharacterActions);
+		this.listenToMany(NewCharacterActions);
 
 		this.listenTo(BackgroundsStore, this.onBackgroundChanged);
 		this.listenTo(PowersStore, this.onPowersChanged);
@@ -68,7 +68,7 @@ var NewCharacterStore = Reflux.createStore({
 			authenticity_token: authToken,
 			character: {}
 		};
-		url = '/characters';
+		url = '/api/characters';
 
 		_.extend(data.character, this.state.character);
 		data.character.first_name = data.character.firstName;

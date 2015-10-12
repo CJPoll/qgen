@@ -1,5 +1,6 @@
 import React from 'react';
 
+import generalStyles from 'app/stylesheets/general.scss';
 import { Panel, PanelTitle, PanelBody } from './panel';
 
 import PowersActions from '../actions/powersActions';
@@ -17,7 +18,7 @@ Power = React.createClass({
 		var active = PowersStore.selected(this.props.power);
 
 		return (
-			<div className='tiled clickable'>
+			<div className={generalStyles.clickableTile}>
 				<Panel active={active} onClick={this.handleClick}>
 					<PanelTitle>
 						{this.props.power.name}

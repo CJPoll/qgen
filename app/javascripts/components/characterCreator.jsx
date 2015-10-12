@@ -1,16 +1,15 @@
 import React from 'react';
 import QgenNavbar from './qgenNavbar';
 
+import CampaignsStore from 'app/javascripts/stores/campaignsStore';
+
 var CharacterCreator;
 
 CharacterCreator = React.createClass({
 	render() {
 		return (
 			<div>
-				<QgenNavbar userData={{userData: 'notNull'}} />
-				<div className='container-fluid'>
-					{this.props.children}
-				</div>
+				{this.props.children}
 			</div>
 		);
 	}

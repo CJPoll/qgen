@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
+import generalStyles from 'app/stylesheets/general.scss';
+
 var SelectCampaign;
 
 SelectCampaign = React.createClass({
@@ -11,7 +13,15 @@ SelectCampaign = React.createClass({
 	},
 
 	renderCampaigns() {
-		return _.map(this.props.campaigns, campaign => {
+		var campaigns, actualCampaigns;
+		
+		campaigns = [];
+
+		if (this.props.startBlank) {
+			campaigns.push(<option value={0} key='campaign_0' selected='true'> Please choose a campaign </option>);
+		}
+
+		actualCampaigns = _.map(this.props.campaigns, campaign => {
 			var selected;
 
 			selected = this.props.initialSelected && campaign.id === this.props.initialSelected.id
@@ -21,11 +31,15 @@ SelectCampaign = React.createClass({
 				</option>
 			);
 		});
+
+		campaigns = campaigns.concat(actualCampaigns);
+
+		return campaigns;
 	},
 
 	render() {
 		return (
-			<select className='select-box' onChange={this.props.onChange}>
+			<select className={generalStyles.select} onChange={this.props.onChange}>
 				{this.renderCampaigns()}
 			</select>
 		);

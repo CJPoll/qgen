@@ -1,15 +1,16 @@
 import React from 'react';
+import buttonStyles from 'app/stylesheets/buttons.scss';
 
-import CharacterActions from '../actions/characterActions';
+import NewCharacterActions from '../actions/newCharacterActions.js';
 
 var ConfirmCharacter = React.createClass({
 	handleClick(event) {
-		CharacterActions.confirmCharacter();
+		NewCharacterActions.confirmCharacter();
 	},
 
 	render() {
 		return (
-			<a onClick={this.handleClick} className='confirm-character'>
+			<a onClick={this.handleClick} className={buttonStyles.primaryButton}>
 				Confirm Character
 			</a>
 		);

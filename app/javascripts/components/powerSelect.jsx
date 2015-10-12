@@ -1,6 +1,8 @@
 import React from 'react';
 import Reflux from 'reflux';
 import _ from 'lodash';
+
+import buttonStyles from 'app/stylesheets/buttons.scss';
 import { Link } from 'react-router';
 
 import PowersStore from '../stores/powersStore';
@@ -13,6 +15,7 @@ var powerSelect = React.createClass({
 		var powers, powerComponents, submitClass;
 
 		powers = this.state.powers.powers;
+
 		powerComponents = _.map(powers, function(power) {
 			return <Power power={power}/>;
 		});
@@ -31,7 +34,7 @@ var powerSelect = React.createClass({
 				</Link>
 				</div>
 				{powerComponents}
-				<Link to='/characters/new/backstory' className={submitClass}> Move On </Link>
+				<Link to='/characters/new/backstory' className={buttonStyles.primaryButton}> Move On </Link>
 			</div>
 		);
 	}

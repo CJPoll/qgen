@@ -11,9 +11,9 @@ PowersActions.load.listen(function() {
 	var url, self;
 
 	self = this;
-	url = '/powers.json';
+	url = '/api/powers';
 
-	$.getJSON(url)
+	$.getJSON(url, {dataType: 'json'})
 		.then(data => self.completed(data));
 });
 

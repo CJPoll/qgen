@@ -1,8 +1,11 @@
 import React from 'react';
 import Reflux from 'reflux';
+import _ from 'lodash';
+
+import generalStyles from 'app/stylesheets/general.scss';
+
 import BackgroundsStore from '../stores/backgroundsStore';
 import Background from './background';
-import _ from 'lodash';
 
 var BackgroundSelector;
 
@@ -13,7 +16,7 @@ BackgroundSelector = React.createClass({
 		var key = 'background_' + background.id;
 
 		return (
-			<div className='tiled clickable' key={key}>
+			<div className={generalStyles.clickableTile} key={key}>
 				<Background background={background}/>
 			</div>
 		);
