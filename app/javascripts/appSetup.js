@@ -20,7 +20,6 @@ window.$ = $;
 window.jquery = $;
 window.jQuery = $;
 
-
 CampaignsActions.load();
 CharactersActions.load();
 BackgroundsActions.load();

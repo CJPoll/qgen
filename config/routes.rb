@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  root controller: :static, action: :landing
+
   scope :api do
     get 'users/search', constraints: {format: :json}
     get 'users/:user_id/characters', controller: :characters, action: :index, constraints: {format: :json}
@@ -23,8 +27,6 @@ Rails.application.routes.draw do
     delete 'characters/:id', controller: :characters, action: :destroy, constraints: {format: :json}
   end
 
-  devise_for :users
-  root controller: :static, action: :landing
   get '/*any', controller: :static, action: :landing
 
   # The priority is based upon order of creation: first created -> highest priority.
