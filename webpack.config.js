@@ -56,7 +56,7 @@ config.module = {
 
 config.output = {
 	path: path.join(__dirname, 'public'),
-	filename: '[name].[hash].js',
+	filename: '[name].js',
 	public_path: 'javascripts/'
 };
 
