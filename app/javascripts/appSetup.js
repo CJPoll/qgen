@@ -21,6 +21,8 @@ window.$ = $;
 window.jquery = $;
 window.jQuery = $;
 
+require('bootstrap-sass/assets/javascripts/bootstrap.min');
+
 CampaignsActions.load();
 CharactersActions.load();
 BackgroundsActions.load();
