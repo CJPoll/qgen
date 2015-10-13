@@ -18,7 +18,7 @@ import CharactersIndex from 'app/javascripts/components/charactersIndex';
 import ShowCharacter from 'app/javascripts/components/showCharacter';
 import CampaignsIndex from 'app/javascripts/components/campaignsIndex';
 import ShowCampaign from 'app/javascripts/components/showCampaign';
-import NewCampaignForm from 'app/javascripts/components/newCampaignForm';
+import NewCampaign from 'app/javascripts/components/newCampaign';
 
 import Login from 'app/javascripts/components/login';
 
@@ -38,7 +38,7 @@ routes = (
 			</Route>
 			<Route path='characters/:characterId' component={ShowCharacter} />
 			<Route path='campaigns' component={CampaignsIndex} />
-			<Route path='campaigns/new' component={NewCampaignForm} />
+			<Route path='campaigns/new' component={NewCampaign} />
 			<Route path='campaigns/:campaignId' component={ShowCampaign} />
 		</Route>
 
