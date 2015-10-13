@@ -1,10 +1,16 @@
 import React from 'react';
+import Reflux from 'reflux';
+
+import SelfStore from 'app/javascripts/stores/selfStore';
+
 import { Navbar, NavbarItem, LeftNav, RightNav, NavDropdown } from './navbar';
 import LoginButton from './sign_in';
 
 var QgenNavbar;
 
 QgenNavbar = React.createClass({
+	mixins: [Reflux.connect(SelfStore, 'currentUser')],
+
 	render() {
 		return (
 			<Navbar>
@@ -32,7 +38,7 @@ QgenNavbar = React.createClass({
 
 				<RightNav>
 					<li>
-						<LoginButton userData={this.props.userData}/>
+						<LoginButton userData={this.state.currentUser}/>
 					</li>
 					<NavDropdown path='#'>
 						<li>

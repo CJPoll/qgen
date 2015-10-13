@@ -1,4 +1,5 @@
 import React from 'react';
+import addAuthenticityToken from 'app/javascripts/helpers/addAuthenticityToken';
 
 var LogoutButton;
 
@@ -7,9 +8,27 @@ LogoutButton = React.createClass({
 		userData: React.PropTypes.object.isRequired
 	},
 
+	handleClick(e) {
+		var data, url;
+
+		url = '/api/users/sign_out';
+
+		data = {
+			_method: 'delete',
+			dataType: 'json'
+		};
+
+		data = addAuthenticityToken(data);
+
+		$.post(url, data)
+			.then(function() {
+				window.location = '/users/sign_in';
+			});
+	},
+
 	render: function() {
 		return (
-			<a href="/users/sign_out" data-method="delete"> Sign Out ({this.props.userData.first_name} {this.props.userData.last_name}) </a>
+			<a href='#' onClick={this.handleClick}> Sign Out ({this.props.userData.first_name} {this.props.userData.last_name}) </a>
 		);
 	}
 });

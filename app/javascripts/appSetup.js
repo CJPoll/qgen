@@ -15,6 +15,7 @@ import CampaignsActions from 'app/javascripts/actions/campaignsActions';
 import CharactersActions from 'app/javascripts/actions/charactersActions';
 import BackgroundsActions from 'app/javascripts/actions/backgroundsActions';
 import PowersActions from 'app/javascripts/actions/powersActions';
+import SelfActions from 'app/javascripts/actions/selfActions';
 
 window.$ = $;
 window.jquery = $;
@@ -24,6 +25,7 @@ CampaignsActions.load();
 CharactersActions.load();
 BackgroundsActions.load();
 PowersActions.load();
+SelfActions.load();
 
 $(document).ready(function() {
 	React.render(

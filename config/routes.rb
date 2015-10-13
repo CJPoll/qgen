@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root controller: :static, action: :landing
 
   scope :api do
+    delete '/users/sign_out', constraints: {format: :json}, controller: :users, action: :logout
+    get '/users/self', constraints: {format: :json}, controller: :users, action: :self_user
     get 'users/search', constraints: {format: :json}
     get 'users/:user_id/characters', controller: :characters, action: :index, constraints: {format: :json}
     get 'users/:user_id/campaigns', controller: :campaigns, action: :index, constraints: {format: :json}

@@ -1,4 +1,18 @@
 class UsersController < ApplicationController
+  def logout
+    sign_out current_user
+
+    respond_to do |format|
+      format.json { render json: {status: 'ok'} }
+    end
+  end
+
+  def self_user
+    respond_to do |format|
+      format.json { render json: current_user }
+    end
+  end
+
   def search
     if params[:query] == ''
       results = []

@@ -16,6 +16,7 @@ var routes = (
 		<Route path='/' component={Layout}>
 			<Route path='/users/sign_in' component={Login} />
 			<Route path='/users/sign_up' component={SignUp} />
+			<Route path='/users/sign_out' compoennt={Login} />
 		</Route>
 	</Router>
 )
