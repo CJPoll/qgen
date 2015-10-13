@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import { Link } from 'react-router';
 
 var CampaignsList;
 
@@ -20,9 +21,9 @@ CampaignsList = React.createClass({
 
 				return (
 					<li key={key}>
-						<a href={url}>
+						<Link to={url}>
 							{ name }
-						</a>
+						</Link>
 					</li>
 				);
 			});
