@@ -1,5 +1,12 @@
-import React from 'react';
 import $ from 'jquery';
+
+window.$ = $;
+window.jquery = $;
+window.jQuery = $;
+
+require('bootstrap-sass/assets/javascripts/bootstrap.min');
+
+import React from 'react';
 
 import QGenNavbar from 'app/javascripts/components/qgenNavbar';
 import Router from 'app/javascripts/components/router';
@@ -16,12 +23,6 @@ import CharactersActions from 'app/javascripts/actions/charactersActions';
 import BackgroundsActions from 'app/javascripts/actions/backgroundsActions';
 import PowersActions from 'app/javascripts/actions/powersActions';
 import SelfActions from 'app/javascripts/actions/selfActions';
-
-window.$ = $;
-window.jquery = $;
-window.jQuery = $;
-
-require('bootstrap-sass/assets/javascripts/bootstrap.min');
 
 CampaignsActions.load();
 CharactersActions.load();

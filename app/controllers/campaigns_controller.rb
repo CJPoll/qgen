@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_user, only: [:show, :edit, :destroy]
+  before_filter :get_campaign, only: [:show, :update, :destroy]
 
   def new
   end
@@ -42,18 +42,34 @@ class CampaignsController < ApplicationController
     end
   end
 
-  def edit
-    @players = @campaign.players
+  def update
+    if @campaign.owner == current_user
+      player_data = params[:campaign][:players]
+      players = player_data.map do |_key, player_obj|
+        User.find(player_obj[:id])
+      end
 
-    redirect_to @campaign unless @campaign.owner == current_user
+      @campaign.players = players
+      @campaign.update(campaign_params)
+      @campaign.save!
+
+      respond_to do |format|
+        format.json { render json: {status: 'ok'} }
+      end
+    else
+      head :unauthorized
+    end
   end
 
   def destroy
-    @campaign.destroy if @campaign.owner == current_user
+    if @campaign.owner == current_user
+      @campaign.destroy
 
-    respond_to do |format|
-      format.html { redirect_to :campaigns }
-      format.json { render json: {status: 'ok'} }
+      respond_to do |format|
+        format.json { render json: {status: 'ok'} }
+      end
+    else
+      head :unauthorized
     end
   end
 
@@ -62,7 +78,7 @@ class CampaignsController < ApplicationController
     params.require(:campaign).permit(:name)
   end
 
-  def get_user
+  def get_campaign
     @campaign = Campaign.find(params[:id])
   end
 end

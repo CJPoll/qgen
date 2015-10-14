@@ -6,10 +6,7 @@ var SelfStore = Reflux.createStore({
 	init() {
 		this.listenToMany(SelfActions);
 		this.state = {
-			currentUser: {
-				first_name: '',
-				last_name: ''
-			}
+			currentUser: {}
 		};
 	},
 

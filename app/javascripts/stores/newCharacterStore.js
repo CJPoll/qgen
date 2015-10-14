@@ -22,6 +22,7 @@ var NewCharacterStore = Reflux.createStore({
 			character: {
 				background: null,
 				powers: [],
+				players: [],
 				backstory: '',
 				firstName: '',
 				lastName: '',

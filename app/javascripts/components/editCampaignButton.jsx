@@ -1,4 +1,7 @@
 import React from 'react';
+import buttonStyles from 'app/stylesheets/buttons.scss';
+
+import { Link } from 'react-router';
 
 var EditCampaignButton;
 
@@ -9,9 +12,9 @@ EditCampaignButton = React.createClass({
 		url = '/campaigns/' + this.props.campaign.id + '/edit';
 
 		return (
-			<a href={url} className='edit-campaign'>
+			<Link to={url} className={buttonStyles.primaryButton}>
 				{this.props.children}
-			</a>
+			</Link>
 		)
 	}
 });

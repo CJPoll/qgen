@@ -1,4 +1,6 @@
 import React from 'react';
+import _ from 'lodash';
+
 import LogoutButton from './logout';
 
 var LoginButton;
@@ -11,14 +13,14 @@ LoginButton = React.createClass({
 	render() {
 		var user = this.props.userData;
 
-		if (user !== null && user !== undefined) {
+		if (_.isUndefined(user) || _.isUndefined(user.first_name)) {
 			return (
-				<LogoutButton userData={this.props.userData}/>
+				<a href="/users/sign_in"> Sign In </a>
 			);
 		}
 
 		return (
-			<a href="/users/sign_in"> Sign In </a>
+			<LogoutButton userData={this.props.userData}/>
 		);
 	}
 });

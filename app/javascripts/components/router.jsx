@@ -11,7 +11,7 @@ import BackgroundSelector from 'app/javascripts/components/backgroundSelector';
 import PowerSelect from './powerSelect';
 import Backstory from './backstoryEntry';
 import CharacterConfirmationPage from './characterConfirmationPage';
-//import TestRoute from './test_route';
+
 import Layout from 'app/javascripts/components/layout';
 import Dashboard from 'app/javascripts/components/dashboard';
 import CharactersIndex from 'app/javascripts/components/charactersIndex';
@@ -19,6 +19,7 @@ import ShowCharacter from 'app/javascripts/components/showCharacter';
 import CampaignsIndex from 'app/javascripts/components/campaignsIndex';
 import ShowCampaign from 'app/javascripts/components/showCampaign';
 import NewCampaign from 'app/javascripts/components/newCampaign';
+import EditCampaign from 'app/javascripts/components/editCampaign';
 
 import Login from 'app/javascripts/components/login';
 
@@ -38,10 +39,10 @@ routes = (
 			</Route>
 			<Route path='characters/:characterId' component={ShowCharacter} />
 			<Route path='campaigns' component={CampaignsIndex} />
+			<Route path='campaigns/:campaignId/edit' component={EditCampaign} />
 			<Route path='campaigns/new' component={NewCampaign} />
 			<Route path='campaigns/:campaignId' component={ShowCampaign} />
 		</Route>
-
 	</Router>
 );
 

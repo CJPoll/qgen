@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     get 'campaigns', controller: :campaigns, action: :index, constraints: {format: :json}
     post 'campaigns', controller: :campaigns, action: :create, constraints: {format: :json}
+    put 'campaigns/:id', controller: :campaigns, action: :update, constraints: {format: :json}
     get 'campaigns/:id', controller: :campaigns, action: :show, as: :campaign, constraints: {format: :json}
     delete 'campaigns/:id', controller: :campaigns, action: :destroy, constraints: {format: :json}
 

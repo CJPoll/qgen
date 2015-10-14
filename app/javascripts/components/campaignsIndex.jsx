@@ -3,6 +3,8 @@ import Reflux from 'reflux';
 
 import CampaignsStore from 'app/javascripts/stores/campaignsStore';
 
+import CampaignActions from 'app/javascripts/actions/campaignsActions';
+
 import { Panel, PanelTitle, PanelBody } from './panel';
 import CampaignsList from './campaignsList';
 
@@ -10,6 +12,10 @@ var CampaignsIndex;
 
 CampaignsIndex = React.createClass({
 	mixins: [Reflux.connect(CampaignsStore, 'campaigns')],
+
+	componentDidMount() {
+		CampaignActions.load();
+	},
 
 	render() {
 		return (

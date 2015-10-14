@@ -86,13 +86,7 @@ ShowCampaign = React.createClass({
 
 		campaign = this.state.campaign;
 		owner = campaign.user;
-		editButton = <div></div>;
-
-		if (this.props.editable) {
-			editButton = <EditCampaign campaign={campaign} />;
-		}
-		if (campaign.players.length > 0) {
-		}
+		editButton = <EditCampaign campaign={campaign} />;
 
 		return (
 			<Panel>

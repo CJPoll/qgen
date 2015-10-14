@@ -1,6 +1,8 @@
 import React from 'react';
 import generalStyles from 'app/stylesheets/general.scss';
 
+import CampaignActions from 'app/javascripts/actions/campaignActions';
+
 import FormGroup from './formGroup';
 import SubmitButton from './submit';
 import UserSearch from './userSearch';
@@ -9,7 +11,8 @@ var CampaignForm;
 
 CampaignForm = React.createClass({
 	propTypes: {
-		submitAction: React.PropTypes.func.isRequired
+		submitAction: React.PropTypes.func.isRequired,
+		campaign: React.PropTypes.object
 	},
 
 	getInitialState() {
@@ -25,20 +28,11 @@ CampaignForm = React.createClass({
 	},
 
 	nameChanged(e) {
-		this.state.name = e.target.value;
+		CampaignActions.changeName(e.target.value);
 	},
 
 	handleSelectUser(selectedUser) {
-		var players = this.state.players;
-
-		if (selectedUser === null || selectedUser === undefined) {
-			return;
-		}
-
-		players.push(selectedUser);
-		players = _.uniq(players, false, 'id');
-
-		this.setState({players: players});
+		CampaignActions.addPlayer(selectedUser);
 	},
 
 	render() {
@@ -50,12 +44,16 @@ CampaignForm = React.createClass({
 			campaignName = this.props.campaign.name || '';
 		}
 
-		players = _.map(_.uniq(this.state.players), player => (
-			<div>
-				<input type='text' disabled='true' value={player.first_name + ' ' + player.last_name}/>
-				<input name='players[]' type='hidden' value={player.id} />
-			</div>
-		));
+		players = []
+
+		if (this.props.campaign && this.props.campaign.players) {
+			players = _.map(_.uniq(this.props.campaign.players), player => (
+				<div>
+					<input type='text' disabled='true' value={player.first_name + ' ' + player.last_name}/>
+					<input name='players[]' type='hidden' value={player.id} />
+				</div>
+			));
+		}
 
 		if (players.length === 0) {
 			players = <p>No players added yet!</p>;

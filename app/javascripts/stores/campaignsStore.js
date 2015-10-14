@@ -20,7 +20,7 @@ CampaignsStore = Reflux.createStore({
 	},
 
 	onLoadCompleted(data) {
-		this.state.campaigns = this.state.campaigns.concat(data);
+		this.state.campaigns = data;
 		this.trigger(this.state.campaigns);
 	},
 

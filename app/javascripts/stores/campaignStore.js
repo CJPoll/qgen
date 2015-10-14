@@ -17,7 +17,7 @@ CampaignStore = Reflux.createStore({
 	},
 
 	getInitialState() {
-		if (this.state === undefined) {
+		if (this.state === undefined || this.state === null) {
 			this.init();
 		}
 
@@ -26,6 +26,25 @@ CampaignStore = Reflux.createStore({
 
 	onLoadCompleted(data) {
 		this.state.campaign = data;
+		this.trigger(this.state.campaign);
+	},
+
+	onAddPlayer(user) {
+		var players = this.state.campaign.players
+
+		if (user === null || user === undefined) {
+			return;
+		}
+
+		players.push(user);
+		players = _.uniq(players, false, 'id');
+
+		this.state.campaign.players = players;
+		this.trigger(this.state.campaign);
+	},
+
+	onChangeName(name) {
+		this.state.campaign.name = name;
 		this.trigger(this.state.campaign);
 	}
 });

@@ -3,10 +3,15 @@ import Reflux from 'reflux';
 
 import CharactersStore from 'app/javascripts/stores/charactersStore';
 import CharactersList from './charactersList';
+import CharactersActions from 'app/javascripts/actions/charactersActions';
 
 var CharactersIndex;
 
 CharactersIndex = React.createClass({
+	componentWillMount() {
+		CharactersActions.load();
+	},
+
 	mixins: [Reflux.connect(CharactersStore, 'characters')],
 
 	render() {
