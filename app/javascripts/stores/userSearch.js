@@ -25,6 +25,11 @@ UserSearchStore = Reflux.createStore({
 		this.trigger(this.state);
 	},
 
+	onClear() {
+		this.state.results = [];
+		this.trigger(this.state);
+	},
+
 	onSearchFailed(e) {
 		return e;
 	}

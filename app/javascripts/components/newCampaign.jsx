@@ -1,33 +1,20 @@
 import React from 'react';
-import _ from 'lodash';
-import addAuthentictyToken from 'app/javascripts/helpers/addAuthenticityToken';
-import history from 'app/javascripts/history';
+import Reflux from 'reflux';
+
+import CampaignStore from 'app/javascripts/stores/campaignStore';
+
+import CampaignActions from 'app/javascripts/actions/campaignActions';
 
 import { Panel, PanelTitle, PanelBody } from './panel';
-
 import CampaignForm from 'app/javascripts/components/campaignForm';
 
 var NewCampaign;
 
 NewCampaign = React.createClass({
-	submit(state) {
-		var data, url;
+	mixins: [Reflux.connect(CampaignStore, 'campaign')],
 
-		url = '/api/campaigns';
-		data = {
-			campaign: {
-				name: state.name
-			},
-
-			players: _.map(state.players, player => player.id)
-		};
-
-		data = addAuthentictyToken(data);
-
-		$.post(url, data)
-			.then(function(response) {
-				history.pushState(null, '/campaigns/' + response.id)
-			});
+	submit() {
+		CampaignActions.create(this.state.campaign);
 	},
 
 	render() {
@@ -45,7 +32,7 @@ NewCampaign = React.createClass({
 					{heading}
 				</PanelTitle>
 				<PanelBody>
-					<CampaignForm submitAction={this.submit} />
+					<CampaignForm campaign={this.state.campaign} submitAction={this.submit} />
 				</PanelBody>
 			</Panel>
 		);

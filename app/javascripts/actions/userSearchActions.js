@@ -4,7 +4,8 @@ import $ from 'jquery';
 var UserSearchActions;
 
 UserSearchActions = Reflux.createActions({
-	search: {asyncResult: true}
+	search: {asyncResult: true},
+	clear: {asyncResult: false}
 });
 
 UserSearchActions.search.listen(function(searchTerm) {

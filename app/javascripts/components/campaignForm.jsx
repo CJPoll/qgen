@@ -2,6 +2,7 @@ import React from 'react';
 import generalStyles from 'app/stylesheets/general.scss';
 
 import CampaignActions from 'app/javascripts/actions/campaignActions';
+import UserSearchActions from 'app/javascripts/actions/userSearchActions';
 
 import FormGroup from './formGroup';
 import SubmitButton from './submit';
@@ -33,6 +34,11 @@ CampaignForm = React.createClass({
 
 	handleSelectUser(selectedUser) {
 		CampaignActions.addPlayer(selectedUser);
+	},
+
+	submitAction() {
+		UserSearchActions.clear();
+		this.props.submitAction(this.state);
 	},
 
 	render() {
@@ -74,7 +80,7 @@ CampaignForm = React.createClass({
 					{players}
 				</FormGroup>
 				<UserSearch onSelectUser={this.handleSelectUser}/>
-				<SubmitButton onClick={this.props.submitAction.bind(this, this.state)}/>
+				<SubmitButton onClick={this.submitAction}/>
 			</div>
 		);
 	}

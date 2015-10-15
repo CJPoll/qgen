@@ -1,6 +1,8 @@
 import Reflux from 'reflux';
 import $ from 'jquery';
 import history from 'app/javascripts/history';
+import _ from 'lodash';
+import addAuthentictyToken from 'app/javascripts/helpers/addAuthenticityToken';
 
 import NotificationsActions from 'app/javascripts/actions/notificationsActions';
 
@@ -57,6 +59,26 @@ CampaignActions.edit.listen(function(campaign) {
 				NotificationsActions.addError({message: 'You can\'t edit this campaign'});
 			}
 		});
+});
+
+CampaignActions.create.listen(function(campaign) {
+		var data, url;
+
+		url = '/api/campaigns';
+		data = {
+			campaign: {
+				name: campaign.name
+			},
+
+			players: _.map(campaign.players, player => player.id)
+		};
+
+		data = addAuthentictyToken(data);
+
+		$.post(url, data)
+			.then(function(response) {
+				history.pushState(null, '/campaigns/' + response.id)
+			});
 });
 
 export default CampaignActions;
