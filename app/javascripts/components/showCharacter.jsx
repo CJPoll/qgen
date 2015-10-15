@@ -67,17 +67,13 @@ ShowCharacter = React.createClass({
 		character = this.state.character;
 		fullName = character.first_name + ' ' + character.last_name;
 
-		if (this.state.character.deleteable) {
-			deleteButton = (
-				<ButtonToolbar>
-					<ButtonGroup>
-						<DeleteCharacterButton character={character} />
-					</ButtonGroup>
-				</ButtonToolbar>
-			);
-		} else {
-			deleteButton = <div></div>;
-		}
+		deleteButton = (
+			<ButtonToolbar>
+				<ButtonGroup>
+					<DeleteCharacterButton character={character} />
+				</ButtonGroup>
+			</ButtonToolbar>
+		);
 
 		backgroundName = this.state.character.background.name || '';
 

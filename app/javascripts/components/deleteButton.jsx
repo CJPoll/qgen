@@ -5,13 +5,17 @@ var DeleteButton;
 
 DeleteButton = React.createClass({
 	propTypes: {
-		url: React.PropTypes.string.isRequired,
 		onClick: React.PropTypes.func.isRequired
+	},
+
+	onClick(e) {
+		e.preventDefault();
+		this.props.onClick(e);
 	},
 
 	render() {
 		return (
-			<a href={this.props.url} onClick={this.props.onClick} className={buttonStyles.dangerButton}>
+			<a href='#' onClick={this.props.onClick} className={buttonStyles.dangerButton}>
 				{this.props.children}
 			</a>
 		);

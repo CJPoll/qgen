@@ -31,34 +31,42 @@ var NewCharacterStore = Reflux.createStore({
 		};
 	},
 
+	getInitialState() {
+		if (this.state === undefined) {
+			this.init();
+		}
+
+		return this.state.character;
+	},
+
 	onSelectCampaign(campaignId) {
 		this.state.character.campaignId = campaignId;
-		this.trigger(this.state);
+		this.trigger(this.state.character);
 	},
 
 	onBackgroundChanged(backgroundsState) {
 		this.state.character.background = backgroundsState.selected;
-		this.trigger(this.state);
+		this.trigger(this.state.character);
 	},
 
 	onPowersChanged(powersState) {
 		this.state.character.powers = powersState.selected;
-		this.trigger(this.state);
+		this.trigger(this.state.character);
 	},
 
 	onBackstoryChanged(backstoryState) {
 		this.state.character.backstory = backstoryState.backstory;
-		this.trigger(this.state);
+		this.trigger(this.state.character);
 	},
 
 	onChangeFirstName(firstName) {
 		this.state.character.firstName = firstName;
-		this.trigger(this.state);
+		this.trigger(this.state.character);
 	},
 
 	onChangeLastName(lastName) {
 		this.state.character.lastName = lastName;
-		this.trigger(this.state);
+		this.trigger(this.state.character);
 	},
 
 	onConfirmCharacter() {

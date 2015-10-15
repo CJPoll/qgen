@@ -1,18 +1,30 @@
 import React from 'react';
 import Reflux from 'reflux';
 import _ from 'lodash';
-
+import history from 'app/javascripts/history';
 import buttonStyles from 'app/stylesheets/buttons.scss';
-import { Link } from 'react-router';
 
 import PowersStore from '../stores/powersStore';
+import NewCharacterStore from 'app/javascripts/stores/newCharacterStore';
+
+import { Link } from 'react-router';
+import Submit from 'app/javascripts/components/submit';
+
 import Power from './power';
 
 var powerSelect = React.createClass({
-	mixins: [Reflux.connect(PowersStore, 'powers')],
+	mixins: [
+		Reflux.connect(PowersStore, 'powers'),
+		Reflux.connect(NewCharacterStore, 'character')
+	],
+
+	onClick(e) {
+		e.preventDefault();
+		history.pushState(null, '/characters/new/backstory');
+	},
 
 	render() {
-		var powers, powerComponents, submitClass;
+		var enabled, powers, powerComponents, submitClass;
 
 		powers = this.state.powers.powers;
 
@@ -20,10 +32,7 @@ var powerSelect = React.createClass({
 			return <Power power={power}/>;
 		});
 
-		submitClass = 'disabled-submit clearfix';
-		if (PowersStore.maxSelected()) {
-			submitClass = 'submit clearfix';
-		}
+		enabled = PowersStore.maxSelected();
 
 		return (
 			<div>
@@ -34,7 +43,7 @@ var powerSelect = React.createClass({
 				</Link>
 				</div>
 				{powerComponents}
-				<Link to='/characters/new/backstory' className={buttonStyles.primaryButton}> Move On </Link>
+				<Submit onClick={this.onClick} disabled={!enabled} value='Move On'/>
 			</div>
 		);
 	}

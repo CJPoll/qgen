@@ -20,6 +20,8 @@ gem 'devise', '~> 3.5.1'
 gem 'thin', '~> 1.6.3'
 gem 'bower-rails', '~> 0.10.0'
 
+gem 'omniauth-slack', '~> 2.2.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

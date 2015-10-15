@@ -1,5 +1,8 @@
 import React from 'react';
-import DeleteButton from './deleteButton';
+
+import CharacterActions from 'app/javascripts/actions/characterActions';
+
+import DeleteButton from 'app/javascripts/components/deleteButton';
 
 var DeleteCharacterButton;
 
@@ -8,12 +11,16 @@ DeleteCharacterButton = React.createClass({
 		character: React.PropTypes.object.isRequired
 	},
 
+	deleteCharacter() {
+		CharacterActions.delete(this.props.character);
+	},
+
 	render() {
 		var character;
 
 		character = this.props.character;
 		return (
-			<DeleteButton url={'/characters/' + character.id}>
+			<DeleteButton url={'/characters/' + character.id} onClick={this.deleteCharacter}>
 				<span className="glyphicon glyphicon-trash"></span> Delete
 			</DeleteButton>
 		);

@@ -48,11 +48,14 @@ class CharactersController < ApplicationController
   end
 
   def destroy
-    @character.destroy if @character.user == current_user
+    if @character.user == current_user
+      @character.destroy
 
-    respond_to do |format|
-      format.html { redirect_to characters_path }
-      format.json { render json: { status: 'ok' } }
+      respond_to do |format|
+        format.json { render json: { status: 'ok' } }
+      end
+    else
+      head :unauthorized
     end
   end
 

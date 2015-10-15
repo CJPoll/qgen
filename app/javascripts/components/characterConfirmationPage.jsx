@@ -7,6 +7,7 @@ import PowersStore from '../stores/powersStore';
 import BackstoryStore from '../stores/backstoryStore';
 
 import ConfirmCharacter from './confirmCharacterButton';
+import FormGroup from 'app/javascripts/components/formGroup';
 
 var CharacterConfirmationPage;
 
@@ -44,7 +45,9 @@ CharacterConfirmationPage = React.createClass({
 
 				{this.state.backstory.backstory}
 
-				<ConfirmCharacter />
+				<FormGroup>
+					<ConfirmCharacter />
+				</FormGroup>
 
 			</div>
 		);

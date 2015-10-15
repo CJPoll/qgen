@@ -17,6 +17,7 @@ import BackgroundsStore from 'app/javascripts/stores/backgroundsStore';
 import NewCharacterStore from 'app/javascripts/stores/newCharacterStore';
 import PowersStore from 'app/javascripts/stores/powersStore';
 import BackstoryStore from 'app/javascripts/stores/backstoryStore';
+import NotificationsStore from 'app/javascripts/stores/notificationsStore';
 
 import CampaignsActions from 'app/javascripts/actions/campaignsActions';
 import CharactersActions from 'app/javascripts/actions/charactersActions';
