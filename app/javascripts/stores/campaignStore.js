@@ -46,6 +46,11 @@ CampaignStore = Reflux.createStore({
 	onChangeName(name) {
 		this.state.campaign.name = name;
 		this.trigger(this.state.campaign);
+	},
+
+	onClear() {
+		this.init();
+		this.trigger(this.state);
 	}
 });
 

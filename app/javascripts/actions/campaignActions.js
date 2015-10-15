@@ -13,9 +13,10 @@ var CampaignActions;
 CampaignActions = Reflux.createActions({
 	load: {asyncResult: true},
 	addPlayer: {asyncResult: false},
-	changeName: {asyncResult: false},
+	changeName: {asyncResult: false, sync: true},
 	create: {asyncResult: true},
-	edit: {asyncResult: true}
+	edit: {asyncResult: true},
+	clear: {asyncResult: false}
 });
 
 CampaignActions.load.listen(function(campaignId) {

@@ -13,6 +13,10 @@ var NewCampaign;
 NewCampaign = React.createClass({
 	mixins: [Reflux.connect(CampaignStore, 'campaign')],
 
+	componentWillMount() {
+		CampaignActions.clear();
+	},
+
 	submit() {
 		CampaignActions.create(this.state.campaign);
 	},

@@ -16,18 +16,6 @@ CampaignForm = React.createClass({
 		campaign: React.PropTypes.object
 	},
 
-	getInitialState() {
-		var players, name;
-
-		players = this.props.players || [];
-		name = this.props.name || '';
-
-		return {
-			players: players,
-			name: name
-		};
-	},
-
 	nameChanged(e) {
 		CampaignActions.changeName(e.target.value);
 	},
@@ -38,7 +26,7 @@ CampaignForm = React.createClass({
 
 	submitAction() {
 		UserSearchActions.clear();
-		this.props.submitAction(this.state);
+		this.props.submitAction();
 	},
 
 	render() {
@@ -71,7 +59,7 @@ CampaignForm = React.createClass({
 					<label htmlFor='campaign[name]'>
 						Campaign Name
 					</label>
-					<input name='campaign[name]' type='text' className={generalStyles.textInput} defaultValue={campaignName} onChange={this.nameChanged} />
+					<input name='campaign[name]' type='text' className={generalStyles.textInput} value={campaignName} onChange={this.nameChanged} />
 				</FormGroup>
 				<FormGroup>
 					<label>
