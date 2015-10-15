@@ -4,6 +4,8 @@ import generalStyles from 'app/stylesheets/general.scss';
 import buttonStyles from 'app/stylesheets/buttons.scss';
 import AuthenticityToken from 'app/javascripts/components/authenticityToken';
 
+import SlackLogin from 'app/javascripts/components/slackLogin';
+
 var LoginForm;
 
 LoginForm = React.createClass({
@@ -11,6 +13,7 @@ LoginForm = React.createClass({
 		return (
 			<form className='login-form' action='/users/sign_in' acceptCharset='UTF-8' method='POST'>
 				<AuthenticityToken />
+				<SlackLogin />
 				<div className='form-group'>
 					<label> Email </label>
 					<input type='email' autofocus name='user[email]' className={generalStyles.textInput}/>

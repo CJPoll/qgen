@@ -20,6 +20,7 @@ gem 'devise', '~> 3.5.1'
 gem 'thin', '~> 1.6.3'
 gem 'bower-rails', '~> 0.10.0'
 
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'omniauth-slack', '~> 2.2.0'
 
 # Use ActiveModel has_secure_password
