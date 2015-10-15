@@ -29,6 +29,16 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
+    attempt = where(email: auth.info.email, provider: nil, uid: nil)
+
+    if attempt.length > 0
+      user = attempt.first
+      user.uid = auth.uid
+      user.provider = auth.provider
+      user.save!
+      return user
+    end
+
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -45,14 +55,5 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
-  end
-
-  protected
-  def self.auth_params(auth)
-    {
-      first_name: auth['first_name'],
-      last_name: auth['last_name'],
-      email: auth['email']
-    }
   end
 end
