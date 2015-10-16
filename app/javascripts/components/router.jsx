@@ -21,6 +21,10 @@ import ShowCampaign from 'app/javascripts/components/showCampaign';
 import NewCampaign from 'app/javascripts/components/newCampaign';
 import EditCampaign from 'app/javascripts/components/editCampaign';
 
+import Bestiary from 'app/javascripts/components/bestiary';
+import NewBeast from 'app/javascripts/components/newBeast';
+import ShowBeast from 'app/javascripts/components/showBeast';
+
 import Login from 'app/javascripts/components/login';
 
 var routes;
@@ -38,25 +42,17 @@ routes = (
 				<Route path='confirm' component={CharacterConfirmationPage} />
 			</Route>
 			<Route path='characters/:characterId' component={ShowCharacter} />
+
 			<Route path='campaigns' component={CampaignsIndex} />
 			<Route path='campaigns/:campaignId/edit' component={EditCampaign} />
 			<Route path='campaigns/new' component={NewCampaign} />
 			<Route path='campaigns/:campaignId' component={ShowCampaign} />
+
+			<Route path='/beasts' component={Bestiary} />
+			<Route path='/beasts/new' component={NewBeast} />
+			<Route path='/beasts/:beastId' component={ShowBeast} />
 		</Route>
 	</Router>
 );
-
-//routes = (
-//	<Router history={history}>
-//		<Route path='/characters' component={CharacterCreator}>
-//			<Route path='new' component={NameSelector} />
-//			<Route path='new/backgrounds' component={SelectBackground}/>
-//			<Route path='new/powers' component={PowerSelect} />
-//			<Route path='new/backstory' component={Backstory} />
-//			<Route path='new/confirm' component={CharacterConfirmationPage} />
-//			<Route path='new/step4' component={TestRoute} />
-//		</Route>
-//	</Router>
-//);
 
 export default routes;

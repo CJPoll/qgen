@@ -7,6 +7,11 @@ RSpec.describe Beast, type: :model do
     expect(subject).to be_valid
   end
 
+  it 'requires a name' do
+    subject.name = nil
+    expect(subject).to_not be_valid
+  end
+
   it 'requires a unique name' do
     subject.save
     second = FactoryGirl.build(:beast, name: subject.name)

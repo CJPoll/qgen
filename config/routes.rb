@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     get 'characters/new/*anything', controller: :characters, action: :new, constraints: {format: :json}
     get 'characters/:id', controller: :characters, action: :show, as: :character, constraints: {format: :json}
     delete 'characters/:id', controller: :characters, action: :destroy, constraints: {format: :json}
+
+    post 'beasts', controller: :beasts, action: :create, constraints: {format: :json}
+    get 'beasts/:id', controller: :beasts, action: :show, constraints: {format: :json}
   end
 
   get '/*any', controller: :static, action: :landing
