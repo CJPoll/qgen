@@ -1,7 +1,7 @@
 {
   "name": "qgen",
   "description": "A Character / Campaign manager for the MGF system",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "devDependencies": {
     "eslint-plugin-react": "^3.4.2"
   },

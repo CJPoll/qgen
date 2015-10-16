@@ -24,7 +24,8 @@ CampaignForm = React.createClass({
 		CampaignActions.addPlayer(selectedUser);
 	},
 
-	submitAction() {
+	submitAction(e) {
+		e.preventDefault();
 		UserSearchActions.clear();
 		this.props.submitAction();
 	},
@@ -54,7 +55,7 @@ CampaignForm = React.createClass({
 		}
 
 		return (
-			<div>
+			<form>
 				<FormGroup>
 					<label htmlFor='campaign[name]'>
 						Campaign Name
@@ -69,7 +70,7 @@ CampaignForm = React.createClass({
 				</FormGroup>
 				<UserSearch onSelectUser={this.handleSelectUser}/>
 				<SubmitButton onClick={this.submitAction}/>
-			</div>
+			</form>
 		);
 	}
 });
