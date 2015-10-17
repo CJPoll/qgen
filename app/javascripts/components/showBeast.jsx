@@ -6,7 +6,7 @@ import BeastStore from 'app/javascripts/stores/beastStore';
 
 import BeastActions from 'app/javascripts/actions/beastActions';
 
-import { Panel, PanelTitle, PanelBody } from 'app/javascripts/components/panel';
+import BeastPanel from 'app/javascripts/components/beastPanel';
 
 var ShowBeast;
 
@@ -18,19 +18,7 @@ ShowBeast = React.createClass({
 	},
 
 	render() {
-		return (
-			<Panel>
-				<PanelBody>
-					<h1> {this.state.beast.name} </h1>
-
-					<h2> Challenge Rating </h2>
-					<p> { _.capitalize(this.state.beast.challenge) } </p>
-
-					<h2> Strategy </h2>
-					<p> { this.state.beast.strategy } </p>
-				</PanelBody>
-			</Panel>
-		);
+		return <BeastPanel beast={this.state.beast} />
 	}
 });
 

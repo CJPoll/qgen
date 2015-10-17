@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     get 'characters/:id', controller: :characters, action: :show, as: :character, constraints: {format: :json}
     delete 'characters/:id', controller: :characters, action: :destroy, constraints: {format: :json}
 
+    get 'beasts', controller: :beasts, action: :index, constraints: {format: :json}
     post 'beasts', controller: :beasts, action: :create, constraints: {format: :json}
     get 'beasts/:id', controller: :beasts, action: :show, constraints: {format: :json}
   end

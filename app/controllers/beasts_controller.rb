@@ -1,6 +1,14 @@
 class BeastsController < ApplicationController
   before_action :get_beast, only: [:show, :edit, :destroy]
 
+  def index
+    @beasts = Beast.all
+
+    respond_to do |format|
+      format.json { render json: @beasts }
+    end
+  end
+
   def create
     beast = Beast.create(beast_params)
 
