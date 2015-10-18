@@ -13,16 +13,16 @@ defmodule Qgen.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", Qgen do
-    pipe_through :browser # Use the default browser stack
-
-    get "/*anything", PageController, :index
-  end
-
   scope "/api", Qgen do
     pipe_through :api
 
     resources "/campaigns", CampaignController, except: [:new, :edit]
+  end
+
+  scope "/", Qgen do
+    pipe_through :browser # Use the default browser stack
+
+    get "/*anything", PageController, :index
   end
 
   # Other scopes may use custom stacks.

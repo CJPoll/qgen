@@ -25,7 +25,7 @@ CampaignStore = Reflux.createStore({
 	},
 
 	onLoadCompleted(data) {
-		this.state.campaign = data;
+		this.state.campaign = data.data;
 		this.trigger(this.state.campaign);
 	},
 
@@ -50,7 +50,7 @@ CampaignStore = Reflux.createStore({
 
 	onClear() {
 		this.init();
-		this.trigger(this.state);
+		this.trigger(this.state.campaign);
 	}
 });
 

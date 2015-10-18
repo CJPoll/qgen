@@ -2,7 +2,7 @@ defmodule Qgen.CampaignControllerTest do
   use Qgen.ConnCase
 
   alias Qgen.Campaign
-  @valid_attrs %{}
+  @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 
   setup do
@@ -18,7 +18,8 @@ defmodule Qgen.CampaignControllerTest do
   test "shows chosen resource", %{conn: conn} do
     campaign = Repo.insert! %Campaign{}
     conn = get conn, campaign_path(conn, :show, campaign)
-    assert json_response(conn, 200)["data"] == %{"id" => campaign.id}
+    assert json_response(conn, 200)["data"] == %{"id" => campaign.id,
+      "name" => campaign.name}
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do

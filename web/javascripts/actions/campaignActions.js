@@ -79,7 +79,7 @@ CampaignActions.create.listen(function(campaign) {
 		$.post(url, data)
 			.then(function(response) {
 				NotificationsActions.addSuccess({message: 'Successfully made ' + campaign.name + '.'});
-				history.pushState(null, '/campaigns/' + response.id)
+				history.pushState(null, '/campaigns/' + response.data.id)
 			})
 			.fail(function() {
 				NotificationsActions.addError({message: 'Sorry - couldn\'t make that for you.'});

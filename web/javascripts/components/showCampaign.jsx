@@ -100,7 +100,6 @@ ShowCampaign = React.createClass({
 
 					<ul>
 						<li>
-							{owner.email}
 						</li>
 					</ul>
 

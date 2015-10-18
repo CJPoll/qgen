@@ -35047,7 +35047,7 @@
 		},
 
 		onLoadCompleted: function onLoadCompleted(data) {
-			this.state.campaigns = data;
+			this.state.campaigns = data.data;
 			this.trigger(this.state.campaigns);
 		},
 
@@ -38070,11 +38070,7 @@
 					_react2['default'].createElement(
 						'ul',
 						null,
-						_react2['default'].createElement(
-							'li',
-							null,
-							owner.email
-						)
+						_react2['default'].createElement('li', null)
 					),
 					_react2['default'].createElement(
 						'h2',
@@ -38147,7 +38143,7 @@
 		},
 
 		onLoadCompleted: function onLoadCompleted(data) {
-			this.state.campaign = data;
+			this.state.campaign = data.data;
 			this.trigger(this.state.campaign);
 		},
 
@@ -38172,7 +38168,7 @@
 
 		onClear: function onClear() {
 			this.init();
-			this.trigger(this.state);
+			this.trigger(this.state.campaign);
 		}
 	});
 
@@ -38285,7 +38281,7 @@
 
 		_jquery2['default'].post(url, data).then(function (response) {
 			_webJavascriptsActionsNotificationsActions2['default'].addSuccess({ message: 'Successfully made ' + campaign.name + '.' });
-			_webJavascriptsHistory2['default'].pushState(null, '/campaigns/' + response.id);
+			_webJavascriptsHistory2['default'].pushState(null, '/campaigns/' + response.data.id);
 		}).fail(function () {
 			_webJavascriptsActionsNotificationsActions2['default'].addError({ message: 'Sorry - couldn\'t make that for you.' });
 		});
