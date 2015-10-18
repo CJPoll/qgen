@@ -8,13 +8,13 @@ BackgroundsActions = Reflux.createActions({
 });
 
 BackgroundsActions.load.listen(function() {
-	var url, self;
+	var url, data;
 
-	url = '/api/backgrounds.json';
-	self = this;
+	url = '/api/backgrounds';
+	data = {dataType: 'json'}
 
-	$.getJSON(url)
-		.then((data) => self.completed(data));
+	$.getJSON(url, data)
+		.then(this.completed);
 });
 
 export default BackgroundsActions;

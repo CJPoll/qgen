@@ -21,7 +21,7 @@ BackgroundsStore = Reflux.createStore({
 	},
 
 	onLoadCompleted(backgrounds) {
-		this.state.backgrounds = this.state.backgrounds.concat(backgrounds);
+		this.state.backgrounds = this.state.backgrounds.concat(backgrounds.data);
 		this.trigger(this.state);
 	},
 

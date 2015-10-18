@@ -56,7 +56,6 @@ var NewCharacterStore = Reflux.createStore({
 	},
 
 	onBackstoryChanged(backstoryState) {
-		debugger;
 		this.state.character.backstory = backstoryState.backstory;
 		this.state.character.privateBackstory = backstoryState.privateBackstory;
 		this.trigger(this.state.character);

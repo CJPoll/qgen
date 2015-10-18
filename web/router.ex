@@ -17,6 +17,8 @@ defmodule Qgen.Router do
     pipe_through :api
 
     resources "/campaigns", CampaignController, except: [:new, :edit]
+    resources "/backgrounds", BackgroundController, except: [:new, :edit]
+    resources "/powers", PowerController, except: [:new, :edit]
   end
 
   scope "/", Qgen do

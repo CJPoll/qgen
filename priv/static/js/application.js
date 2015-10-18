@@ -34913,7 +34913,7 @@
 		},
 
 		onLoadCompleted: function onLoadCompleted(backgrounds) {
-			this.state.backgrounds = this.state.backgrounds.concat(backgrounds);
+			this.state.backgrounds = this.state.backgrounds.concat(backgrounds.data);
 			this.trigger(this.state);
 		},
 
@@ -34954,14 +34954,12 @@
 	});
 
 	BackgroundsActions.load.listen(function () {
-		var url, self;
+		var url, data;
 
-		url = '/api/backgrounds.json';
-		self = this;
+		url = '/api/backgrounds';
+		data = { dataType: 'json' };
 
-		$.getJSON(url).then(function (data) {
-			return self.completed(data);
-		});
+		$.getJSON(url, data).then(this.completed);
 	});
 
 	exports['default'] = BackgroundsActions;
@@ -35424,7 +35422,6 @@
 		},
 
 		onBackstoryChanged: function onBackstoryChanged(backstoryState) {
-			debugger;
 			this.state.character.backstory = backstoryState.backstory;
 			this.state.character.privateBackstory = backstoryState.privateBackstory;
 			this.trigger(this.state.character);
@@ -35545,7 +35542,7 @@
 		},
 
 		onLoadCompleted: function onLoadCompleted(data) {
-			this.state.powers = this.state.powers.concat(data);
+			this.state.powers = this.state.powers.concat(data.data);
 			this.trigger(this.state);
 		},
 
