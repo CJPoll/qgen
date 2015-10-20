@@ -116,7 +116,7 @@
 	window.jquery = _jquery2['default'];
 	window.jQuery = _jquery2['default'];
 
-	__webpack_require__(337);
+	__webpack_require__(340);
 
 	_webJavascriptsActionsCampaignsActions2['default'].load();
 	_webJavascriptsActionsCharactersActions2['default'].load();
@@ -21490,6 +21490,11 @@
 		onLoadCompleted: function onLoadCompleted(userData) {
 			this.state.currentUser = userData;
 			this.trigger(this.state.currentUser);
+		},
+
+		onLoaded: function onLoaded(userData) {
+			this.state.currentUser = userData;
+			this.trigger(this.state.currentUser);
 		}
 	});
 
@@ -21515,7 +21520,8 @@
 	var SelfActions;
 
 	SelfActions = _reflux2['default'].createActions({
-		load: { asyncResult: true }
+		load: { asyncResult: true },
+		loaded: { asyncResult: false }
 	});
 
 	SelfActions.load.listen(function () {
@@ -23224,7 +23230,7 @@
 			if (_lodash2['default'].isUndefined(user) || _lodash2['default'].isUndefined(user.first_name)) {
 				return _react2['default'].createElement(
 					'a',
-					{ href: '/users/sign_in' },
+					{ href: '/login' },
 					' Sign In '
 				);
 			}
@@ -30284,6 +30290,10 @@
 
 	var _webJavascriptsComponentsLogin2 = _interopRequireDefault(_webJavascriptsComponentsLogin);
 
+	var _webJavascriptsComponentsSignUp = __webpack_require__(339);
+
+	var _webJavascriptsComponentsSignUp2 = _interopRequireDefault(_webJavascriptsComponentsSignUp);
+
 	var routes;
 
 	routes = _react2['default'].createElement(
@@ -30310,7 +30320,10 @@
 			_react2['default'].createElement(_reactRouter.Route, { path: 'campaigns/:campaignId', component: _webJavascriptsComponentsShowCampaign2['default'] }),
 			_react2['default'].createElement(_reactRouter.Route, { path: '/beasts', component: _webJavascriptsComponentsBestiary2['default'] }),
 			_react2['default'].createElement(_reactRouter.Route, { path: '/beasts/new', component: _webJavascriptsComponentsNewBeast2['default'] }),
-			_react2['default'].createElement(_reactRouter.Route, { path: '/beasts/:beastId', component: _webJavascriptsComponentsShowBeast2['default'] })
+			_react2['default'].createElement(_reactRouter.Route, { path: '/beasts/:beastId', component: _webJavascriptsComponentsShowBeast2['default'] }),
+			_react2['default'].createElement(_reactRouter.Route, { path: '/login', component: _webJavascriptsComponentsLogin2['default'] }),
+			_react2['default'].createElement(_reactRouter.Route, { path: '/register', component: _webJavascriptsComponentsSignUp2['default'] }),
+			_react2['default'].createElement(_reactRouter.Route, { path: '/logout', component: _webJavascriptsComponentsLogin2['default'] })
 		)
 	);
 
@@ -37083,7 +37096,7 @@
 		},
 
 		onLoadCompleted: function onLoadCompleted(data) {
-			this.state.characters = data;
+			this.state.characters = data.data;
 			this.trigger(this.state.characters);
 		}
 	});
@@ -39629,6 +39642,24 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reflux = __webpack_require__(159);
+
+	var _reflux2 = _interopRequireDefault(_reflux);
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _webJavascriptsActionsLoginActions = __webpack_require__(335);
+
+	var _webJavascriptsActionsLoginActions2 = _interopRequireDefault(_webJavascriptsActionsLoginActions);
+
+	var _webJavascriptsStoresLoginStore = __webpack_require__(336);
+
+	var _webJavascriptsStoresLoginStore2 = _interopRequireDefault(_webJavascriptsStoresLoginStore);
+
+	var _reactRouter = __webpack_require__(215);
+
 	var _webStylesheetsGeneralScss = __webpack_require__(267);
 
 	var _webStylesheetsGeneralScss2 = _interopRequireDefault(_webStylesheetsGeneralScss);
@@ -39637,11 +39668,11 @@
 
 	var _webStylesheetsButtonsScss2 = _interopRequireDefault(_webStylesheetsButtonsScss);
 
-	var _webJavascriptsComponentsAuthenticityToken = __webpack_require__(335);
+	var _webJavascriptsComponentsAuthenticityToken = __webpack_require__(337);
 
 	var _webJavascriptsComponentsAuthenticityToken2 = _interopRequireDefault(_webJavascriptsComponentsAuthenticityToken);
 
-	var _webJavascriptsComponentsSlackLogin = __webpack_require__(336);
+	var _webJavascriptsComponentsSlackLogin = __webpack_require__(338);
 
 	var _webJavascriptsComponentsSlackLogin2 = _interopRequireDefault(_webJavascriptsComponentsSlackLogin);
 
@@ -39650,10 +39681,25 @@
 	LoginForm = _react2['default'].createClass({
 		displayName: 'LoginForm',
 
+		mixins: [_reflux2['default'].connect(_webJavascriptsStoresLoginStore2['default'], 'user')],
+
+		handleSubmit: function handleSubmit(e) {
+			e.preventDefault();
+			_webJavascriptsActionsLoginActions2['default'].submit(this.state.user);
+		},
+
+		handleChangeEmail: function handleChangeEmail(e) {
+			_webJavascriptsActionsLoginActions2['default'].changeEmail(e.target.value);
+		},
+
+		handleChangePassword: function handleChangePassword(e) {
+			_webJavascriptsActionsLoginActions2['default'].changePassword(e.target.value);
+		},
+
 		render: function render() {
 			return _react2['default'].createElement(
 				'form',
-				{ className: 'login-form', action: '/users/sign_in', acceptCharset: 'UTF-8', method: 'POST' },
+				{ className: 'login-form', action: '/login', acceptCharset: 'UTF-8', method: 'POST' },
 				_react2['default'].createElement(_webJavascriptsComponentsAuthenticityToken2['default'], null),
 				_react2['default'].createElement(_webJavascriptsComponentsSlackLogin2['default'], null),
 				_react2['default'].createElement(
@@ -39664,7 +39710,7 @@
 						null,
 						' Email '
 					),
-					_react2['default'].createElement('input', { type: 'email', autofocus: true, name: 'user[email]', className: _webStylesheetsGeneralScss2['default'].textInput })
+					_react2['default'].createElement('input', { type: 'email', autofocus: true, name: 'user[email]', className: _webStylesheetsGeneralScss2['default'].textInput, onChange: this.handleChangeEmail })
 				),
 				_react2['default'].createElement(
 					'div',
@@ -39674,19 +39720,19 @@
 						null,
 						' Password '
 					),
-					_react2['default'].createElement('input', { name: 'user[password]', type: 'password', className: _webStylesheetsGeneralScss2['default'].textInput })
+					_react2['default'].createElement('input', { name: 'user[password]', type: 'password', className: _webStylesheetsGeneralScss2['default'].textInput, onChange: this.handleChangePassword })
 				),
 				_react2['default'].createElement(
 					'div',
 					{ className: 'form-group' },
-					_react2['default'].createElement('input', { type: 'submit', className: _webStylesheetsButtonsScss2['default'].primaryButton })
+					_react2['default'].createElement('input', { type: 'submit', className: _webStylesheetsButtonsScss2['default'].primaryButton, onClick: this.handleSubmit })
 				),
 				_react2['default'].createElement(
 					'div',
 					null,
 					_react2['default'].createElement(
-						'a',
-						{ href: '/users/sign_up' },
+						_reactRouter.Link,
+						{ to: '/register' },
 						' Sign Up? '
 					)
 				),
@@ -39708,6 +39754,122 @@
 
 /***/ },
 /* 335 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _reflux = __webpack_require__(159);
+
+	var _reflux2 = _interopRequireDefault(_reflux);
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _webJavascriptsHistory = __webpack_require__(191);
+
+	var _webJavascriptsHistory2 = _interopRequireDefault(_webJavascriptsHistory);
+
+	var _webJavascriptsActionsNotificationsActions = __webpack_require__(292);
+
+	var _webJavascriptsActionsNotificationsActions2 = _interopRequireDefault(_webJavascriptsActionsNotificationsActions);
+
+	var _webJavascriptsActionsSelfActions = __webpack_require__(180);
+
+	var _webJavascriptsActionsSelfActions2 = _interopRequireDefault(_webJavascriptsActionsSelfActions);
+
+	var LoginActions;
+
+	LoginActions = _reflux2['default'].createActions({
+		changeEmail: { asyncResult: false },
+		changePassword: { asyncResult: false },
+		submit: { asyncResult: true }
+	});
+
+	LoginActions.submit.listen(function (user) {
+		var url, data;
+
+		url = '/api/login';
+
+		data = {
+			user: user,
+			dataType: 'json'
+		};
+
+		_jquery2['default'].post(url, data).then(function (result) {
+			_webJavascriptsActionsSelfActions2['default'].loaded(result.data);
+			_webJavascriptsHistory2['default'].pushState(null, '/');
+		}).fail(function (result) {
+			_webJavascriptsActionsNotificationsActions2['default'].addError({ message: 'Couldn\'t log in with those credentials' });
+		});
+	});
+
+	exports['default'] = LoginActions;
+	module.exports = exports['default'];
+
+/***/ },
+/* 336 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _reflux = __webpack_require__(159);
+
+	var _reflux2 = _interopRequireDefault(_reflux);
+
+	var _webJavascriptsActionsLoginActions = __webpack_require__(335);
+
+	var _webJavascriptsActionsLoginActions2 = _interopRequireDefault(_webJavascriptsActionsLoginActions);
+
+	var LoginStore;
+
+	LoginStore = _reflux2['default'].createStore({
+		listenables: [_webJavascriptsActionsLoginActions2['default']],
+		init: function init() {
+			this.state = {
+				user: {
+					email: '',
+					password: ''
+				}
+			};
+		},
+
+		getInitialState: function getInitialState() {
+			if (this.state === undefined) {
+				this.init();
+			}
+
+			return this.state.user;
+		},
+
+		onChangeEmail: function onChangeEmail(email) {
+			this.state.user.email = email;
+			this.trigger(this.state.user);
+		},
+
+		onChangePassword: function onChangePassword(password) {
+			this.state.user.password = password;
+			this.trigger(this.state.user);
+		}
+	});
+
+	exports['default'] = LoginStore;
+	module.exports = exports['default'];
+
+/***/ },
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -39745,7 +39907,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 336 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */"use strict";
@@ -39779,7 +39941,165 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 337 */
+/* 339 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM */'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _webJavascriptsHistory = __webpack_require__(191);
+
+	var _webJavascriptsHistory2 = _interopRequireDefault(_webJavascriptsHistory);
+
+	var _webJavascriptsActionsNotificationsActions = __webpack_require__(292);
+
+	var _webJavascriptsActionsNotificationsActions2 = _interopRequireDefault(_webJavascriptsActionsNotificationsActions);
+
+	var _webStylesheetsGeneralScss = __webpack_require__(267);
+
+	var _webStylesheetsGeneralScss2 = _interopRequireDefault(_webStylesheetsGeneralScss);
+
+	var _webStylesheetsButtonsScss = __webpack_require__(269);
+
+	var _webStylesheetsButtonsScss2 = _interopRequireDefault(_webStylesheetsButtonsScss);
+
+	var _webJavascriptsHelpersAddAuthenticityToken = __webpack_require__(213);
+
+	var _webJavascriptsHelpersAddAuthenticityToken2 = _interopRequireDefault(_webJavascriptsHelpersAddAuthenticityToken);
+
+	var _webJavascriptsComponentsPanel = __webpack_require__(277);
+
+	var _webJavascriptsComponentsFormGroup = __webpack_require__(281);
+
+	var _webJavascriptsComponentsFormGroup2 = _interopRequireDefault(_webJavascriptsComponentsFormGroup);
+
+	var _webJavascriptsComponentsAuthenticityToken = __webpack_require__(337);
+
+	var _webJavascriptsComponentsAuthenticityToken2 = _interopRequireDefault(_webJavascriptsComponentsAuthenticityToken);
+
+	var SignUp;
+
+	SignUp = _react2['default'].createClass({
+		displayName: 'SignUp',
+
+		handleSubmit: function handleSubmit(e) {
+			e.preventDefault();
+			var url, data;
+
+			url = '/api/register';
+
+			data = {
+				dataType: 'json',
+				user: {
+					first_name: (0, _jquery2['default'])('#first_name').val(),
+					last_name: (0, _jquery2['default'])('#last_name').val(),
+					email: (0, _jquery2['default'])('#email').val(),
+					password: (0, _jquery2['default'])('#password').val()
+				}
+			};
+
+			_jquery2['default'].post(url, data).then(function (response) {
+				_webJavascriptsHistory2['default'].pushState(null, '/dashboard');
+			}).fail(function (response) {
+				_webJavascriptsActionsNotificationsActions2['default'].addError({ message: 'Couldn\'t log in with those credentials' });
+			});
+		},
+
+		render: function render() {
+			return _react2['default'].createElement(
+				_webJavascriptsComponentsPanel.Panel,
+				null,
+				_react2['default'].createElement(
+					_webJavascriptsComponentsPanel.PanelTitle,
+					null,
+					'Sign Up'
+				),
+				_react2['default'].createElement(
+					_webJavascriptsComponentsPanel.PanelBody,
+					null,
+					_react2['default'].createElement(
+						'form',
+						{ method: 'POST', action: '/api/register' },
+						_react2['default'].createElement(_webJavascriptsComponentsAuthenticityToken2['default'], null),
+						_react2['default'].createElement(
+							_webJavascriptsComponentsFormGroup2['default'],
+							null,
+							_react2['default'].createElement(
+								'label',
+								{ htmlFor: 'user[first_name]' },
+								' First Name '
+							),
+							_react2['default'].createElement('input', { type: 'text', name: 'user[first_name]', className: _webStylesheetsGeneralScss2['default'].textInput, id: 'first_name' })
+						),
+						_react2['default'].createElement(
+							_webJavascriptsComponentsFormGroup2['default'],
+							null,
+							_react2['default'].createElement(
+								'label',
+								{ htmlFor: 'user[last_name]' },
+								' Last Name '
+							),
+							_react2['default'].createElement('input', { type: 'text', name: 'user[last_name]', className: _webStylesheetsGeneralScss2['default'].textInput, id: 'last_name' })
+						),
+						_react2['default'].createElement(
+							_webJavascriptsComponentsFormGroup2['default'],
+							null,
+							_react2['default'].createElement(
+								'label',
+								{ htmlFor: 'user[email]' },
+								' Email '
+							),
+							_react2['default'].createElement('input', { type: 'text', name: 'user[email]', className: _webStylesheetsGeneralScss2['default'].textInput, id: 'email' })
+						),
+						_react2['default'].createElement(
+							_webJavascriptsComponentsFormGroup2['default'],
+							null,
+							_react2['default'].createElement(
+								'label',
+								{ htmlFor: 'user[password]' },
+								' Password '
+							),
+							_react2['default'].createElement('input', { type: 'password', name: 'user[password]', className: _webStylesheetsGeneralScss2['default'].textInput, id: 'password' })
+						),
+						_react2['default'].createElement(
+							_webJavascriptsComponentsFormGroup2['default'],
+							null,
+							_react2['default'].createElement(
+								'label',
+								{ htmlFor: 'password_confirmation' },
+								' Password Confirmation '
+							),
+							_react2['default'].createElement('input', { type: 'password', name: 'user[password_confirmation]', className: _webStylesheetsGeneralScss2['default'].textInput })
+						),
+						_react2['default'].createElement(
+							_webJavascriptsComponentsFormGroup2['default'],
+							null,
+							_react2['default'].createElement('input', { type: 'submit', value: 'Sign Up', className: _webStylesheetsButtonsScss2['default'].primaryButton, onClick: this.handleSubmit })
+						)
+					)
+				)
+			);
+		}
+	});
+
+	exports['default'] = SignUp;
+	module.exports = exports['default'];
+
+/***/ },
+/* 340 */
 /***/ function(module, exports) {
 
 	/*!

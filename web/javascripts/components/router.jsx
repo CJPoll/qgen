@@ -26,6 +26,7 @@ import NewBeast from 'web/javascripts/components/newBeast';
 import ShowBeast from 'web/javascripts/components/showBeast';
 
 import Login from 'web/javascripts/components/login';
+import SignUp from 'web/javascripts/components/signUp';
 
 var routes;
 
@@ -51,6 +52,10 @@ routes = (
 			<Route path='/beasts' component={Bestiary} />
 			<Route path='/beasts/new' component={NewBeast} />
 			<Route path='/beasts/:beastId' component={ShowBeast} />
+
+			<Route path='/login' component={Login} />
+			<Route path='/register' component={SignUp} />
+			<Route path='/logout' component={Login} />
 		</Route>
 	</Router>
 );

@@ -21,7 +21,7 @@ CharactersStore = Reflux.createStore({
 	},
 
 	onLoadCompleted(data) {
-		this.state.characters = data;
+		this.state.characters = data.data;
 		this.trigger(this.state.characters);
 	}
 });

@@ -11,6 +11,7 @@ defmodule Qgen.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
   end
 
   scope "/api", Qgen do
@@ -19,11 +20,16 @@ defmodule Qgen.Router do
     resources "/campaigns", CampaignController, except: [:new, :edit]
     resources "/backgrounds", BackgroundController, except: [:new, :edit]
     resources "/powers", PowerController, except: [:new, :edit]
+
+    post "/login", UserController, :login
+
+    post "/register", UserController, :register
   end
 
   scope "/", Qgen do
     pipe_through :browser # Use the default browser stack
 
+    get "/login", UserController, :new_session
     get "/*anything", PageController, :index
   end
 

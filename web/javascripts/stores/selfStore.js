@@ -21,6 +21,11 @@ var SelfStore = Reflux.createStore({
 	onLoadCompleted(userData) {
 		this.state.currentUser = userData;
 		this.trigger(this.state.currentUser);
+	},
+
+	onLoaded(userData) {
+		this.state.currentUser = userData;
+		this.trigger(this.state.currentUser);
 	}
 });
 

@@ -3,7 +3,8 @@ import Reflux from 'reflux';
 var SelfActions;
 
 SelfActions = Reflux.createActions({
-	load: {asyncResult: true}
+	load: {asyncResult: true},
+	loaded: {asyncResult: false}
 });
 
 SelfActions.load.listen(function() {
