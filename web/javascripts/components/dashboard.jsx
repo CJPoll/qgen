@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 
 import CampaignsStore from 'web/javascripts/stores/campaignsStore';
 import CharactersStore from 'web/javascripts/stores/charactersStore';
+import requireLogin from 'web/javascripts/mixins/requireLogin';
 
 import CampaignsList from './campaignsList';
 import CharactersList from './charactersList';
@@ -12,11 +13,9 @@ var Dashboard;
 Dashboard = React.createClass({
 	mixins: [
 		Reflux.connect(CampaignsStore, 'campaigns'),
-		Reflux.connect(CharactersStore, 'characters')
+		Reflux.connect(CharactersStore, 'characters'),
+		requireLogin
 	],
-
-	propTypes: {
-	},
 
 	render() {
 		return (

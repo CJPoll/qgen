@@ -30,7 +30,6 @@ BeastActions.create.listen(function(beast) {
 
 	$.post(url, data)
 	.then(function(response) {
-		debugger;
 		history.pushState(null, '/beasts/' + response.id);
 		NotificationsActions.addSuccess({message: 'Successfully created the ' + beast.name + '.'});
 	})

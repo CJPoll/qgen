@@ -13,7 +13,7 @@ LoginButton = React.createClass({
 	render() {
 		var user = this.props.userData;
 
-		if (_.isUndefined(user) || _.isUndefined(user.first_name)) {
+		if (_.isUndefined(user) || _.isNull(user) || _.isUndefined(user.first_name) || _.isNull(user.first_name)) {
 			return (
 				<a href="/login"> Sign In </a>
 			);

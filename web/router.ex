@@ -20,9 +20,12 @@ defmodule Qgen.Router do
     resources "/campaigns", CampaignController, except: [:new, :edit]
     resources "/backgrounds", BackgroundController, except: [:new, :edit]
     resources "/powers", PowerController, except: [:new, :edit]
+    resources "/characters", CharacterController, except: [:new, :edit]
 
+    get "/self", UserController, :current_user
+
+    delete "/logout", UserController, :logout
     post "/login", UserController, :login
-
     post "/register", UserController, :register
   end
 

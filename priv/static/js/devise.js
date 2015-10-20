@@ -21453,13 +21453,26 @@
 			return this.state.currentUser;
 		},
 
+		loggedIn: function loggedIn() {
+			return Object.keys(this.state.currentUser).length > 0;
+		},
+
 		onLoadCompleted: function onLoadCompleted(userData) {
-			this.state.currentUser = userData;
+			this.state.currentUser = userData.data;
 			this.trigger(this.state.currentUser);
+		},
+
+		onLoadFailed: function onLoadFailed() {
+			return;
 		},
 
 		onLoaded: function onLoaded(userData) {
 			this.state.currentUser = userData;
+			this.trigger(this.state.currentUser);
+		},
+
+		onClear: function onClear() {
+			this.state.currentUser = {};
 			this.trigger(this.state.currentUser);
 		}
 	});
@@ -21486,16 +21499,17 @@
 	var SelfActions;
 
 	SelfActions = _reflux2['default'].createActions({
+		clear: { asyncResult: false, sync: true },
 		load: { asyncResult: true },
-		loaded: { asyncResult: false }
+		loaded: { asyncResult: false, sync: true }
 	});
 
 	SelfActions.load.listen(function () {
 		var url;
 
-		url = '/api/users/self';
+		url = '/api/self';
 
-		$.get(url).then(this.completed).fail(this.failed);
+		return $.get(url).then(this.completed).fail(this.failed);
 	});
 
 	exports['default'] = SelfActions;
@@ -23193,7 +23207,7 @@
 		render: function render() {
 			var user = this.props.userData;
 
-			if (_lodash2['default'].isUndefined(user) || _lodash2['default'].isUndefined(user.first_name)) {
+			if (_lodash2['default'].isUndefined(user) || _lodash2['default'].isNull(user) || _lodash2['default'].isUndefined(user.first_name) || _lodash2['default'].isNull(user.first_name)) {
 				return _react2['default'].createElement(
 					'a',
 					{ href: '/login' },
@@ -30080,9 +30094,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _webJavascriptsHistory = __webpack_require__(191);
+
+	var _webJavascriptsHistory2 = _interopRequireDefault(_webJavascriptsHistory);
+
 	var _webJavascriptsHelpersAddAuthenticityToken = __webpack_require__(213);
 
 	var _webJavascriptsHelpersAddAuthenticityToken2 = _interopRequireDefault(_webJavascriptsHelpersAddAuthenticityToken);
+
+	var _webJavascriptsActionsSelfActions = __webpack_require__(180);
+
+	var _webJavascriptsActionsSelfActions2 = _interopRequireDefault(_webJavascriptsActionsSelfActions);
 
 	var LogoutButton;
 
@@ -30096,7 +30118,7 @@
 		handleClick: function handleClick(e) {
 			var data, url;
 
-			url = '/api/users/sign_out';
+			url = '/api/logout';
 
 			data = {
 				_method: 'delete',
@@ -30106,7 +30128,8 @@
 			data = (0, _webJavascriptsHelpersAddAuthenticityToken2['default'])(data);
 
 			$.post(url, data).then(function () {
-				window.location = '/users/sign_in';
+				_webJavascriptsActionsSelfActions2['default'].clear();
+				_webJavascriptsHistory2['default'].pushState(null, '/login');
 			});
 		},
 
@@ -35592,7 +35615,7 @@
 					{ className: 'form-group' },
 					_react2['default'].createElement(
 						'label',
-						null,
+						{ htmlFor: 'user[email]' },
 						' Email '
 					),
 					_react2['default'].createElement('input', { type: 'email', autofocus: true, name: 'user[email]', className: _webStylesheetsGeneralScss2['default'].textInput, onChange: this.handleChangeEmail })
@@ -35602,7 +35625,7 @@
 					{ className: 'form-group' },
 					_react2['default'].createElement(
 						'label',
-						null,
+						{ htmlFor: 'user[password]' },
 						' Password '
 					),
 					_react2['default'].createElement('input', { name: 'user[password]', type: 'password', className: _webStylesheetsGeneralScss2['default'].textInput, onChange: this.handleChangePassword })
@@ -35897,9 +35920,9 @@
 			};
 
 			_jquery2['default'].post(url, data).then(function (response) {
-				_webJavascriptsHistory2['default'].pushState(null, '/dashboard');
+				_webJavascriptsHistory2['default'].pushState(null, '/');
 			}).fail(function (response) {
-				_webJavascriptsActionsNotificationsActions2['default'].addError({ message: 'Couldn\'t log in with those credentials' });
+				_webJavascriptsActionsNotificationsActions2['default'].addError({ message: 'Couldn\'t create a user with those credentials' });
 			});
 		},
 

@@ -13,7 +13,7 @@ defmodule Qgen.UserController do
         render(connection, "show.json", user: changeset)
       {:error, changeset} ->
         connection
-          |> send_resp(422, "Failed")
+        |> send_resp(422, "Failed")
     end
   end
 
@@ -21,14 +21,31 @@ defmodule Qgen.UserController do
     case SessionManager.login(connection, session_params) do
       {:ok, connection, user} ->
         connection
-          |> render("show.json", user: user)
+        |> render("show.json", user: user)
       {:error, connection} ->
         connection
-          |> send_resp(422, "Failed")
+        |> send_resp(422, "Failed")
     end
+  end
+
+  def logout(connection, _params) do
+    connection
+    |> SessionManager.logout
+    |> send_resp(200, "")
   end
 
   def new_session(connection, _params) do
     render(connection, "index.html", layout: {Qgen.LayoutView, "user.html"})
   end
+  
+  def current_user(connection, _params) do
+    user = SessionManager.current_user(connection)
+    cond do
+      user ->
+        render(connection, "show.json", user: user)
+      true ->
+        render(connection, "empty.json")
+    end
+  end
 end
+

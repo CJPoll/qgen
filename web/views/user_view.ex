@@ -15,5 +15,9 @@ defmodule Qgen.UserView do
       first_name: user.first_name,
       last_name: user.last_name}
   end
+
+  def render("empty.json", _assigns) do
+    %{}
+  end
 end
 

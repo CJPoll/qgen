@@ -118,15 +118,13 @@
 
 	__webpack_require__(340);
 
+	_webJavascriptsActionsSelfActions2['default'].load().then(function () {
+		_react2['default'].render(_webJavascriptsComponentsRouter2['default'], document.body);
+	});
 	_webJavascriptsActionsCampaignsActions2['default'].load();
 	_webJavascriptsActionsCharactersActions2['default'].load();
 	_webJavascriptsActionsBackgroundsActions2['default'].load();
 	_webJavascriptsActionsPowersActions2['default'].load();
-	_webJavascriptsActionsSelfActions2['default'].load();
-
-	(0, _jquery2['default'])(document).ready(function () {
-		_react2['default'].render(_webJavascriptsComponentsRouter2['default'], document.body);
-	});
 
 /***/ },
 /* 1 */
@@ -21487,13 +21485,26 @@
 			return this.state.currentUser;
 		},
 
+		loggedIn: function loggedIn() {
+			return Object.keys(this.state.currentUser).length > 0;
+		},
+
 		onLoadCompleted: function onLoadCompleted(userData) {
-			this.state.currentUser = userData;
+			this.state.currentUser = userData.data;
 			this.trigger(this.state.currentUser);
+		},
+
+		onLoadFailed: function onLoadFailed() {
+			return;
 		},
 
 		onLoaded: function onLoaded(userData) {
 			this.state.currentUser = userData;
+			this.trigger(this.state.currentUser);
+		},
+
+		onClear: function onClear() {
+			this.state.currentUser = {};
 			this.trigger(this.state.currentUser);
 		}
 	});
@@ -21520,16 +21531,17 @@
 	var SelfActions;
 
 	SelfActions = _reflux2['default'].createActions({
+		clear: { asyncResult: false, sync: true },
 		load: { asyncResult: true },
-		loaded: { asyncResult: false }
+		loaded: { asyncResult: false, sync: true }
 	});
 
 	SelfActions.load.listen(function () {
 		var url;
 
-		url = '/api/users/self';
+		url = '/api/self';
 
-		$.get(url).then(this.completed).fail(this.failed);
+		return $.get(url).then(this.completed).fail(this.failed);
 	});
 
 	exports['default'] = SelfActions;
@@ -23227,7 +23239,7 @@
 		render: function render() {
 			var user = this.props.userData;
 
-			if (_lodash2['default'].isUndefined(user) || _lodash2['default'].isUndefined(user.first_name)) {
+			if (_lodash2['default'].isUndefined(user) || _lodash2['default'].isNull(user) || _lodash2['default'].isUndefined(user.first_name) || _lodash2['default'].isNull(user.first_name)) {
 				return _react2['default'].createElement(
 					'a',
 					{ href: '/login' },
@@ -30114,9 +30126,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _webJavascriptsHistory = __webpack_require__(191);
+
+	var _webJavascriptsHistory2 = _interopRequireDefault(_webJavascriptsHistory);
+
 	var _webJavascriptsHelpersAddAuthenticityToken = __webpack_require__(213);
 
 	var _webJavascriptsHelpersAddAuthenticityToken2 = _interopRequireDefault(_webJavascriptsHelpersAddAuthenticityToken);
+
+	var _webJavascriptsActionsSelfActions = __webpack_require__(180);
+
+	var _webJavascriptsActionsSelfActions2 = _interopRequireDefault(_webJavascriptsActionsSelfActions);
 
 	var LogoutButton;
 
@@ -30130,7 +30150,7 @@
 		handleClick: function handleClick(e) {
 			var data, url;
 
-			url = '/api/users/sign_out';
+			url = '/api/logout';
 
 			data = {
 				_method: 'delete',
@@ -30140,7 +30160,8 @@
 			data = (0, _webJavascriptsHelpersAddAuthenticityToken2['default'])(data);
 
 			$.post(url, data).then(function () {
-				window.location = '/users/sign_in';
+				_webJavascriptsActionsSelfActions2['default'].clear();
+				_webJavascriptsHistory2['default'].pushState(null, '/login');
 			});
 		},
 
@@ -35002,10 +35023,16 @@
 
 	var _webJavascriptsStoresCampaignsStore2 = _interopRequireDefault(_webJavascriptsStoresCampaignsStore);
 
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
 	var CharacterCreator;
 
 	CharacterCreator = _react2['default'].createClass({
 		displayName: 'CharacterCreator',
+
+		mixins: [_webJavascriptsMixinsRequireLogin2['default']],
 
 		render: function render() {
 			return _react2['default'].createElement(
@@ -37017,6 +37044,10 @@
 
 	var _webJavascriptsStoresCharactersStore2 = _interopRequireDefault(_webJavascriptsStoresCharactersStore);
 
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
 	var _campaignsList = __webpack_require__(301);
 
 	var _campaignsList2 = _interopRequireDefault(_campaignsList);
@@ -37030,9 +37061,7 @@
 	Dashboard = _react2['default'].createClass({
 		displayName: 'Dashboard',
 
-		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCampaignsStore2['default'], 'campaigns'), _reflux2['default'].connect(_webJavascriptsStoresCharactersStore2['default'], 'characters')],
-
-		propTypes: {},
+		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCampaignsStore2['default'], 'campaigns'), _reflux2['default'].connect(_webJavascriptsStoresCharactersStore2['default'], 'characters'), _webJavascriptsMixinsRequireLogin2['default']],
 
 		render: function render() {
 			return _react2['default'].createElement(
@@ -37332,13 +37361,17 @@
 
 	var _webJavascriptsStoresCharactersStore2 = _interopRequireDefault(_webJavascriptsStoresCharactersStore);
 
-	var _charactersList = __webpack_require__(302);
-
-	var _charactersList2 = _interopRequireDefault(_charactersList);
-
 	var _webJavascriptsActionsCharactersActions = __webpack_require__(300);
 
 	var _webJavascriptsActionsCharactersActions2 = _interopRequireDefault(_webJavascriptsActionsCharactersActions);
+
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
+	var _charactersList = __webpack_require__(302);
+
+	var _charactersList2 = _interopRequireDefault(_charactersList);
 
 	var CharactersIndex;
 
@@ -37349,7 +37382,7 @@
 			_webJavascriptsActionsCharactersActions2['default'].load();
 		},
 
-		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCharactersStore2['default'], 'characters')],
+		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCharactersStore2['default'], 'characters'), _webJavascriptsMixinsRequireLogin2['default']],
 
 		render: function render() {
 			return _react2['default'].createElement(
@@ -37422,12 +37455,16 @@
 
 	var _webJavascriptsActionsCharacterActions2 = _interopRequireDefault(_webJavascriptsActionsCharacterActions);
 
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
 	var ShowCharacter;
 
 	ShowCharacter = _react2['default'].createClass({
 		displayName: 'ShowCharacter',
 
-		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCharacterStore2['default'], 'character'), _reflux2['default'].connect(_webJavascriptsStoresCampaignsStore2['default'], 'campaigns')],
+		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCharacterStore2['default'], 'character'), _reflux2['default'].connect(_webJavascriptsStoresCampaignsStore2['default'], 'campaigns'), _webJavascriptsMixinsRequireLogin2['default']],
 
 		componentWillMount: function componentWillMount() {
 			_webJavascriptsActionsCharacterActions2['default'].load(this.props.params.characterId);
@@ -37867,6 +37904,10 @@
 
 	var _webJavascriptsActionsCampaignsActions2 = _interopRequireDefault(_webJavascriptsActionsCampaignsActions);
 
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
 	var _panel = __webpack_require__(277);
 
 	var _campaignsList = __webpack_require__(301);
@@ -37878,7 +37919,7 @@
 	CampaignsIndex = _react2['default'].createClass({
 		displayName: 'CampaignsIndex',
 
-		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCampaignsStore2['default'], 'campaigns')],
+		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCampaignsStore2['default'], 'campaigns'), _webJavascriptsMixinsRequireLogin2['default']],
 
 		componentDidMount: function componentDidMount() {
 			_webJavascriptsActionsCampaignsActions2['default'].load();
@@ -37942,6 +37983,10 @@
 
 	var _webJavascriptsActionsCampaignActions2 = _interopRequireDefault(_webJavascriptsActionsCampaignActions);
 
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
 	var _buttonToolbar = __webpack_require__(306);
 
 	var _buttonToolbar2 = _interopRequireDefault(_buttonToolbar);
@@ -37965,8 +38010,9 @@
 	EditCampaign = _react2['default'].createClass({
 		displayName: 'EditCampaign',
 
+		mixins: [_webJavascriptsMixinsRequireLogin2['default']],
+
 		propTypes: {
-			editable: _react2['default'].PropTypes.bool,
 			campaign: _react2['default'].PropTypes.object.isRequired
 		},
 
@@ -38454,6 +38500,10 @@
 
 	var _webJavascriptsActionsCampaignActions2 = _interopRequireDefault(_webJavascriptsActionsCampaignActions);
 
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
 	var _panel = __webpack_require__(277);
 
 	var _webJavascriptsComponentsCampaignForm = __webpack_require__(318);
@@ -38465,7 +38515,7 @@
 	NewCampaign = _react2['default'].createClass({
 		displayName: 'NewCampaign',
 
-		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCampaignStore2['default'], 'campaign')],
+		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCampaignStore2['default'], 'campaign'), _webJavascriptsMixinsRequireLogin2['default']],
 
 		componentWillMount: function componentWillMount() {
 			_webJavascriptsActionsCampaignActions2['default'].clear();
@@ -38873,6 +38923,10 @@
 
 	var _webJavascriptsActionsCampaignActions2 = _interopRequireDefault(_webJavascriptsActionsCampaignActions);
 
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
 	var _webJavascriptsComponentsPanel = __webpack_require__(277);
 
 	var _webJavascriptsComponentsCampaignForm = __webpack_require__(318);
@@ -38884,7 +38938,7 @@
 	EditCampaign = _react2['default'].createClass({
 		displayName: 'EditCampaign',
 
-		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCampaignStore2['default'], 'campaign')],
+		mixins: [_reflux2['default'].connect(_webJavascriptsStoresCampaignStore2['default'], 'campaign'), _webJavascriptsMixinsRequireLogin2['default']],
 
 		componentWillMount: function componentWillMount() {
 			_webJavascriptsActionsCampaignActions2['default'].load(this.props.params.campaignId);
@@ -38963,6 +39017,10 @@
 
 	var _webJavascriptsActionsBeastsActions2 = _interopRequireDefault(_webJavascriptsActionsBeastsActions);
 
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
 	var _webJavascriptsComponentsBeastPanel = __webpack_require__(326);
 
 	var _webJavascriptsComponentsBeastPanel2 = _interopRequireDefault(_webJavascriptsComponentsBeastPanel);
@@ -38972,7 +39030,7 @@
 	Bestiary = _react2['default'].createClass({
 		displayName: 'Bestiary',
 
-		mixins: [_reflux2['default'].connect(_webJavascriptsStoresBeastsStore2['default'], 'beasts')],
+		mixins: [_reflux2['default'].connect(_webJavascriptsStoresBeastsStore2['default'], 'beasts'), _webJavascriptsMixinsRequireLogin2['default']],
 
 		componentWillMount: function componentWillMount() {
 			_webJavascriptsActionsBeastsActions2['default'].load();
@@ -39164,10 +39222,16 @@
 
 	var _webJavascriptsComponentsBeastForm2 = _interopRequireDefault(_webJavascriptsComponentsBeastForm);
 
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
 	var NewBeast;
 
 	NewBeast = _react2['default'].createClass({
 		displayName: 'NewBeast',
+
+		mixins: [_webJavascriptsMixinsRequireLogin2['default']],
 
 		render: function render() {
 			return _react2['default'].createElement(
@@ -39439,7 +39503,6 @@
 		data = (0, _webJavascriptsHelpersAddAuthenticityToken2['default'])(data);
 
 		_jquery2['default'].post(url, data).then(function (response) {
-			debugger;
 			_webJavascriptsHistory2['default'].pushState(null, '/beasts/' + response.id);
 			_webJavascriptsActionsNotificationsActions2['default'].addSuccess({ message: 'Successfully created the ' + beast.name + '.' });
 		}).fail(function (response) {
@@ -39546,6 +39609,10 @@
 
 	var _webJavascriptsActionsBeastActions2 = _interopRequireDefault(_webJavascriptsActionsBeastActions);
 
+	var _webJavascriptsMixinsRequireLogin = __webpack_require__(341);
+
+	var _webJavascriptsMixinsRequireLogin2 = _interopRequireDefault(_webJavascriptsMixinsRequireLogin);
+
 	var _webJavascriptsComponentsBeastPanel = __webpack_require__(326);
 
 	var _webJavascriptsComponentsBeastPanel2 = _interopRequireDefault(_webJavascriptsComponentsBeastPanel);
@@ -39555,7 +39622,7 @@
 	ShowBeast = _react2['default'].createClass({
 		displayName: 'ShowBeast',
 
-		mixins: [_reflux2['default'].connect(_webJavascriptsStoresBeastStore2['default'], 'beast')],
+		mixins: [_reflux2['default'].connect(_webJavascriptsStoresBeastStore2['default'], 'beast'), _webJavascriptsMixinsRequireLogin2['default']],
 
 		componentWillMount: function componentWillMount() {
 			_webJavascriptsActionsBeastActions2['default'].load(this.props.params.beastId);
@@ -39707,7 +39774,7 @@
 					{ className: 'form-group' },
 					_react2['default'].createElement(
 						'label',
-						null,
+						{ htmlFor: 'user[email]' },
 						' Email '
 					),
 					_react2['default'].createElement('input', { type: 'email', autofocus: true, name: 'user[email]', className: _webStylesheetsGeneralScss2['default'].textInput, onChange: this.handleChangeEmail })
@@ -39717,7 +39784,7 @@
 					{ className: 'form-group' },
 					_react2['default'].createElement(
 						'label',
-						null,
+						{ htmlFor: 'user[password]' },
 						' Password '
 					),
 					_react2['default'].createElement('input', { name: 'user[password]', type: 'password', className: _webStylesheetsGeneralScss2['default'].textInput, onChange: this.handleChangePassword })
@@ -40012,9 +40079,9 @@
 			};
 
 			_jquery2['default'].post(url, data).then(function (response) {
-				_webJavascriptsHistory2['default'].pushState(null, '/dashboard');
+				_webJavascriptsHistory2['default'].pushState(null, '/');
 			}).fail(function (response) {
-				_webJavascriptsActionsNotificationsActions2['default'].addError({ message: 'Couldn\'t log in with those credentials' });
+				_webJavascriptsActionsNotificationsActions2['default'].addError({ message: 'Couldn\'t create a user with those credentials' });
 			});
 		},
 
@@ -40682,6 +40749,37 @@
 	    });
 	  });
 	})(jQuery);
+
+/***/ },
+/* 341 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _webJavascriptsStoresSelfStore = __webpack_require__(179);
+
+	var _webJavascriptsStoresSelfStore2 = _interopRequireDefault(_webJavascriptsStoresSelfStore);
+
+	var _webJavascriptsHistory = __webpack_require__(191);
+
+	var _webJavascriptsHistory2 = _interopRequireDefault(_webJavascriptsHistory);
+
+	var requireLogin = {
+		componentWillMount: function componentWillMount() {
+			if (!_webJavascriptsStoresSelfStore2['default'].loggedIn()) {
+				_webJavascriptsHistory2['default'].replaceState(null, '/login');
+			}
+		}
+	};
+
+	exports['default'] = requireLogin;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);

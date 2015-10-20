@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import CampaignStore from 'web/javascripts/stores/campaignStore';
 import CampaignActions from 'web/javascripts/actions/campaignActions';
+import requireLogin from 'web/javascripts/mixins/requireLogin';
 
 import ButtonToolbar from './buttonToolbar';
 import ButtonGroup from './buttonGroup';
@@ -15,8 +16,9 @@ import { Panel, PanelTitle, PanelBody } from 'web/javascripts/components/panel';
 var ShowCampaign, EditCampaign;
 
 EditCampaign = React.createClass({
+	mixins: [requireLogin],
+
 	propTypes: {
-		editable: React.PropTypes.bool,
 		campaign: React.PropTypes.object.isRequired
 	},
 

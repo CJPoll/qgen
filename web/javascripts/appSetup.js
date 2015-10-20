@@ -25,15 +25,14 @@ import BackgroundsActions from 'web/javascripts/actions/backgroundsActions';
 import PowersActions from 'web/javascripts/actions/powersActions';
 import SelfActions from 'web/javascripts/actions/selfActions';
 
+SelfActions.load()
+.then(function() {
+	React.render(
+		Router,
+		document.body
+	);
+})
 CampaignsActions.load();
 CharactersActions.load();
 BackgroundsActions.load();
 PowersActions.load();
-SelfActions.load();
-
-$(document).ready(function() {
-	React.render(
-		Router,
-		document.body
-	)
-});

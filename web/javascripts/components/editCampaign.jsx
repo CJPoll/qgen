@@ -3,13 +3,18 @@ import Reflux from 'reflux';
 
 import CampaignStore from 'web/javascripts/stores/campaignStore';
 import CampaignActions from 'web/javascripts/actions/campaignActions';
+import requireLogin from 'web/javascripts/mixins/requireLogin';
+
 import { Panel, PanelTitle, PanelBody } from 'web/javascripts/components/panel';
 import CampaignForm from 'web/javascripts/components/campaignForm';
 
 var EditCampaign;
 
 EditCampaign = React.createClass({
-	mixins: [Reflux.connect(CampaignStore, 'campaign')],
+	mixins: [
+		Reflux.connect(CampaignStore, 'campaign'),
+		requireLogin
+	],
 
 	componentWillMount() {
 		CampaignActions.load(this.props.params.campaignId);

@@ -1,5 +1,8 @@
 import React from 'react';
+import history from 'web/javascripts/history';
 import addAuthenticityToken from 'web/javascripts/helpers/addAuthenticityToken';
+
+import SelfActions from 'web/javascripts/actions/selfActions';
 
 var LogoutButton;
 
@@ -11,7 +14,7 @@ LogoutButton = React.createClass({
 	handleClick(e) {
 		var data, url;
 
-		url = '/api/users/sign_out';
+		url = '/api/logout';
 
 		data = {
 			_method: 'delete',
@@ -22,7 +25,8 @@ LogoutButton = React.createClass({
 
 		$.post(url, data)
 			.then(function() {
-				window.location = '/users/sign_in';
+				SelfActions.clear();
+				history.pushState(null, '/login');
 			});
 	},
 

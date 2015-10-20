@@ -37,11 +37,11 @@ LoginForm = React.createClass({
 				<AuthenticityToken />
 				<SlackLogin />
 				<div className='form-group'>
-					<label> Email </label>
+					<label htmlFor='user[email]'> Email </label>
 					<input type='email' autofocus name='user[email]' className={generalStyles.textInput} onChange={this.handleChangeEmail} />
 				</div>
 				<div className='form-group'>
-					<label> Password </label>
+					<label htmlFor='user[password]'> Password </label>
 					<input name='user[password]' type='password' className={generalStyles.textInput} onChange={this.handleChangePassword} />
 				</div>
 				<div className='form-group'>

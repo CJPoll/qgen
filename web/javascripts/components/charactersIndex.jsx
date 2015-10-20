@@ -2,8 +2,10 @@ import React from 'react';
 import Reflux from 'reflux';
 
 import CharactersStore from 'web/javascripts/stores/charactersStore';
-import CharactersList from './charactersList';
 import CharactersActions from 'web/javascripts/actions/charactersActions';
+import requireLogin from 'web/javascripts/mixins/requireLogin';
+
+import CharactersList from './charactersList';
 
 var CharactersIndex;
 
@@ -12,7 +14,10 @@ CharactersIndex = React.createClass({
 		CharactersActions.load();
 	},
 
-	mixins: [Reflux.connect(CharactersStore, 'characters')],
+	mixins: [
+		Reflux.connect(CharactersStore, 'characters'),
+		requireLogin
+	],
 
 	render() {
 		return (

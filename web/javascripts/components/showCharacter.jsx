@@ -11,13 +11,15 @@ import SelectCampaign from './selectCampaign';
 import CharacterStore from 'web/javascripts/stores/characterStore';
 import CampaignsStore from 'web/javascripts/stores/campaignsStore';
 import CharacterActions from 'web/javascripts/actions/characterActions';
+import requireLogin from 'web/javascripts/mixins/requireLogin';
 
 var ShowCharacter;
 
 ShowCharacter = React.createClass({
 	mixins: [
 		Reflux.connect(CharacterStore, 'character'),
-		Reflux.connect(CampaignsStore, 'campaigns')
+		Reflux.connect(CampaignsStore, 'campaigns'),
+		requireLogin
 	],
 
 	componentWillMount() {

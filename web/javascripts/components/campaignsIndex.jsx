@@ -4,6 +4,7 @@ import Reflux from 'reflux';
 import CampaignsStore from 'web/javascripts/stores/campaignsStore';
 
 import CampaignActions from 'web/javascripts/actions/campaignsActions';
+import requireLogin from 'web/javascripts/mixins/requireLogin';
 
 import { Panel, PanelTitle, PanelBody } from './panel';
 import CampaignsList from './campaignsList';
@@ -11,7 +12,10 @@ import CampaignsList from './campaignsList';
 var CampaignsIndex;
 
 CampaignsIndex = React.createClass({
-	mixins: [Reflux.connect(CampaignsStore, 'campaigns')],
+	mixins: [
+		Reflux.connect(CampaignsStore, 'campaigns'),
+		requireLogin
+	],
 
 	componentDidMount() {
 		CampaignActions.load();

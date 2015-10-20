@@ -33,10 +33,10 @@ SignUp = React.createClass({
 
 		$.post(url, data)
 		.then(function(response) {
-			history.pushState(null, '/dashboard');
+			history.pushState(null, '/');
 		})
 		.fail(function(response) {
-			NotificationsActions.addError({message: 'Couldn\'t log in with those credentials'});
+			NotificationsActions.addError({message: 'Couldn\'t create a user with those credentials'});
 		});
 	},
 
