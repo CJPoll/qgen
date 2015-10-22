@@ -4,10 +4,12 @@ defmodule Qgen.Campaign do
   schema "campaigns" do
     field :name, :string
 
+    belongs_to :user, Qgen.User
+
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(name user_id)
   @optional_fields ~w()
 
   @doc """

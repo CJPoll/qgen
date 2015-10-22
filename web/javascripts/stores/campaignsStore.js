@@ -1,5 +1,6 @@
 import Reflux from 'reflux';
 import CampaignsActions from '../actions/campaignsActions';
+import NotificationsActions from 'web/javascripts/actions/notificationsActions';
 
 var CampaignsStore;
 
@@ -25,7 +26,7 @@ CampaignsStore = Reflux.createStore({
 	},
 
 	onLoadFailed(e) {
-		return e;
+		NotificationsActions.addError({message: 'Couldn\'t load campaigns'})
 	}
 });
 

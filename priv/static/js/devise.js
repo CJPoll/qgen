@@ -62,15 +62,15 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _webJavascriptsComponentsLayout = __webpack_require__(290);
+	var _webJavascriptsComponentsLayout = __webpack_require__(291);
 
 	var _webJavascriptsComponentsLayout2 = _interopRequireDefault(_webJavascriptsComponentsLayout);
 
-	var _webJavascriptsComponentsLogin = __webpack_require__(333);
+	var _webJavascriptsComponentsLogin = __webpack_require__(334);
 
 	var _webJavascriptsComponentsLogin2 = _interopRequireDefault(_webJavascriptsComponentsLogin);
 
-	var _webJavascriptsComponentsSignUp = __webpack_require__(339);
+	var _webJavascriptsComponentsSignUp = __webpack_require__(340);
 
 	var _webJavascriptsComponentsSignUp2 = _interopRequireDefault(_webJavascriptsComponentsSignUp);
 
@@ -34745,13 +34745,14 @@
 /* 264 */,
 /* 265 */,
 /* 266 */,
-/* 267 */
+/* 267 */,
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(268);
+	var content = __webpack_require__(269);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(190)(content, {});
@@ -34771,7 +34772,7 @@
 	}
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(184)();
@@ -34791,13 +34792,13 @@
 	};
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(270);
+	var content = __webpack_require__(271);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(190)(content, {});
@@ -34817,7 +34818,7 @@
 	}
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(184)();
@@ -34834,13 +34835,13 @@
 	};
 
 /***/ },
-/* 271 */,
 /* 272 */,
 /* 273 */,
 /* 274 */,
 /* 275 */,
 /* 276 */,
-/* 277 */
+/* 277 */,
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -34855,7 +34856,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webStylesheetsPanelScss = __webpack_require__(278);
+	var _webStylesheetsPanelScss = __webpack_require__(279);
 
 	var _webStylesheetsPanelScss2 = _interopRequireDefault(_webStylesheetsPanelScss);
 
@@ -34911,13 +34912,13 @@
 	exports['default'] = Panel;
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(279);
+	var content = __webpack_require__(280);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(190)(content, {});
@@ -34937,7 +34938,7 @@
 	}
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(184)();
@@ -34956,8 +34957,8 @@
 	};
 
 /***/ },
-/* 280 */,
-/* 281 */
+/* 281 */,
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -34988,7 +34989,6 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 282 */,
 /* 283 */,
 /* 284 */,
 /* 285 */,
@@ -34996,7 +34996,8 @@
 /* 287 */,
 /* 288 */,
 /* 289 */,
-/* 290 */
+/* 290 */,
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -35015,11 +35016,11 @@
 
 	var _reflux2 = _interopRequireDefault(_reflux);
 
-	var _webJavascriptsStoresNotificationsStore = __webpack_require__(291);
+	var _webJavascriptsStoresNotificationsStore = __webpack_require__(292);
 
 	var _webJavascriptsStoresNotificationsStore2 = _interopRequireDefault(_webJavascriptsStoresNotificationsStore);
 
-	var _webJavascriptsComponentsNotifications = __webpack_require__(293);
+	var _webJavascriptsComponentsNotifications = __webpack_require__(294);
 
 	var _webJavascriptsComponentsNotifications2 = _interopRequireDefault(_webJavascriptsComponentsNotifications);
 
@@ -35027,7 +35028,7 @@
 
 	var _webJavascriptsComponentsQgenNavbar2 = _interopRequireDefault(_webJavascriptsComponentsQgenNavbar);
 
-	var _webJavascriptsComponentsFluidContainer = __webpack_require__(297);
+	var _webJavascriptsComponentsFluidContainer = __webpack_require__(298);
 
 	var _webJavascriptsComponentsFluidContainer2 = _interopRequireDefault(_webJavascriptsComponentsFluidContainer);
 
@@ -35061,7 +35062,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35076,7 +35077,7 @@
 
 	var _reflux2 = _interopRequireDefault(_reflux);
 
-	var _webJavascriptsActionsNotificationsActions = __webpack_require__(292);
+	var _webJavascriptsActionsNotificationsActions = __webpack_require__(293);
 
 	var _webJavascriptsActionsNotificationsActions2 = _interopRequireDefault(_webJavascriptsActionsNotificationsActions);
 
@@ -35150,7 +35151,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35173,7 +35174,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -35192,15 +35193,15 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _webJavascriptsComponentsSuccessMessage = __webpack_require__(294);
+	var _webJavascriptsComponentsSuccessMessage = __webpack_require__(295);
 
 	var _webJavascriptsComponentsSuccessMessage2 = _interopRequireDefault(_webJavascriptsComponentsSuccessMessage);
 
-	var _webJavascriptsComponentsWarningMessage = __webpack_require__(295);
+	var _webJavascriptsComponentsWarningMessage = __webpack_require__(296);
 
 	var _webJavascriptsComponentsWarningMessage2 = _interopRequireDefault(_webJavascriptsComponentsWarningMessage);
 
-	var _webJavascriptsComponentsErrorMessage = __webpack_require__(296);
+	var _webJavascriptsComponentsErrorMessage = __webpack_require__(297);
 
 	var _webJavascriptsComponentsErrorMessage2 = _interopRequireDefault(_webJavascriptsComponentsErrorMessage);
 
@@ -35248,7 +35249,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -35263,7 +35264,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webJavascriptsActionsNotificationsActions = __webpack_require__(292);
+	var _webJavascriptsActionsNotificationsActions = __webpack_require__(293);
 
 	var _webJavascriptsActionsNotificationsActions2 = _interopRequireDefault(_webJavascriptsActionsNotificationsActions);
 
@@ -35302,7 +35303,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -35317,7 +35318,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webJavascriptsActionsNotificationsActions = __webpack_require__(292);
+	var _webJavascriptsActionsNotificationsActions = __webpack_require__(293);
 
 	var _webJavascriptsActionsNotificationsActions2 = _interopRequireDefault(_webJavascriptsActionsNotificationsActions);
 
@@ -35356,7 +35357,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -35371,7 +35372,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webJavascriptsActionsNotificationsActions = __webpack_require__(292);
+	var _webJavascriptsActionsNotificationsActions = __webpack_require__(293);
 
 	var _webJavascriptsActionsNotificationsActions2 = _interopRequireDefault(_webJavascriptsActionsNotificationsActions);
 
@@ -35410,7 +35411,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 297 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -35443,7 +35444,6 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 298 */,
 /* 299 */,
 /* 300 */,
 /* 301 */,
@@ -35478,7 +35478,8 @@
 /* 330 */,
 /* 331 */,
 /* 332 */,
-/* 333 */
+/* 333 */,
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -35493,9 +35494,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _webJavascriptsComponentsPanel = __webpack_require__(277);
+	var _webJavascriptsComponentsPanel = __webpack_require__(278);
 
-	var _webJavascriptsComponentsLoginForm = __webpack_require__(334);
+	var _webJavascriptsComponentsLoginForm = __webpack_require__(335);
 
 	var _webJavascriptsComponentsLoginForm2 = _interopRequireDefault(_webJavascriptsComponentsLoginForm);
 
@@ -35535,7 +35536,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 334 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -35558,29 +35559,29 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _webJavascriptsActionsLoginActions = __webpack_require__(335);
+	var _webJavascriptsActionsLoginActions = __webpack_require__(336);
 
 	var _webJavascriptsActionsLoginActions2 = _interopRequireDefault(_webJavascriptsActionsLoginActions);
 
-	var _webJavascriptsStoresLoginStore = __webpack_require__(336);
+	var _webJavascriptsStoresLoginStore = __webpack_require__(337);
 
 	var _webJavascriptsStoresLoginStore2 = _interopRequireDefault(_webJavascriptsStoresLoginStore);
 
 	var _reactRouter = __webpack_require__(215);
 
-	var _webStylesheetsGeneralScss = __webpack_require__(267);
+	var _webStylesheetsGeneralScss = __webpack_require__(268);
 
 	var _webStylesheetsGeneralScss2 = _interopRequireDefault(_webStylesheetsGeneralScss);
 
-	var _webStylesheetsButtonsScss = __webpack_require__(269);
+	var _webStylesheetsButtonsScss = __webpack_require__(270);
 
 	var _webStylesheetsButtonsScss2 = _interopRequireDefault(_webStylesheetsButtonsScss);
 
-	var _webJavascriptsComponentsAuthenticityToken = __webpack_require__(337);
+	var _webJavascriptsComponentsAuthenticityToken = __webpack_require__(338);
 
 	var _webJavascriptsComponentsAuthenticityToken2 = _interopRequireDefault(_webJavascriptsComponentsAuthenticityToken);
 
-	var _webJavascriptsComponentsSlackLogin = __webpack_require__(338);
+	var _webJavascriptsComponentsSlackLogin = __webpack_require__(339);
 
 	var _webJavascriptsComponentsSlackLogin2 = _interopRequireDefault(_webJavascriptsComponentsSlackLogin);
 
@@ -35661,7 +35662,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 335 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35684,7 +35685,7 @@
 
 	var _webJavascriptsHistory2 = _interopRequireDefault(_webJavascriptsHistory);
 
-	var _webJavascriptsActionsNotificationsActions = __webpack_require__(292);
+	var _webJavascriptsActionsNotificationsActions = __webpack_require__(293);
 
 	var _webJavascriptsActionsNotificationsActions2 = _interopRequireDefault(_webJavascriptsActionsNotificationsActions);
 
@@ -35722,7 +35723,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 336 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35737,7 +35738,7 @@
 
 	var _reflux2 = _interopRequireDefault(_reflux);
 
-	var _webJavascriptsActionsLoginActions = __webpack_require__(335);
+	var _webJavascriptsActionsLoginActions = __webpack_require__(336);
 
 	var _webJavascriptsActionsLoginActions2 = _interopRequireDefault(_webJavascriptsActionsLoginActions);
 
@@ -35777,7 +35778,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 337 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -35815,7 +35816,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 338 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */"use strict";
@@ -35849,7 +35850,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 339 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */'use strict';
@@ -35872,15 +35873,15 @@
 
 	var _webJavascriptsHistory2 = _interopRequireDefault(_webJavascriptsHistory);
 
-	var _webJavascriptsActionsNotificationsActions = __webpack_require__(292);
+	var _webJavascriptsActionsNotificationsActions = __webpack_require__(293);
 
 	var _webJavascriptsActionsNotificationsActions2 = _interopRequireDefault(_webJavascriptsActionsNotificationsActions);
 
-	var _webStylesheetsGeneralScss = __webpack_require__(267);
+	var _webStylesheetsGeneralScss = __webpack_require__(268);
 
 	var _webStylesheetsGeneralScss2 = _interopRequireDefault(_webStylesheetsGeneralScss);
 
-	var _webStylesheetsButtonsScss = __webpack_require__(269);
+	var _webStylesheetsButtonsScss = __webpack_require__(270);
 
 	var _webStylesheetsButtonsScss2 = _interopRequireDefault(_webStylesheetsButtonsScss);
 
@@ -35888,13 +35889,13 @@
 
 	var _webJavascriptsHelpersAddAuthenticityToken2 = _interopRequireDefault(_webJavascriptsHelpersAddAuthenticityToken);
 
-	var _webJavascriptsComponentsPanel = __webpack_require__(277);
+	var _webJavascriptsComponentsPanel = __webpack_require__(278);
 
-	var _webJavascriptsComponentsFormGroup = __webpack_require__(281);
+	var _webJavascriptsComponentsFormGroup = __webpack_require__(282);
 
 	var _webJavascriptsComponentsFormGroup2 = _interopRequireDefault(_webJavascriptsComponentsFormGroup);
 
-	var _webJavascriptsComponentsAuthenticityToken = __webpack_require__(337);
+	var _webJavascriptsComponentsAuthenticityToken = __webpack_require__(338);
 
 	var _webJavascriptsComponentsAuthenticityToken2 = _interopRequireDefault(_webJavascriptsComponentsAuthenticityToken);
 

@@ -8,6 +8,8 @@ defmodule Qgen.User do
     field :last_name, :string
     field :password, :string, virtual: true
 
+    has_many :campaigns, Qgen.Campaign
+
     timestamps
   end
 

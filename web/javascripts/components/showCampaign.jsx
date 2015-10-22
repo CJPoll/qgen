@@ -84,10 +84,18 @@ ShowCampaign = React.createClass({
 	},
 
 	render() {
-		var campaign, owner, editButton;
+		var campaign, owner, editButton, fullName;
 
 		campaign = this.state.campaign;
-		owner = campaign.user;
+		owner = campaign.owner;
+		if (owner.first_name && !owner.last_name) {
+			fullName = owner.first_name; + ' ' + owner.last_name;
+		} else if (owner.first_name && owner.last_name) {
+			fullName = owner.first_name + ' ' + owner.last_name;
+		} else {
+			fullName = '';
+		}
+
 		editButton = <EditCampaign campaign={campaign} />;
 
 		return (
@@ -102,6 +110,7 @@ ShowCampaign = React.createClass({
 
 					<ul>
 						<li>
+							{fullName}
 						</li>
 					</ul>
 

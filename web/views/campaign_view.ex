@@ -10,6 +10,12 @@ defmodule Qgen.CampaignView do
   end
 
   def render("campaign.json", %{campaign: campaign}) do
-    %{id: campaign.id, name: campaign.name}
+    %{id: campaign.id,
+      name: campaign.name,
+      owner: %{
+        id: campaign.user.id,
+        email: campaign.user.email,
+        first_name: campaign.user.first_name,
+        last_name: campaign.user.last_name}}
   end
 end

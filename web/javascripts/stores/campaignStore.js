@@ -9,7 +9,7 @@ CampaignStore = Reflux.createStore({
 		this.listenToMany(CampaignActions);
 		this.state = {
 			campaign: {
-				user: {},
+				owner: {},
 				players: [],
 				characters: []
 			}
