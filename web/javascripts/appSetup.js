@@ -19,10 +19,6 @@ import PowersStore from 'web/javascripts/stores/powersStore';
 import BackstoryStore from 'web/javascripts/stores/backstoryStore';
 import NotificationsStore from 'web/javascripts/stores/notificationsStore';
 
-import CampaignsActions from 'web/javascripts/actions/campaignsActions';
-import CharactersActions from 'web/javascripts/actions/charactersActions';
-import BackgroundsActions from 'web/javascripts/actions/backgroundsActions';
-import PowersActions from 'web/javascripts/actions/powersActions';
 import SelfActions from 'web/javascripts/actions/selfActions';
 
 SelfActions.load()
@@ -31,8 +27,4 @@ SelfActions.load()
 		Router,
 		document.body
 	);
-})
-CampaignsActions.load();
-CharactersActions.load();
-BackgroundsActions.load();
-PowersActions.load();
+});

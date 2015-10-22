@@ -2,10 +2,8 @@ defmodule Qgen.UserController do
   use Qgen.Web, :controller
   alias Passport.RegistrationManager
   alias Passport.SessionManager
-  require Logger
 
-  plug :action
-  plug :fetch_session
+  plug :scrub_params, "campaign" when action in [:create, :update]
 
   def register(connection, registration_params) do
     case RegistrationManager.register(registration_params["user"]) do
@@ -37,7 +35,7 @@ defmodule Qgen.UserController do
   def new_session(connection, _params) do
     render(connection, "index.html", layout: {Qgen.LayoutView, "user.html"})
   end
-  
+
   def current_user(connection, _params) do
     user = SessionManager.current_user(connection)
     cond do
@@ -47,5 +45,17 @@ defmodule Qgen.UserController do
         render(connection, "empty.json")
     end
   end
-end
 
+  def search(connection, %{"query" => name}) do
+    case name do
+      "" ->
+        users = []
+      _else ->
+        name = String.downcase("%" <> name <> "%")
+        users = Repo.all from u in Qgen.User,
+          where: ilike(u.first_name, ^name) or ilike(u.last_name, ^name)
+    end
+
+    render(connection, "index.json", users: users)
+  end
+end

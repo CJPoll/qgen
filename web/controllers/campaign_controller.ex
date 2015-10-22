@@ -1,8 +1,6 @@
 defmodule Qgen.CampaignController do
   use Qgen.Web, :controller
   alias Passport.SessionManager
-  require Logger
-
   alias Qgen.Campaign
 
   plug :scrub_params, "campaign" when action in [:create, :update]

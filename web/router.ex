@@ -23,6 +23,7 @@ defmodule Qgen.Router do
     resources "/characters", CharacterController, except: [:new, :edit]
 
     get "/self", UserController, :current_user
+    get "/users/search", UserController, :search
 
     delete "/logout", UserController, :logout
     post "/login", UserController, :login
@@ -35,9 +36,4 @@ defmodule Qgen.Router do
     get "/login", UserController, :new_session
     get "/*anything", PageController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", Qgen do
-  #   pipe_through :api
-  # end
 end

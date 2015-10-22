@@ -27,8 +27,8 @@ var SelfStore = Reflux.createStore({
 		this.trigger(this.state.currentUser);
 	},
 
-	onLoadFailed() {
-		return;
+	onLoadFailed(response) {
+		console.log(response);
 	},
 
 	onLoaded(userData) {

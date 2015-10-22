@@ -37,6 +37,7 @@ SignUp = React.createClass({
 		})
 		.fail(function(response) {
 			NotificationsActions.addError({message: 'Couldn\'t create a user with those credentials'});
+			console.log(response);
 		});
 	},
 
