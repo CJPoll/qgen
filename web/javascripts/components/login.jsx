@@ -6,11 +6,6 @@ import LoginForm from 'web/javascripts/components/loginForm';
 var Login;
 
 Login = React.createClass({
-	propTypes: {
-		csrf_param: React.PropTypes.string.isRequired,
-		csrf_token: React.PropTypes.string.isRequired
-	},
-
 	render: function() {
 		return (
 			<div className='login'>
