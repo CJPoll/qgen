@@ -29,3 +29,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 {
 	@extend .form-control;
 }
+
+:local(.noDot)
+{
+	list-style-type: none;
+}

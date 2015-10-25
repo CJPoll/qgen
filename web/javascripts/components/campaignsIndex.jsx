@@ -3,7 +3,7 @@ import Reflux from 'reflux';
 
 import CampaignsStore from 'web/javascripts/stores/campaignsStore';
 
-import CampaignActions from 'web/javascripts/actions/campaignsActions';
+import CampaignsActions from 'web/javascripts/actions/campaignsActions';
 import requireLogin from 'web/javascripts/mixins/requireLogin';
 
 import { Panel, PanelTitle, PanelBody } from './panel';
@@ -18,7 +18,7 @@ CampaignsIndex = React.createClass({
 	],
 
 	componentDidMount() {
-		CampaignActions.load();
+		CampaignsActions.load();
 	},
 
 	render() {

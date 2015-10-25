@@ -5,6 +5,7 @@ var LoginStore;
 
 LoginStore = Reflux.createStore({
 	listenables: [LoginActions],
+
 	init() {
 		this.state = {
 			user: {

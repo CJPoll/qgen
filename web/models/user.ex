@@ -8,7 +8,8 @@ defmodule Qgen.User do
     field :last_name, :string
     field :password, :string, virtual: true
 
-    has_many :campaigns, Qgen.Campaign
+    has_many :campaign_memberships, Qgen.CampaignMembership
+    has_many :campaigns, through: [:campaign_memberships, :campaign]
 
     timestamps
   end

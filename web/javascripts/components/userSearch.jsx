@@ -27,7 +27,7 @@ UserSearchResults = React.createClass({
 			var key = 'search_result_' + result.id;
 
 			return (
-				<li key={key} className='no-dot' onClick={this.handleClick.bind(this, result)}>
+				<li key={key} className={generalStyles.noDot} onClick={this.handleClick.bind(this, result)}>
 					<span className="glyphicon glyphicon-plus add-person" ></span>
 					&nbsp;
 					{result.first_name + ' ' + result.last_name}

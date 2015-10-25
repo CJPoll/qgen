@@ -5,8 +5,9 @@ import CampaignActions from 'web/javascripts/actions/campaignActions';
 var CampaignStore;
 
 CampaignStore = Reflux.createStore({
+	listenables: [CampaignActions],
+
 	init() {
-		this.listenToMany(CampaignActions);
 		this.state = {
 			campaign: {
 				owner: {},
@@ -24,8 +25,9 @@ CampaignStore = Reflux.createStore({
 		return this.state.campaign;
 	},
 
-	onLoadCompleted(data) {
-		this.state.campaign = data.data;
+	onLoadCompleted(campaign) {
+		this.state.campaign = campaign.data;
+		this.state.campaign.players = campaign.data.players.data;
 		this.trigger(this.state.campaign);
 	},
 

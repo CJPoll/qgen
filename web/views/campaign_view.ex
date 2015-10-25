@@ -12,6 +12,7 @@ defmodule Qgen.CampaignView do
   def render("campaign.json", %{campaign: campaign}) do
     %{id: campaign.id,
       name: campaign.name,
+      players: Qgen.UserView.render("index.json", %{users: campaign.users}),
       owner: %{
         id: campaign.user.id,
         email: campaign.user.email,
