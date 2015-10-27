@@ -11,8 +11,7 @@ defmodule Qgen.CampaignController do
     current_user = SessionManager.current_user(conn)
     query = from c in Campaign, where: c.user_id == ^current_user.id
     campaigns = Repo.all(query)
-                |> Repo.preload([:user])
-                |> Repo.preload([:users])
+                |> Repo.preload([:user, :users])
     render(conn, "index.json", campaigns: campaigns)
   end
 
