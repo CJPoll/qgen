@@ -23,7 +23,7 @@ PowersStore = Reflux.createStore({
 	},
 
 	onLoadCompleted(data) {
-		this.state.powers = this.state.powers.concat(data.data);
+		this.state.powers = data.data;
 		this.trigger(this.state);
 	},
 

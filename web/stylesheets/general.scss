@@ -1,6 +1,11 @@
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
+:local(.fullWidth)
+{
+	@extend.col-xs-12;
+}
+
 :local(.tiled)
 {
   @extend .col-xs-12;

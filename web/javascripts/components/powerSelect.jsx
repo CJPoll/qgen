@@ -3,9 +3,11 @@ import Reflux from 'reflux';
 import _ from 'lodash';
 import history from 'web/javascripts/history';
 import buttonStyles from 'web/stylesheets/buttons.scss';
+import generalStyles from 'web/stylesheets/general.scss';
 
 import PowersStore from '../stores/powersStore';
 import NewCharacterStore from 'web/javascripts/stores/newCharacterStore';
+import PowersActions from 'web/javascripts/actions/powersActions';
 
 import { Link } from 'react-router';
 import Submit from 'web/javascripts/components/submit';
@@ -17,6 +19,10 @@ var powerSelect = React.createClass({
 		Reflux.connect(PowersStore, 'powers'),
 		Reflux.connect(NewCharacterStore, 'character')
 	],
+
+	componentWillMount() {
+		PowersActions.load();
+	},
 
 	onClick(e) {
 		e.preventDefault();
@@ -43,7 +49,9 @@ var powerSelect = React.createClass({
 				</Link>
 				</div>
 				{powerComponents}
-				<Submit onClick={this.onClick} disabled={!enabled} value='Move On'/>
+				<div className={generalStyles.fullWidth}>
+					<Submit onClick={this.onClick} disabled={!enabled} value='Move On'/>
+				</div>
 			</div>
 		);
 	}

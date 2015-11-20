@@ -1,17 +1,22 @@
 defmodule Qgen.CharacterController do
   use Qgen.Web, :controller
-
+  alias Passport.SessionManager
   alias Qgen.Character
+  require Logger
 
   plug :scrub_params, "character" when action in [:create, :update]
 
   def index(conn, _params) do
-    characters = Repo.all(Character)
+    current_user = SessionManager.current_user(conn)
+                    |> Repo.preload([:characters, :campaigns])
+    characters = current_user.characters
     render(conn, "index.json", characters: characters)
   end
 
   def create(conn, %{"character" => character_params}) do
+    current_user = SessionManager.current_user(conn)
     changeset = Character.changeset(%Character{}, character_params)
+                |> Character.changeset(%{"user" => current_user})
 
     case Repo.insert(changeset) do
       {:ok, character} ->

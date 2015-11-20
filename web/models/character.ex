@@ -6,6 +6,7 @@ defmodule Qgen.Character do
     field :last_name, :string
     field :backstory, :string
     field :private_backstory, :string
+
     belongs_to :user, Qgen.User
     belongs_to :background, Qgen.Background
     belongs_to :campaign, Qgen.Campaign
@@ -13,7 +14,7 @@ defmodule Qgen.Character do
     timestamps
   end
 
-  @required_fields ~w(first_name last_name backstory private_backstory)
+  @required_fields ~w(first_name last_name backstory private_backstory user_id)
   @optional_fields ~w()
 
   @doc """

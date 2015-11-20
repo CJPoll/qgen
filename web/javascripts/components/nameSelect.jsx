@@ -6,6 +6,7 @@ import buttonStyles from 'web/stylesheets/buttons.scss';
 
 import CampaignsStore from '../stores/campaignsStore';
 import NewCharacterStore from 'web/javascripts/stores/newCharacterStore';
+import CampaignsActions from 'web/javascripts/actions/campaignsActions';
 
 import { Link } from 'react-router';
 import { Panel, PanelTitle, PanelBody } from './panel';
@@ -21,6 +22,10 @@ NameSelector = React.createClass({
 		Reflux.connect(CampaignsStore, 'campaigns'),
 		Reflux.connect(NewCharacterStore, 'character')
 	],
+
+	componentWillMount() {
+		CampaignsActions.load();
+	},
 
 	handleFirstNameChange(e) {
 		NewCharacterActions.changeFirstName(e.target.value);

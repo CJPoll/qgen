@@ -4,8 +4,9 @@ import BackgroundsActions from '../actions/backgroundsActions';
 var BackgroundsStore;
 
 BackgroundsStore = Reflux.createStore({
+	listenables: [BackgroundsActions],
+
 	init() {
-		this.listenToMany(BackgroundsActions);
 		this.state = {
 			backgrounds: [],
 			selected: null
@@ -17,17 +18,17 @@ BackgroundsStore = Reflux.createStore({
 			this.init();
 		}
 
-		return this.state;
+		return this.state.backgrounds;
 	},
 
 	onLoadCompleted(backgrounds) {
-		this.state.backgrounds = this.state.backgrounds.concat(backgrounds.data);
-		this.trigger(this.state);
+		this.state.backgrounds = backgrounds.data;
+		this.trigger(this.state.backgrounds);
 	},
 
 	onSelectBackground(background) {
 		this.state.selected = background;
-		this.trigger(this.state);
+		this.trigger(this.state.backgrounds);
 	},
 
 	selected() {

@@ -57,13 +57,15 @@ defmodule Qgen.CampaignController do
                 |> Repo.preload([:user, :users])
     changeset = Campaign.changeset(campaign, campaign_params)
 
-    case Repo.update(changeset) do
-      {:ok, campaign} ->
-        render(conn, "show.json", campaign: campaign)
-      {:error, changeset} ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render(Qgen.ChangesetView, "error.json", changeset: changeset)
+    Repo.transaction fn ->
+      case Repo.update(changeset) do
+        {:ok, campaign} ->
+          render(conn, "show.json", campaign: campaign)
+        {:error, changeset} ->
+          conn
+          |> put_status(:unprocessable_entity)
+          |> render(Qgen.ChangesetView, "error.json", changeset: changeset)
+      end
     end
   end
 

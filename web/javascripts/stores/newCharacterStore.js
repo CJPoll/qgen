@@ -77,12 +77,14 @@ var NewCharacterStore = Reflux.createStore({
 		authToken = $('meta[name=csrf-token]').attr('content');
 		data = {
 			authenticity_token: authToken,
-			character: {}
+			character: this.state.character
 		};
 
 		url = '/api/characters';
 
 		_.extend(data.character, this.state.character);
+
+		data.character.campaign_id = data.character.campaignId;
 		data.character.first_name = data.character.firstName;
 		data.character.last_name = data.character.lastName;
 		data.character.private_backstory = data.character.privateBackstory;
