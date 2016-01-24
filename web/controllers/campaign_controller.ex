@@ -15,13 +15,14 @@ defmodule Qgen.CampaignController do
     render(conn, "index.json", campaigns: campaigns)
   end
 
+
   def create(conn, %{ "campaign" => campaign_params, "players" => players}) do
     current_user = SessionManager.current_user(conn)
     campaign_params = Map.put(campaign_params, "user_id", current_user.id)
 
     changeset = Campaign.changeset(%Campaign{}, campaign_params)
 
-    Repo.transaction fn ->
+    {:ok, conn} = Repo.transaction fn ->
       case Repo.insert(changeset) do
         {:ok, campaign} ->
           players
@@ -44,6 +45,13 @@ defmodule Qgen.CampaignController do
           |> render(Qgen.ChangesetView, "error.json", changeset: changeset)
       end
     end
+
+    conn
+  end
+
+  def create(conn, %{ "campaign" => campaign_params } = params) do
+    params = params |> Map.put("players", [])
+    create(conn, params)
   end
 
   def show(conn, %{"id" => id}) do
