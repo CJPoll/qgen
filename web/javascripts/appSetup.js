@@ -1,11 +1,3 @@
-import $ from 'jquery';
-
-window.$ = $;
-window.jquery = $;
-window.jQuery = $;
-
-require('bootstrap-sass/assets/javascripts/bootstrap.min');
-
 import React from 'react';
 
 import QGenNavbar from 'web/javascripts/components/qgenNavbar';

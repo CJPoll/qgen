@@ -16,23 +16,7 @@ config = module.exports = {
 config.module = {
 	loaders: [
 		{
-			test: /\.scss$/,
-			loaders: ['style-loader', 'css-loader', 'sass-loader']
-		},
-		{
-			test: /\.css$/,
-			loader: 'style!css'
-		},
-		{
-			test: /\.jsx$/,
-			loader: 'jsx-loader?insertPragma=React.DOM&harmony'
-		},
-		{
-			test: /\.js$/,
-			loader: 'babel-loader'
-		},
-		{
-			test: /\.jsx$/,
+			test: /\.jsx?$/,
 			loader: 'babel-loader'
 		},
 		{
